@@ -33,20 +33,20 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    bool mousePress;            //鼠标是否按下
-    bool mouseEnter;            //鼠标是否进入
-    bool mouseLeave;            //鼠标是否离开
+    bool mousePress;        //鼠标是否按下
+    bool mouseEnter;        //鼠标是否进入
+    bool mouseLeave;        //鼠标是否离开
 
-    int pixWidth;               //图片宽度
-    int pixHeight;              //图片高度
-    int oldWidth;               //图片旧宽度
-    int oldHeight;              //图片旧高度
+    int pixWidth;           //图片宽度
+    int pixHeight;          //图片高度
+    int oldWidth;           //图片旧宽度
+    int oldHeight;          //图片旧高度
 
-    int targetWidth;            //目标宽度
-    int targetHeight;           //目标高度
-    QString imageName;          //图像路径
+    int targetWidth;        //目标宽度
+    int targetHeight;       //目标高度
+    QString imageName;      //图像路径
 
-    //进入动画+//离开动画
+    //进入动画和离开动画
     QPropertyAnimation *enterAnimation;
     QPropertyAnimation *leaveAnimation;
 
@@ -55,13 +55,12 @@ private slots:
     void leaveImageChanged(QVariant index);
 
 public:
-    QString getImageName()      const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置显示的图像
+    //获取和设置显示的图像
+    QString getImageName() const;
     void setImageName(const QString &imageName);
 
 Q_SIGNALS:

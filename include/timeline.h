@@ -192,33 +192,34 @@ private:
     void getUnitValue();
 
 public:
-    //缩放级别
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取和设置缩放级别
     int getScaled() const;
     int getScaledWidth() const;
     void setScaled(int scaled);
 
-    //线条高度
+    //获取和设置线条高度
     int getLineHeight() const;
     void setLineHeight(int lineHeight);
 
-    //线条颜色
+    //获取和设置线条颜色
     QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //背景颜色
+    //获取和设置背景颜色
     QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
-    //开始位置时间
+    //获取和设置开始位置时间
     TimeLineTime getStartTime() const;
     void setStartTime(const TimeLineTime &time);
 
-    //当前按下处时间
+    //获取和设置当前按下处时间
     TimeLineTime getCurrentTime() const;
-    void setCurrentTime(const TimeLineTime &time);
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
+    void setCurrentTime(const TimeLineTime &time);    
 
 Q_SIGNALS:
     //当前线条位置变动信号

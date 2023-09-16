@@ -87,60 +87,72 @@ private:
     QRect rightRect5;           //右侧图标5区域
 
 public:
-    int getLeftIcon()           const;
-    int getRightIcon1()         const;
-    int getRightIcon2()         const;
-    int getRightIcon3()         const;
-    int getRightIcon4()         const;
-    int getRightIcon5()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getPadding()            const;
-    int getIconSize()           const;
-    bool getTextCenter()        const;
-    QString getText()           const;
-
-    QColor getBgColor()         const;
-    QColor getTextColor()       const;
-    QColor getBorderColor()     const;
-
-    QColor getIconNormalColor() const;
-    QColor getIconHoverColor()  const;
-    QColor getIconPressColor()  const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置左侧图标
+    //获取和设置左侧图标
+    int getLeftIcon() const;
     void setLeftIcon(int leftIcon);
-    //设置右侧多个图标
+
+    //获取和设置右侧图标1
+    int getRightIcon1() const;
     void setRightIcon1(int rightIcon1);
+
+    //获取和设置右侧图标2
+    int getRightIcon2() const;
     void setRightIcon2(int rightIcon2);
+
+    //获取和设置右侧图标3
+    int getRightIcon3() const;
     void setRightIcon3(int rightIcon3);
+
+    //获取和设置右侧图标4
+    int getRightIcon4() const;
     void setRightIcon4(int rightIcon4);
+
+    //获取和设置右侧图标5
+    int getRightIcon5() const;
     void setRightIcon5(int rightIcon5);
 
-    //设置间隔
+    //获取和设置间隔
+    int getPadding() const;
     void setPadding(int padding);
-    //设置图标大小
+
+    //获取和设置图标大小
+    int getIconSize() const;
     void setIconSize(int iconSize);
-    //设置文字是否居中
+
+    //获取和设置文字是否居中
+    bool getTextCenter() const;
     void setTextCenter(bool textCenter);
-    //设置标题
+
+    //获取和设置标题
+    QString getText() const;
     void setText(const QString &text);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置文字颜色
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置边框颜色
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置图标正常颜色
+    //获取和设置图标正常颜色
+    QColor getIconNormalColor() const;
     void setIconNormalColor(const QColor &iconNormalColor);
-    //设置图标悬停颜色
+
+    //获取和设置图标悬停颜色
+    QColor getIconHoverColor() const;
     void setIconHoverColor(const QColor &iconHoverColor);
-    //设置图标按下颜色
+
+    //获取和设置图标按下颜色
+    QColor getIconPressColor() const;
     void setIconPressColor(const QColor &iconPressColor);
 
 Q_SIGNALS:

@@ -54,84 +54,91 @@ protected:
     void drawTitle(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double minValue;    //最小值
+    double maxValue;    //最大值
+    double value;       //目标值
+    int precision;      //精确度(小数点后几位)
 
-    int startAngle;                 //开始旋转角度
-    int endAngle;                   //结束旋转角度
+    int startAngle;     //开始旋转角度
+    int endAngle;       //结束旋转角度
 
-    QColor arcColor;                //圆弧颜色
-    QColor textColor;               //文字颜色
-    QColor titleColor;              //标题颜色
-    QColor baseColor;               //基准颜色
-    QColor bgColor;                 //背景颜色
+    QColor arcColor;    //圆弧颜色
+    QColor textColor;   //文字颜色
+    QColor titleColor;  //标题颜色
+    QColor baseColor;   //基准颜色
+    QColor bgColor;     //背景颜色
 
-    bool percent;                   //百分比模式
-    int arcWidth;                   //圆弧宽度
-    QString title;                  //标题
+    bool percent;       //百分比模式
+    int arcWidth;       //圆弧宽度
+    QString title;      //标题
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getStartAngle()             const;
-    int getEndAngle()               const;
-
-    QColor getArcColor()            const;
-    QColor getTextColor()           const;
-    QColor getTitleColor()          const;
-    QColor getBaseColor()           const;
-    QColor getBgColor()             const;
-
-    bool getPercent()               const;
-    int getArcWidth()               const;
-    QString getTitle()              const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
-    void setValue(double value);
-    void setValue(int value);
+    //获取和设置目标值
+    double getValue() const;
+    void setValue(double value);    
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置开始旋转角度
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置圆弧颜色
+    //获取和设置圆弧颜色
+    QColor getArcColor() const;
     void setArcColor(const QColor &arcColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置标题颜色
+
+    //获取和设置标题颜色
+    QColor getTitleColor() const;
     void setTitleColor(const QColor &titleColor);
-    //设置基准颜色
+
+    //获取和设置基准颜色
+    QColor getBaseColor() const;
     void setBaseColor(const QColor &baseColor);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
-    //设置百分比模式
+    //获取和设置百分比模式
+    bool getPercent() const;
     void setPercent(bool percent);
-    //设置圆弧宽度
+
+    //获取和设置圆弧宽度
+    int getArcWidth() const;
     void setArcWidth(int arcWidth);
-    //设置标题
+
+    //获取和设置标题
+    QString getTitle() const;
     void setTitle(const QString &title);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(int value);

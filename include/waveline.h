@@ -39,49 +39,50 @@ protected:
     void drawLine(QPainter *painter);
 
 private:
-    int maxValue;                   //最大值
-    int step;                       //步长
-    int space;                      //间距
+    int maxValue;           //最大值
+    int step;               //步长
+    int space;              //间距
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
-    QColor lineColor;               //线条颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
+    QColor lineColor;       //线条颜色
 
-    QTimer *timer;                  //绘制定时器
-    QVector<int> currentDataVec;    //当前数据集合
-    QVector<int> dataVec;           //目标数据集合
+    QTimer *timer;          //绘制定时器
+    QVector<int> currentDataVec;//当前数据集合
+    QVector<int> dataVec;   //目标数据集合
 
 private slots:
-    void updateData();
+    void updateData();      //更新数据
 
 public:
-    int getMaxValue()               const;
-    int getStep()                   const;
-    int getSpace()                  const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-    QColor getLineColor()           const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置数据
     void setData(const QVector<int> &dataVec);
 
-    //设置最大值
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
-    //设置步长
+
+    //获取和设置步长
+    int getStep() const;
     void setStep(int step);
-    //设置间距
+
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设置线条颜色
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 };
 

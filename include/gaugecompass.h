@@ -66,104 +66,112 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double value;               //目标值
+    int precision;              //精确度(小数点后几位)
 
-    bool animation;                 //是否启用动画显示
-    double animationStep;           //动画显示时步长
+    bool animation;             //是否启用动画显示
+    double animationStep;       //动画显示时步长
 
-    QColor crownColorStart;         //外边框渐变开始颜色
-    QColor crownColorEnd;           //外边框渐变结束颜色
+    QColor crownColorStart;     //外边框渐变开始颜色
+    QColor crownColorEnd;       //外边框渐变结束颜色
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
+    QColor bgColorStart;        //背景渐变开始颜色
+    QColor bgColorEnd;          //背景渐变结束颜色
 
-    QColor darkColor;               //加深颜色
-    QColor lightColor;              //明亮颜色
+    QColor darkColor;           //加深颜色
+    QColor lightColor;          //明亮颜色
 
-    QColor foreground;              //前景色
-    QColor textColor;               //文字颜色
+    QColor foreground;          //前景色
+    QColor textColor;           //文字颜色
 
-    QColor northPointerColor;       //北方指针颜色
-    QColor southPointerColor;       //南方指针颜色
+    QColor northPointerColor;   //北方指针颜色
+    QColor southPointerColor;   //南方指针颜色
 
-    QColor centerColorStart;        //中心圆渐变开始颜色
-    QColor centerColorEnd;          //中心圆渐变结束颜色
+    QColor centerColorStart;    //中心圆渐变开始颜色
+    QColor centerColorEnd;      //中心圆渐变结束颜色
 
-    bool reverse;                   //是否倒退
-    double currentValue;            //当前值
-    QTimer *timer;                  //定时器绘制动画
+    bool reverse;               //是否倒退
+    double currentValue;        //当前值
+    QTimer *timer;              //定时器绘制动画
 
 private slots:
     void updateValue();
 
 public:
-    double getValue()               const;
-    int getPrecision()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getAnimation()             const;
-    double getAnimationStep()       const;
-
-    QColor getCrownColorStart()     const;
-    QColor getCrownColorEnd()       const;
-
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-
-    QColor getDarkColor()           const;
-    QColor getLightColor()          const;
-
-    QColor getForeground()          const;
-    QColor getTextColor()           const;
-
-    QColor getNorthPointerColor()   const;
-    QColor getSouthPointerColor()   const;
-
-    QColor getCenterColorStart()    const;
-    QColor getCenterColorEnd()      const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
 
-    //设置外边框渐变颜色
+    //获取和设置外边框渐变开始颜色
+    QColor getCrownColorStart() const;
     void setCrownColorStart(const QColor &crownColorStart);
+
+    //获取和设置外边框渐变结束颜色
+    QColor getCrownColorEnd() const;
     void setCrownColorEnd(const QColor &crownColorEnd);
 
-    //设置背景渐变颜色
+    //获取和设置背景渐变开始颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    //获取和设置背景渐变结束颜色
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设置加深和明亮颜色
+    //获取和设置加深颜色
+    QColor getDarkColor() const;
     void setDarkColor(const QColor &darkColor);
+
+    //获取和设置明亮颜色
+    QColor getLightColor() const;
     void setLightColor(const QColor &lightColor);
 
-    //设置前景色
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置指针颜色
+    //获取和设置北指针颜色
+    QColor getNorthPointerColor() const;
     void setNorthPointerColor(const QColor &northPointerColor);
+
+    //获取和设置南指针颜色
+    QColor getSouthPointerColor() const;
     void setSouthPointerColor(const QColor &southPointerColor);
 
-    //设置中心圆颜色
+    //获取和设置中心圆渐变开始颜色
+    QColor getCenterColorStart() const;
     void setCenterColorStart(const QColor &centerColorStart);
+
+    //获取和设置中心圆渐变结束颜色
+    QColor getCenterColorEnd() const;
     void setCenterColorEnd(const QColor &centerColorEnd);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
+
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(int value);
 };
 

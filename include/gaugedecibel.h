@@ -71,44 +71,58 @@ private:
     QColor usedColor;       //进度色
     QColor triangleColor;   //三角形颜色
 
+private:
+    //旋转坐标点
     QPointF rotatePoint(const QPointF &A, const double &angle);
+    //校验最大最小值
     void checkMaxAndMin(double value);
 
 public:
-    double getValue()               const;
-    double getMaxValue()            const;
-    double getMinValue()            const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getAnimation()             const;
-    int getAnimationStep()          const;
-
-    QColor getBgColor()             const;
-    QColor getTextColor()           const;
-    QColor getUsedColor()           const;
-    QColor getTriangleColor()       const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置外环最大最小值
+    //获取和设置当前值
+    double getValue() const;
     void setValue(double value);
+
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double value);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double value);
+
+    //设置范围值
     void setRange(double minValue, double maxValue);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    int getAnimationStep() const;
     void setAnimationStep(int animationStep);
 
-    //设置背景颜色+文字颜色+进度颜色+三角形颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &color);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &color);
+
+    //获取和设置进度颜色
+    QColor getUsedColor() const;
     void setUsedColor(const QColor &color);
+
+    //获取和设置三角形颜色
+    QColor getTriangleColor() const;
     void setTriangleColor(const QColor &color);
 
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(double value);
 };
 

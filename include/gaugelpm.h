@@ -48,62 +48,68 @@ protected:
     void drawText(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //目标值
 
-    QString title;                  //标题
-    QString unit;                   //单位
+    QString title;          //标题
+    QString unit;           //单位
 
-    QColor bgColor;                 //背景颜色
-    QColor percentColor;            //进度颜色
-    QColor textColor;               //文字颜色
+    QColor bgColor;         //背景颜色
+    QColor percentColor;    //进度颜色
+    QColor textColor;       //文字颜色
 
-    bool mousePress;                //记录鼠标是否按下
-    bool inCenter;                  //在圆中心内
-    QPointF lastPoint;              //鼠标按下时坐标
+    bool mousePress;        //记录鼠标是否按下
+    bool inCenter;          //在圆中心内
+    QPointF lastPoint;      //鼠标按下时坐标
 
 private:
     double twoPtDistance(const QPointF &pt1, const QPointF &pt2);
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QString getTitle()              const;
-    QString getUnit()               const;
-
-    QColor getBgColor()             const;
-    QColor getPercentColor()        const;
-    QColor getTextColor()           const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置标题+单位
+    //获取和设置标题
+    QString getTitle() const;
     void setTitle(const QString &title);
+
+    //获取和设置单位
+    QString getUnit() const;
     void setUnit(const QString &unit);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置进度颜色
+
+    //获取和设置进度颜色
+    QColor getPercentColor() const;
     void setPercentColor(const QColor &percentColor);
-    //设置文字颜色
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(int value);

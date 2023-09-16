@@ -35,37 +35,39 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    int maxRadius;              //最大半径
-    int borderWidth;            //边框大小
-    QColor borderColor;         //边框颜色
-    QColor bgColor;             //背景颜色
+    int maxRadius;          //最大半径
+    int borderWidth;        //边框大小
+    QColor borderColor;     //边框颜色
+    QColor bgColor;         //背景颜色
 
-    bool startDraw;             //开始绘制
-    int currentRadius;          //当前半径
+    bool startDraw;         //开始绘制
+    int currentRadius;      //当前半径
 
-    QPoint posPress;            //按下处的坐标
-    QTimer *timerUpdate;        //绘制定时器
+    QPoint posPress;        //按下处的坐标
+    QTimer *timerUpdate;    //绘制定时器
 
 private slots:
-    void updateValue();
+    void updateValue();     //更新值
 
 public:
-    int getMaxRadius()          const;
-    int getBorderWidth()        const;
-    QColor getBorderColor()     const;
-    QColor getBgColor()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置最大半径
+    //获取和设置最大半径
+    int getMaxRadius() const;
     void setMaxRadius(int maxRadius);
-    //设置边框宽度
+
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
-    //设置边框颜色
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 };
 

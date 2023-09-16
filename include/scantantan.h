@@ -26,6 +26,7 @@ class ScanTanTan : public QWidget
 
 {
     Q_OBJECT
+
     Q_PROPERTY(QPixmap image READ getImage WRITE setImage)
     Q_PROPERTY(int imageBorderWidth READ getImageBorderWidth WRITE setImageBorderWidth)
     Q_PROPERTY(QColor imageBorderColor READ getImageBorderColor WRITE setImageBorderColor)
@@ -89,40 +90,48 @@ private:
     QSequentialAnimationGroup *animationGroup;
 
 public:
-    QPixmap getImage()          const;
-    int getImageBorderWidth()   const;
-    QColor getImageBorderColor()const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getScanRadius()         const;
-    int getScanWidth()          const;
-    int getRingWidth()          const;
-
-    int getScanStep()           const;
-    int getRingStep()           const;
-
-    QColor getScanColor()       const;
-    QColor getRingColor()       const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置图片+图片边框宽度+图片边框颜色
+    //获取和设置图片
+    QPixmap getImage() const;
     void setImage(const QPixmap &image);
+
+    //获取和设置图片边框宽度
+    int getImageBorderWidth() const;
     void setImageBorderWidth(int imageBorderWidth);
+
+    //获取和设置图片边框颜色
+    QColor getImageBorderColor() const;
     void setImageBorderColor(const QColor &imageBorderColor);
 
-    //设置扫描线最大半径+扫描线边框宽度+扩散圈线条宽度
+    //获取和设置扫描线最大半径
+    int getScanRadius() const;
     void setScanRadius(int scanRadius);
+
+    //获取和设置扫描线边框宽度
+    int getScanWidth() const;
     void setScanWidth(int scanWidth);
+
+    //获取和设置扩散圈线条宽度
+    int getRingWidth() const;
     void setRingWidth(int ringWidth);
 
-    //设置扫描线步长+扩散圈步长
+    //获取和设置扫描线步长
+    int getScanStep() const;
     void setScanStep(int scanStep);
+
+    //获取和设置扩散圈步长
+    int getRingStep() const;
     void setRingStep(int ringStep);
 
-    //设置扫描线颜色+扩散圈颜色
+    //获取和设置扫描线颜色
+    QColor getScanColor() const;
     void setScanColor(const QColor &scanColor);
+
+    //获取和设置扩散圈颜色
+    QColor getRingColor() const;
     void setRingColor(const QColor &ringColor);
 };
 

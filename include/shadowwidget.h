@@ -56,56 +56,63 @@ protected:
     void drawPath();
 
 private:
-    int borderRadius;           //边框圆角角度
-    int borderMargin;           //边框边距
+    int borderRadius;       //边框圆角角度
+    int borderMargin;       //边框边距
 
-    int triangleWidth;          //提示箭头宽度
-    int triangleHeight;         //提示箭头高度
+    int triangleWidth;      //提示箭头宽度
+    int triangleHeight;     //提示箭头高度
 
-    QColor borderColor;         //边框颜色
-    QColor bgColor;             //背景颜色
+    QColor borderColor;     //边框颜色
+    QColor bgColor;         //背景颜色
 
-    double blurRadius;          //模糊半径
-    double triangleRatio;       //提示箭头位置比例
-    TrianglePosition trianglePosition;//提示箭头位置
+    double blurRadius;      //模糊半径
+    double triangleRatio;   //提示箭头位置比例
+
+    //提示箭头位置
+    TrianglePosition trianglePosition;
 
     //绘制路径+阴影效果
     QPainterPath path;
     QGraphicsDropShadowEffect *shadowEffect;
 
 public:
-    int getBorderRadius()       const;
-    int getBorderMargin()       const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getTriangleWidth()      const;
-    int getTriangleHeight()     const;
-
-    QColor getBorderColor()     const;
-    QColor getBgColor()         const;
-
-    double getBlurRadius()      const;
-    double getTriangleRatio()   const;
-    TrianglePosition getTrianglePosition() const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置边框圆角角度+边距
+    //获取和设置边框圆角角度+边距
+    int getBorderRadius() const;
     void setBorderRadius(int borderRadius);
+
+    int getBorderMargin() const;
     void setBorderMargin(int borderMargin);
 
-    //设置提示箭头的宽度高度
+    //获取和设置提示箭头的宽度
+    int getTriangleWidth() const;
     void setTriangleWidth(int triangleWidth);
+
+    //获取和设置提示箭头的高度
+    int getTriangleHeight() const;
     void setTriangleHeight(int triangleHeight);
 
-    //设置边框颜色+背景颜色
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
-    //设置边框模糊半径+提示箭头的比例+位置
+    //获取和设置模糊半径
+    double getBlurRadius() const;
     void setBlurRadius(double blurRadius);
+
+    //获取和设置箭头比例
+    double getTriangleRatio() const;
     void setTriangleRatio(double triangleRatio);
+
+    //获取和设置箭头位置
+    TrianglePosition getTrianglePosition() const;
     void setTrianglePosition(const TrianglePosition &trianglePosition);
 };
 

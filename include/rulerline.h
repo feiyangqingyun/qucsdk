@@ -54,91 +54,96 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //目标值
+    int precision;          //精确度
 
-    int longStep;                   //长线条等分步长
-    int shortStep;                  //短线条等分步长
-    int space;                      //间距
+    int longStep;           //长线条等分步长
+    int shortStep;          //短线条等分步长
+    int space;              //间距
 
-    bool animation;                 //是否启用动画显示
-    double animationStep;           //动画显示时步长
+    bool animation;         //是否启用动画显示
+    double animationStep;   //动画显示时步长
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
-    QColor lineColor;               //线条颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
+    QColor lineColor;       //线条颜色
 
-    QColor pointerColor;            //指示器颜色
-    int pointerWidth;               //指示器宽度
+    QColor pointerColor;    //指示器颜色
+    int pointerWidth;       //指示器宽度
 
-    bool reverse;                   //是否倒退
-    double currentValue;            //当前值
-    QTimer *timer;                  //定时器绘制动画
+    bool reverse;           //是否倒退
+    double currentValue;    //当前值
+    QTimer *timer;          //定时器绘制动画
 
 private slots:
-    void updateValue();
+    void updateValue();     //更新值
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getLongStep()               const;
-    int getShortStep()              const;
-    int getSpace()                  const;
-
-    bool getAnimation()             const;
-    double getAnimationStep()       const;
-
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-    QColor getLineColor()           const;
-
-    QColor getPointerColor()        const;
-    int getPointerWidth()           const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最大最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
-    void setValue(double value);
-    void setValue(int value);
+    //获取和设置目标值
+    double getValue() const;
+    void setValue(double value);    
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
-    //设置线条等分步长
+
+    //获取和设置线条等分步长
+    int getLongStep() const;
     void setLongStep(int longStep);
+
+    int getShortStep() const;
     void setShortStep(int shortStep);
-    //设置间距
+
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
-    //设置线条颜色
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //设置指示器颜色
+    //获取和设置指示器颜色
+    QColor getPointerColor() const;
     void setPointerColor(const QColor &pointerColor);
-    //设置指示器宽度
+
+    //获取和设置指示器宽度
+    int getPointerWidth() const;
     void setPointerWidth(int pointerWidth);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(double value);

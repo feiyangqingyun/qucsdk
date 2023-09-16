@@ -98,22 +98,23 @@ private slots:
     void finished(QNetworkReply *reply);
     void doWeather(const QString &city, const QString &wendu, const QString &ganmao, const QList<WeatherInfo> &weatherInfos);
 
-public Q_SLOTS:
-    //指定城市查询天气 cityName=上海
-    void query(const QString &city);
-    void query();
-
+public:
     //设置城市名称
     void setCity(const QString &city);
     //设置显示天气的标签及样式
     void setLabel(QLabel *label, quint8 style);
 
+    //联网自动定位当前城市
+    QString getLocation();
+
+public Q_SLOTS:
+    //指定城市查询天气 cityName=上海
+    void query(const QString &city);
+    void query();
+
     //启动和停止定时器轮询天气,间隔单位秒
     void start(int interval);
     void stop();
-
-    //联网自动定位当前城市
-    QString getLocation();
 
 Q_SIGNALS:
     //打印信息信号

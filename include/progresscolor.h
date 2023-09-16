@@ -46,80 +46,85 @@ protected:
     void drawBar(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //目标值
+    int precision;          //精确度(小数点后几位)
 
-    int step;                       //步长
-    int space;                      //间距
-    int radius;                     //圆角角度
+    int step;               //步长
+    int space;              //间距
+    int radius;             //圆角角度
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
 
-    QColor lineColor;               //线条颜色
-    QColor textColor;               //文本颜色
+    QColor lineColor;       //线条颜色
+    QColor textColor;       //文本颜色
 
-    QColor barBgColor;              //进度背景颜色
-    QColor barColor;                //进度颜色
+    QColor barBgColor;      //进度背景颜色
+    QColor barColor;        //进度颜色
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getStep()                   const;
-    int getSpace()                  const;
-    int getRadius()                 const;
-
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-
-    QColor getLineColor()           const;
-    QColor getTextColor()           const;
-
-    QColor getBarBgColor()          const;
-    QColor getBarColor()            const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置步长
+    //获取和设置步长
+    int getStep() const;
     void setStep(int step);
-    //设置间距
+
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
-    //设置圆角角度
+
+    //获取和设置圆角角度
+    int getRadius() const;
     void setRadius(int radius);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设置线条颜色
-    void setLineColor(QColor lineColor);
-    //设置文本颜色
-    void setTextColor(QColor textColor);
-    //设置进度颜色
-    void setBarBgColor(QColor barBgColor);
-    void setBarColor(QColor barColor);
+    //获取和设置线条颜色
+    QColor getLineColor() const;
+    void setLineColor(const QColor &lineColor);
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
+    void setTextColor(const QColor &textColor);
+
+    //获取和设置进度颜色
+    QColor getBarBgColor() const;
+    void setBarBgColor(const QColor &barBgColor);
+
+    QColor getBarColor() const;
+    void setBarColor(const QColor &barColor);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(double value);

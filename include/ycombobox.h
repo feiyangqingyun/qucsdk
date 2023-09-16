@@ -28,7 +28,8 @@ private:
     YScrollBarV *scrollBarV;
 
 public:
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
 private slots:

@@ -40,53 +40,55 @@ protected:
     void drawPie(QPainter *painter);
 
 private:
-    int step;                       //每次旋转的步长
-    bool clockWise;                 //顺时针
+    int step;               //每次旋转的步长
+    bool clockWise;         //顺时针
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
 
-    QColor pieColor1Start;          //圆形渐变色1开始颜色
-    QColor pieColor1End;            //圆形渐变色1结束颜色
-    QColor pieColor2Start;          //圆形渐变色2开始颜色
-    QColor pieColor2End;            //圆形渐变色2结束颜色
+    QColor pieColor1Start;  //圆形渐变色1开始颜色
+    QColor pieColor1End;    //圆形渐变色1结束颜色
+    QColor pieColor2Start;  //圆形渐变色2开始颜色
+    QColor pieColor2End;    //圆形渐变色2结束颜色
 
-    double angle;                   //角度值
-    double radius;                  //半径
-    QTimer *timer;                  //定时器更新
+    double angle;           //角度值
+    double radius;          //半径
+    QTimer *timer;          //定时器更新
 
 private slots:
-    void updateAngle();
+    void updateAngle();     //更新角度
 
 public:
-    int getStep()                   const;
-    bool getClockWise()             const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-
-    QColor getPieColor1Start()      const;
-    QColor getPieColor1End()        const;
-    QColor getPieColor2Start()      const;
-    QColor getPieColor2End()        const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置旋转的步长
+    //获取和设置旋转的步长
+    int getStep() const;
     void setStep(int step);
-    //设置进度旋转方向
+
+    //获取和设置进度旋转方向
+    bool getClockWise() const;
     void setClockWise(bool clockWise);
 
-    //设置背景渐变色
+    //获取和设置背景渐变色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设备饼状圆形交替渐变色
+    //获取和设备饼状圆形交替渐变色
+    QColor getPieColor1Start() const;
     void setPieColor1Start(const QColor &pieColor1Start);
+
+    QColor getPieColor1End() const;
     void setPieColor1End(const QColor &pieColor1End);
+
+    QColor getPieColor2Start() const;
     void setPieColor2Start(const QColor &pieColor2Start);
+
+    QColor getPieColor2End() const;
     void setPieColor2End(const QColor &pieColor2End);
 };
 

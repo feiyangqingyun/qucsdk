@@ -55,16 +55,16 @@ class RulerTemp : public QWidget
 
 public:
     enum BarPosition {
-        BarPosition_Left = 0,       //左侧显示
-        BarPosition_Right = 1,      //右侧显示
-        BarPosition_Center = 2      //居中显示
+        BarPosition_Left = 0,   //左侧显示
+        BarPosition_Right = 1,  //右侧显示
+        BarPosition_Center = 2  //居中显示
     };
 
     enum TickPosition {
-        TickPosition_Null = 0,      //不显示
-        TickPosition_Left = 1,      //左侧显示
-        TickPosition_Right = 2,     //右侧显示
-        TickPosition_Both = 3       //两侧显示
+        TickPosition_Null = 0,  //不显示
+        TickPosition_Left = 1,  //左侧显示
+        TickPosition_Right = 2, //右侧显示
+        TickPosition_Both = 3   //两侧显示
     };
 
     explicit RulerTemp(QWidget *parent = 0);
@@ -80,128 +80,129 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //目标值
 
-    int precision;                  //精确度,小数点后几位
-    int longStep;                   //长线条等分步长
-    int shortStep;                  //短线条等分步长
-    int space;                      //间距
+    int precision;          //精确度
+    int longStep;           //长线条等分步长
+    int shortStep;          //短线条等分步长
+    int space;              //间距
 
-    bool animation;                 //是否启用动画显示
-    double animationStep;           //动画显示时步长
+    bool animation;         //是否启用动画显示
+    double animationStep;   //动画显示时步长
 
-    bool showUserValue;             //显示用户设定值
-    double userValue;               //用户设定值
-    QColor userValueColor;          //用户设定值颜色
+    bool showUserValue;     //显示用户设定值
+    double userValue;       //用户设定值
+    QColor userValueColor;  //用户设定值颜色
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
-    QColor lineColor;               //线条颜色
-    QColor barBgColor;              //柱状背景色
-    QColor barColor;                //柱状颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
+    QColor lineColor;       //线条颜色
+    QColor barBgColor;      //柱状背景色
+    QColor barColor;        //柱状颜色
 
-    BarPosition barPosition;        //柱状条位置
-    TickPosition tickPosition;      //刻度尺位置
+    BarPosition barPosition;//柱状条位置
+    TickPosition tickPosition;//刻度尺位置
 
-    int barWidth;                   //水银柱宽度
-    int barHeight;                  //水银柱高度
-    int radius;                     //水银柱底部圆半径
-    int targetX;                    //目标X坐标
-    QRectF barRect;                 //柱状区域
-    QRectF circleRect;              //底部圆区域
+    int barWidth;           //水银柱宽度
+    int barHeight;          //水银柱高度
+    int radius;             //水银柱底部圆半径
+    int targetX;            //目标X坐标
+    QRectF barRect;         //柱状区域
+    QRectF circleRect;      //底部圆区域
 
-    bool reverse;                   //是否倒退
-    double currentValue;            //当前值
-    QTimer *timer;                  //定时器绘制动画
+    bool reverse;           //是否倒退
+    double currentValue;    //当前值
+    QTimer *timer;          //定时器绘制动画
 
 private slots:
-    void updateValue();
+    void updateValue();     //更新值
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getPrecision()              const;
-    int getLongStep()               const;
-    int getShortStep()              const;
-    int getSpace()                  const;
-
-    bool getAnimation()             const;
-    double getAnimationStep()       const;
-
-    bool getShowUserValue()         const;
-    double getUserValue()           const;
-    QColor getUserValueColor()      const;
-
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-    QColor getLineColor()           const;
-    QColor getBarBgColor()          const;
-    QColor getBarColor()            const;
-
-    BarPosition getBarPosition()    const;
-    TickPosition getTickPosition()  const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置最大最小值-范围值
+    //获取和设置最大最小值-范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最大最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置线条等分步长
+    //获取和设置线条等分步长
+    int getLongStep() const;
     void setLongStep(int longStep);
+
+    int getShortStep() const;
     void setShortStep(int shortStep);
 
-    //设置间距
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
 
-    //设置是否显示用户设定值
+    //获取和设置是否显示用户设定值
+    bool getShowUserValue() const;
     void setShowUserValue(bool showUserValue);
 
-    //设置用户值
+    //获取和设置用户值
+    double getUserValue() const;
     void setUserValue(double userValue);
-    void setUserValue(int userValue);
 
-    //设置用户设定值颜色
+    //获取和设置用户设定值颜色
+    QColor getUserValueColor() const;
     void setUserValueColor(const QColor &userValueColor);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设置线条颜色
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //设置柱状颜色
+    //获取和设置柱状颜色
+    QColor getBarBgColor() const;
     void setBarBgColor(const QColor &barBgColor);
+
+    QColor getBarColor() const;
     void setBarColor(const QColor &barColor);
 
-    //设置柱状条位置
+    //获取和设置柱状条位置
+    BarPosition getBarPosition() const;
     void setBarPosition(const BarPosition &barPosition);
 
-    //设置刻度尺位置
+    //获取和设置刻度尺位置
+    TickPosition getTickPosition() const;
     void setTickPosition(const TickPosition &tickPosition);
+
+public Q_SLOTS:
+    void setValue(int value);
+    void setUserValue(int userValue);
 
 Q_SIGNALS:
     void valueChanged(double value);

@@ -46,30 +46,32 @@ private:
     QColor numberColorEnd;  //数字渐变结束颜色
 
 public:
-    int getNumber()                 const;
-    int getSpace()                  const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-
-    QColor getNumberColorStart()    const;
-    QColor getNumberColorEnd()      const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置值
+    //获取和设置值
+    int getNumber() const;
     void setNumber(int number);
-    //设置间距
+
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置背景颜色
+    //获取和设置背景开始颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    //获取和设置背景结束颜色
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设置数字颜色
+    //获取和设置数字开始颜色
+    QColor getNumberColorStart() const;
     void setNumberColorStart(const QColor &numberColorStart);
+
+    //获取和设置数字结束颜色
+    QColor getNumberColorEnd() const;
     void setNumberColorEnd(const QColor &numberColorEnd);
 };
 

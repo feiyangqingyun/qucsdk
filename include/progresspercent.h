@@ -52,11 +52,11 @@ class ProgressPercent : public QWidget
 
 public:
     enum PercentStyle {
-        PercentStyle_Arc = 0,           //圆弧风格
-        PercentStyle_Polo = 1,          //水池风格
-        PercentStyle_Wave = 2,          //波纹风格
-        PercentStyle_Arc_Polo = 3,      //圆弧水池风格
-        PercentStyle_Arc_Wave = 4       //圆弧波纹风格
+        PercentStyle_Arc = 0,       //圆弧风格
+        PercentStyle_Polo = 1,      //水池风格
+        PercentStyle_Wave = 2,      //波纹风格
+        PercentStyle_Arc_Polo = 3,  //圆弧水池风格
+        PercentStyle_Arc_Wave = 4   //圆弧波纹风格
     };
 
     explicit ProgressPercent(QWidget *parent = 0);
@@ -71,102 +71,109 @@ protected:
     void drawValue(QPainter *painter, int radius);
 
 private:
-    int maxValue;                   //最小值
-    int minValue;                   //最大值
-    int value;                      //目标值
+    int maxValue;           //最小值
+    int minValue;           //最大值
+    int value;              //目标值
 
-    int nullPosition;               //起始角度
-    int borderWidth;                //边框宽度
+    int nullPosition;       //起始角度
+    int borderWidth;        //边框宽度
 
-    double waterHeight;             //水波高度
-    double waterDensity;            //水波密度
+    double waterHeight;     //水波高度
+    double waterDensity;    //水波密度
 
-    bool showPercent;               //是否显示百分比
-    bool showFree;                  //是否显示未使用进度
-    bool showSmallCircle;           //是否显示小圆
-    bool clockWise;                 //顺时针
-    bool borderOut;                 //外边框
+    bool showPercent;       //是否显示百分比
+    bool showFree;          //是否显示未使用进度
+    bool showSmallCircle;   //是否显示小圆
+    bool clockWise;         //顺时针
+    bool borderOut;         //外边框
 
-    QColor usedColor;               //已使用百分比颜色
-    QColor freeColor;               //未使用百分比颜色
-    QColor circleColor;             //圆颜色
-    QColor textColor;               //文字颜色
+    QColor usedColor;       //已使用百分比颜色
+    QColor freeColor;       //未使用百分比颜色
+    QColor circleColor;     //圆颜色
+    QColor textColor;       //文字颜色
 
-    PercentStyle percentStyle;      //进度样式风格
+    PercentStyle percentStyle;//进度样式风格
 
-    double offset;                  //水波偏移量
-    QTimer *timer;                  //定时器绘制动画
+    double offset;          //水波偏移量
+    QTimer *timer;          //定时器绘制动画
 
 public:
-    int getMinValue()               const;
-    int getMaxValue()               const;
-    int getValue()                  const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getNullPosition()           const;
-    int getBorderWidth()            const;
-
-    double getWaterHeight()         const;
-    double getWaterDensity()        const;
-
-    bool getShowPercent()           const;
-    bool getShowFree()              const;
-    bool getShowSmallCircle()       const;
-    bool getClockWise()             const;
-    bool getBorderOut()             const;
-
-    QColor getUsedColor()           const;
-    QColor getFreeColor()           const;
-    QColor getCircleColor()         const;
-    QColor getTextColor()           const;
-
-    PercentStyle getPercentStyle()  const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    int getMinValue() const;
     void setMinValue(int minValue);
+
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
 
-    //设置目标值
-    void setValue(int value);
+    //获取和设置目标值
+    int getValue() const;
 
-    //设置最小值位置
-    void setNullPosition(int nullPosition);
-    //设置边框宽度
+    //获取和设置最小值位置
+    int getNullPosition() const;    
+
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
 
-    //设置水波高度
+    //获取和设置水波高度
+    double getWaterHeight() const;
     void setWaterHeight(double waterHeight);
-    //设置水波密度
+
+    //获取和设置水波密度
+    double getWaterDensity() const;
     void setWaterDensity(double waterDensity);
 
-    //设置是否显示百分比
+    //获取和设置是否显示百分比
+    bool getShowPercent() const;
     void setShowPercent(bool showPercent);
-    //设置是否显示剩余进度
+
+    //获取和设置是否显示剩余进度
+    bool getShowFree() const;
     void setShowFree(bool showFree);
-    //设置是否显示小圆
+
+    //获取和设置是否显示小圆
+    bool getShowSmallCircle() const;
     void setShowSmallCircle(bool showSmallCircle);
-    //设置进度旋转方向 顺时针或者逆时针
+
+    //获取和设置进度旋转方向 顺时针或者逆时针
+    bool getClockWise() const;
     void setClockWise(bool clockWise);
-    //设置边框是否突出
+
+    //获取和设置边框是否突出
+    bool getBorderOut() const;
     void setBorderOut(bool borderOut);
 
-    //设置已使用百分比颜色
+    //获取和设置已使用百分比颜色
+    QColor getUsedColor() const;
     void setUsedColor(const QColor &usedColor);
-    //设置未使用百分比颜色
+
+    //获取和设置未使用百分比颜色
+    QColor getFreeColor() const;
     void setFreeColor(const QColor &freeColor);
-    //设置圆颜色
+
+    //获取和设置圆颜色
+    QColor getCircleColor() const;
     void setCircleColor(const QColor &circleColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置进度样式风格
+    //获取和设置进度样式风格
+    PercentStyle getPercentStyle() const;
     void setPercentStyle(const PercentStyle &percentStyle);
+
+public Q_SLOTS:
+    void setValue(int value);
+    void setNullPosition(int nullPosition);
 
 Q_SIGNALS:
     void valueChanged(int value);

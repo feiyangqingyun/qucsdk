@@ -69,91 +69,101 @@ private slots:
     void textChanged(const QString &value);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    QString unit;                   //单位
+    double minValue;            //最小值
+    double maxValue;            //最大值
+    double value;               //目标值
+    QString unit;               //单位
 
-    int startAngle;                 //开始旋转角度
-    int endAngle;                   //结束旋转角度
-    bool animation;                 //是否启用动画显示
-    double animationStep;           //动画显示时步长
+    int startAngle;             //开始旋转角度
+    int endAngle;               //结束旋转角度
+    bool animation;             //是否启用动画显示
+    double animationStep;       //动画显示时步长
 
-    QColor outerCircleColor;        //外圆背景颜色
-    QColor innerCircleColor;        //内圆背景颜色
-    QColor centerCircleColor;       //中心圆颜色
-    QColor usedColor;               //进度颜色
-    QColor freeColor;               //空余颜色
-    QColor textColor;               //文字颜色
+    QColor outerCircleColor;    //外圆背景颜色
+    QColor innerCircleColor;    //内圆背景颜色
+    QColor centerCircleColor;   //中心圆颜色
+    QColor usedColor;           //进度颜色
+    QColor freeColor;           //空余颜色
+    QColor textColor;           //文字颜色
 
-    bool reverse;                   //是否往回走
-    double currentValue;            //当前值
-    QTimer *timer;                  //定时器绘制动画
+    bool reverse;               //是否往回走
+    double currentValue;        //当前值
+    QTimer *timer;              //定时器绘制动画
 
-    int offset;                     //偏移值
-    QLineEdit *lineEdit;            //编辑框
+    int offset;                 //偏移值
+    QLineEdit *lineEdit;        //编辑框
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    QString getUnit()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getStartAngle()             const;
-    int getEndAngle()               const;
-    bool getAnimation()             const;
-    double getAnimationStep()       const;
-
-    QColor getOuterCircleColor()    const;
-    QColor getInnerCircleColor()    const;
-    QColor getCenterCircleColor()   const;
-    QColor getUsedColor()           const;
-    QColor getFreeColor()           const;
-    QColor getTextColor()           const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置单位
+    //获取和设置单位
+    QString getUnit() const;
     void setUnit(const QString &unit);
 
-    //设置开始旋转角度
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
 
-    //设置外圆背景颜色
+    //获取和设置外圆背景颜色
+    QColor getOuterCircleColor() const;
     void setOuterCircleColor(const QColor &outerCircleColor);
-    //设置内圆背景颜色
+
+    //获取和设置内圆背景颜色
+    QColor getInnerCircleColor() const;
     void setInnerCircleColor(const QColor &innerCircleColor);
-    //设置中心圆颜色
+
+    //获取和设置中心圆颜色
+    QColor getCenterCircleColor() const;
     void setCenterCircleColor(const QColor &centerCircleColor);
-    //设置进度颜色
+
+    //获取和设置进度颜色
+    QColor getUsedColor() const;
     void setUsedColor(const QColor &usedColor);
-    //设置空余颜色
+
+    //获取和设置空余颜色
+    QColor getFreeColor() const;
     void setFreeColor(const QColor &freeColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
+
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(double value);
     void valueChanged(int value);
 };

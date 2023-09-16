@@ -47,49 +47,50 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 private:
-    int lineLen;                //线条长度
-    int lineWidth;              //线条宽度
-    int lineStep;               //每次移动的步长
-    int lineSpeed;              //线条流动的速度
+    int lineLen;            //线条长度
+    int lineWidth;          //线条宽度
+    int lineStep;           //每次移动的步长
+    int lineSpeed;          //线条流动的速度
 
-    QColor lineColor;           //线条颜色
-    LineStyle lineStyle;        //线条样式
+    QColor lineColor;       //线条颜色
+    LineStyle lineStyle;    //线条样式
 
-    int dashes;                 //线条长度
-    int spaces;                 //空白长度
-    QVector<qreal> dashPattern; //线条样式数据
-    QTimer *timer;              //更新定时器
+    int dashes;             //线条长度
+    int spaces;             //空白长度
+    QVector<qreal> dashPattern;//线条样式数据
+    QTimer *timer;          //更新定时器
 
 private slots:
     void updateValue();
 
 public:
-    int getLineLen()            const;
-    int getLineWidth()          const;
-    int getLineStep()           const;
-    int getLineSpeed()          const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getLineColor()       const;
-    LineStyle getLineStyle()    const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置线条长度
+    //获取和设置线条长度
+    int getLineLen() const;
     void setLineLen(int lineLen);
-    //设置线条宽度
+
+    //获取和设置线条宽度
+    int getLineWidth() const;
     void setLineWidth(int lineWidth);
-    //设置线条步长
+
+    //获取和设置线条步长
+    int getLineStep() const;
     void setLineStep(int lineStep);
-    //设置线条速度
+
+    //获取和设置线条速度
+    int getLineSpeed() const;
     void setLineSpeed(int lineSpeed);
 
-    //设置线条颜色
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
-    //设置线条样式
-    void setLineStyle(const LineStyle &lineStyle);
 
+    //获取和设置线条样式
+    LineStyle getLineStyle() const;
+    void setLineStyle(const LineStyle &lineStyle);
 };
 
 #endif // ANTLINE_H

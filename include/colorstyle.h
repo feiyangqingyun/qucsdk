@@ -37,45 +37,43 @@ protected:
     void drawSign(QPainter *painter);
 
 private:
-    QColor bgColor;             //背景颜色
-    QColor signColor;           //选中符号颜色
-    int signSize;               //选中符号大小
-    bool checked;               //是否选中
-    bool hovered;               //是否永久悬停
+    QColor bgColor;     //背景颜色
+    QColor signColor;   //选中符号颜色
+    int signSize;       //选中符号大小
+    bool checked;       //是否选中
+    bool hovered;       //是否永久悬停
 
-    QFont iconFont;             //图形字体
-    bool hover;                 //当前是否悬停
+    QFont iconFont;     //图形字体
+    bool hover;         //当前是否悬停
 
 public:
-    QColor getBgColor()         const;
-    QColor getSignColor()       const;
-    int getSignSize()           const;
-    bool getChecked()           const;
-    bool getHovered()           const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
     //设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
     //设置角标颜色
+    QColor getSignColor() const;
     void setSignColor(const QColor &signColor);
 
     //设置角标大小
+    int getSignSize() const;
     void setSignSize(int signSize);
 
     //设置是否选中
+    bool getChecked() const;
     void setChecked(bool checked);
 
     //设置是否永久悬停
+    bool getHovered() const;
     void setHovered(bool hovered);
 
 Q_SIGNALS:
     //当前选中发送颜色值
     void selected(const QColor &bgColor);
-
 };
 
 #endif // COLORSTYLE_H

@@ -42,61 +42,62 @@ protected:
     void drawBar(QPainter *painter);
 
 private:
-    int minValue;                   //最小值
-    int maxValue;                   //最大值
-    int value;                      //目标值
+    int minValue;           //最小值
+    int maxValue;           //最大值
+    int value;              //目标值
 
-    int step;                       //步长
-    int space;                      //间距
+    int step;               //步长
+    int space;              //间距
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
-    QColor barColor;                //柱状条颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
+    QColor barColor;        //柱状条颜色
 
-    double currentValue;            //当前值
-    bool reverse;                   //是否倒退
-    QTimer *timer;                  //绘制定时器
+    double currentValue;    //当前值
+    bool reverse;           //是否倒退
+    QTimer *timer;          //绘制定时器
 
 private slots:
     void updateValue();
     void stop();
 
 public:
-    int getMinValue()               const;
-    int getMaxValue()               const;
-    int getValue()                  const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getStep()                   const;
-    int getSpace()                  const;
-
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-    QColor getBarColor()            const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    int getMinValue() const;
     void setMinValue(int minValue);
+
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    int getValue() const;
     void setValue(int value);
 
-    //设置步长
+    //获取和设置步长
+    int getStep() const;
     void setStep(int step);
-    //设置间距
+
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设置柱状条颜色
+    //获取和设置柱状条颜色
+    QColor getBarColor() const;
     void setBarColor(const QColor &barColor);
 
 Q_SIGNALS:

@@ -87,98 +87,107 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    int minValue;                   //最小值
-    int maxValue;                   //最大值
-    int leftValue;                  //范围值左边
-    int rightValue;                 //范围值右边
+    int minValue;           //最小值
+    int maxValue;           //最大值
+    int leftValue;          //范围值左边
+    int rightValue;         //范围值右边
 
-    int borderWidth;                //滑块边框宽度
-    bool horizontal;                //是否横向
-    bool showText;                  //是否显示值
+    int borderWidth;        //滑块边框宽度
+    bool horizontal;        //是否横向
+    bool showText;          //是否显示值
 
-    QColor usedColor;               //范围值颜色
-    QColor freeColor;               //范围值外颜色
-    QColor textColor;               //文字颜色
-    QColor rangeTextColor;          //范围文字颜色
-    QColor sliderColor;             //滑块颜色
-    QColor borderColor;             //滑块边框颜色
+    QColor usedColor;       //范围值颜色
+    QColor freeColor;       //范围值外颜色
+    QColor textColor;       //文字颜色
+    QColor rangeTextColor;  //范围文字颜色
+    QColor sliderColor;     //滑块颜色
+    QColor borderColor;     //滑块边框颜色
 
-    SliderStyle sliderStyle;        //滑块风格
+    SliderStyle sliderStyle;//滑块风格
     SliderBgPercent sliderBgPercent;//滑块背景所占比例
-    SliderPercent sliderPercent;    //滑块所占比例
+    SliderPercent sliderPercent;//滑块所占比例
 
-    bool leftPressed;               //左边指示器是否按下
-    bool rightPressed;              //右边指示器是否按下
+    bool leftPressed;       //左边指示器是否按下
+    bool rightPressed;      //右边指示器是否按下
 
-    int sliderLen;                  //指示器长度
-    QRect leftSliderRect;           //左边值指示器区域
-    QRect rightSliderRect;          //右边值指示器区域
+    int sliderLen;          //指示器长度
+    QRect leftSliderRect;   //左边值指示器区域
+    QRect rightSliderRect;  //右边值指示器区域
 
 public:
-    int getMinValue()               const;
-    int getMaxValue()               const;
-    int getLeftValue()              const;
-    int getRightValue()             const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getBorderWidth()            const;
-    bool getHorizontal()            const;
-    bool getShowText()              const;
-
-    QColor getUsedColor()           const;
-    QColor getFreeColor()           const;
-    QColor getTextColor()           const;
-    QColor getRangeTextColor()      const;
-    QColor getSliderColor()         const;
-    QColor getBorderColor()         const;
-
-    SliderStyle getSliderStyle()    const;
-    SliderBgPercent getSliderBgPercent()const;
-    SliderPercent getSliderPercent()const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    int getMinValue() const;
     void setMinValue(int minValue);
+
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
 
     //设置当前范围值
     void setCurrentRange(int leftValue, int rightValue);
-    void setLeftValue(int leftValue);
-    void setRightValue(int rightValue);
 
-    //设置滑块边框宽度
+    //获取左侧值/右侧值
+    int getLeftValue() const;    
+    int getRightValue() const;
+
+    //获取和设置滑块边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
 
-    //设置方向
+    //获取和设置方向
+    bool getHorizontal() const;
     void setHorizontal(bool horizontal);
 
-    //设置是否显示值
+    //获取和设置是否显示值
+    bool getShowText() const;
     void setShowText(bool showText);
 
-    //设置刻度值颜色
+    //获取和设置刻度值颜色
+    QColor getUsedColor() const;
     void setUsedColor(const QColor &usedColor);
-    //设置指针颜色
+
+    //获取和设置指针颜色
+    QColor getFreeColor() const;
     void setFreeColor(const QColor &freeColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getRangeTextColor() const;
     void setRangeTextColor(const QColor &rangeTextColor);
-    //设置滑块颜色
+
+    //获取和设置滑块颜色
+    QColor getSliderColor() const;
     void setSliderColor(const QColor &sliderColor);
-    //设置滑块边框颜色
+
+    //获取和设置滑块边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置滑块风格
+    //获取和设置滑块风格
+    SliderStyle getSliderStyle() const;
     void setSliderStyle(const SliderStyle &sliderStyle);
-    //设置滑块背景所占比例
+
+    //获取和设置滑块背景所占比例
+    SliderBgPercent getSliderBgPercent() const;
     void setSliderBgPercent(const SliderBgPercent &sliderBgPercent);
-    //设置滑块所占比例
+
+    //获取和设置滑块所占比例
+    SliderPercent getSliderPercent() const;
     void setSliderPercent(const SliderPercent &sliderPercent);
+
+public Q_SLOTS:
+    void setLeftValue(int leftValue);
+    void setRightValue(int rightValue);
 
 Q_SIGNALS:
     void valueChanged(int leftValue, int rightValue);

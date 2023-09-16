@@ -154,109 +154,127 @@ private:
 #endif
 
 public:
-    double getOuterMinValue()               const;
-    double getOuterMaxValue()               const;
-    double getOuterValue()                  const;
-
-    int getPrecision()                      const;
-    int getOuterStartAngle()                const;
-    int getOuterEndAngle()                  const;
-
-    QColor getOuterRingBgColor()            const;
-    QColor getOuterRingColor()              const;
-
-    double getInnerMaxValue()               const;
-    double getInnerMinValue()               const;
-    double getInnerValue()                  const;
-    int getInnerStartAngle()                const;
-    int getInnerEndAngle()                  const;
-
-    QColor getInnerRingBgColor()            const;
-    QColor getInnerNegativeColor()          const;
-    QColor getInnerPositiveColor()          const;
-
-    int getInnerScaleMajor()                const;
-    int getInnerScaleMinor()                const;
-    QColor getInnerScaleColor()             const;
-    QColor getInnerScaleNumColor()          const;
-
-    bool getAnimation()                     const;
-    double getAnimationStep()               const;
-
-    WeatherType getWeatherType()            const;
-
-    QColor getCenterPixMapNegativeColor()   const;
-    QColor getCenterPixMapPositiveColor()   const;
-
-    QColor getOuterValueTextColor()         const;
-    QColor getInnerNegativeValueTextColor() const;
-    QColor getInnerPositiveValueTextColor() const;
-
-    QSize sizeHint()                        const;
-    QSize minimumSizeHint()                 const;
-
-public Q_SLOTS:
-    //设置天气类型
-    void setWeatherType(const WeatherType &weatherType);
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
     //设置范围值
     void setOuterRange(double minValue, double maxValue);
-    //设置外环最大最小值
+
+    //获取和设置外环最小值
+    double getOuterMinValue() const;
     void setOuterMinValue(double value);
+
+    //获取和设置外环最大值
+    double getOuterMaxValue() const;
     void setOuterMaxValue(double value);
-    //设置外环值
+
+    //获取和设置外环值
+    double getOuterValue() const;
     void setOuterValue(double value);
 
-    //设置小数点
+    //获取和设置小数点
+    int getPrecision() const;
     void setPrecision(int precision);
-    //设置外环开始旋转角度
+
+    //获取和设置外环开始旋转角度
+    int getOuterStartAngle() const;
     void setOuterStartAngle(int startAngle);
-    //设置外环结束旋转角度
+
+    //获取和设置外环结束旋转角度
+    int getOuterEndAngle() const;
     void setOuterEndAngle(int endAngle);
 
-    //设置外环背景色
+    //获取和设置外环背景色
+    QColor getOuterRingBgColor() const;
     void setOuterRingBgColor(const QColor &color);
-    //设置外环进度色
+
+    //获取和设置外环进度色
+    QColor getOuterRingColor() const;
     void setOuterRingColor(const QColor &color);
 
     //设置内环范围值
     void setInnerRange(double minValue, double maxValue);
-    //设置内环最大最小值
+
+    //获取和设置内环最小值
+    double getInnerMinValue() const;
     void setInnerMinValue(double value);
+
+    //获取和设置内环最大值
+    double getInnerMaxValue() const;
     void setInnerMaxValue(double value);
-    //设置内环值
+
+    //获取和设置内环值
+    double getInnerValue() const;
     void setInnerValue(double value);
 
-    //设置内环开始旋转角度
+    //获取和设置内环开始旋转角度
+    int getInnerStartAngle() const;
     void setInnerStartAngle(int startAngle);
-    //设置内环结束旋转角度
+
+    //获取和设置内环结束旋转角度
+    int getInnerEndAngle() const;
     void setInnerEndAngle(int endAngle);
 
-    //设置内环各种颜色
+    //获取和设置内环背景颜色
+    QColor getInnerRingBgColor() const;
     void setInnerRingBgColor(const QColor &color);
+
+    //获取和设置内环负数值颜色
+    QColor getInnerNegativeColor() const;
     void setInnerNegativeColor(const QColor &color);
+
+    //获取和设置内环正数值颜色
+    QColor getInnerPositiveColor() const;
     void setInnerPositiveColor(const QColor &color);
 
-    //设置内环刻度尺间隔
+    //获取和设置内环刻度尺大间隔
+    int getInnerScaleMajor() const;
     void setInnerScaleMajor(int value);
+
+    //获取和设置内环刻度尺小间隔
+    int getInnerScaleMinor() const;
     void setInnerScaleMinor(int value);
-    //设置内环刻度尺颜色
+
+    //获取和设置内环刻度尺颜色
+    QColor getInnerScaleColor() const;
     void setInnerScaleColor(const QColor &color);
+
+    //获取和设置内环刻度值颜色
+    QColor getInnerScaleNumColor() const;
     void setInnerScaleNumColor(const QColor &color);
 
-    //设置中心图标颜色
+    //获取和设置负数值图标颜色
+    QColor getCenterPixMapNegativeColor() const;
     void setCenterPixMapNegativeColor(const QColor &color);
+
+    //获取和设置正数值图标颜色
+    QColor getCenterPixMapPositiveColor() const;
     void setCenterPixMapPositiveColor(const QColor &color);
 
-    //设置外环内环文本颜色
+    //获取和设置外环文本颜色
+    QColor getOuterValueTextColor() const;
     void setOuterValueTextColor(const QColor &color);
+
+    //获取和设置内环负数值颜色
+    QColor getInnerNegativeValueTextColor() const;
     void setInnerNegativeValueTextColor(const QColor &color);
+
+    //获取和设置内环正数值颜色
+    QColor getInnerPositiveValueTextColor() const;
     void setInnerPositiveValueTextColor(const QColor &color);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
+
+    //获取和设置天气类型
+    WeatherType getWeatherType() const;
+    void setWeatherType(const WeatherType &weatherType);
 
 Q_SIGNALS:
     void valueChanged(double value);

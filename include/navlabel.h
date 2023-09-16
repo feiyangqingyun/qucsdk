@@ -22,6 +22,7 @@ class NavLabel : public QLabel
     Q_OBJECT
     Q_ENUMS(ArrowPosition)
     Q_ENUMS(TrianglePosition)
+
     Q_PROPERTY(int borderRadius READ getBorderRadius WRITE setBorderRadius)
     Q_PROPERTY(QColor background READ getBackground WRITE setBackground)
     Q_PROPERTY(QColor foreground READ getForeground WRITE setForeground)
@@ -60,60 +61,64 @@ protected:
     void drawTriangle(QPainter *painter);
 
 private:
-    int borderRadius;                   //边框圆角角度
-    QColor background;                  //背景色
-    QColor foreground;                  //前景色
+    int borderRadius;           //边框圆角角度
+    QColor background;          //背景色
+    QColor foreground;          //前景色
 
-    bool showArrow;                     //显示箭头
-    int arrowSize;                      //箭头大小
-    ArrowPosition arrowPosition;        //箭头位置
+    bool showArrow;             //显示箭头
+    int arrowSize;              //箭头大小
+    ArrowPosition arrowPosition;//箭头位置
 
-    bool showTriangle;                  //显示倒三角
-    int triangleLen;                    //倒三角边长
-    TrianglePosition trianglePosition;  //倒三角位置
-    QColor triangleColor;               //倒三角颜色
+    bool showTriangle;          //显示倒三角
+    int triangleLen;            //倒三角边长
+    TrianglePosition trianglePosition;//倒三角位置
+    QColor triangleColor;       //倒三角颜色
 
-    QRect bgRect;                       //绘制区域
+    QRect bgRect;               //绘制区域
 
 public:
-    int getBorderRadius()               const;
-    QColor getBackground()              const;
-    QColor getForeground()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getShowArrow()                 const;
-    int getArrowSize()                  const;
-    ArrowPosition getArrowPosition()    const;
-
-    bool getShowTriangle()              const;
-    int getTriangleLen()                const;
-    TrianglePosition getTrianglePosition()const;
-    QColor getTriangleColor()           const;
-
-    QSize sizeHint()                    const;
-    QSize minimumSizeHint()             const;
-
-public Q_SLOTS:
-    //设置边框圆角角度
+    //获取和设置边框圆角角度
+    int getBorderRadius() const;
     void setBorderRadius(int borderRadius);
-    //设置前景色
+
+    //获取和设置前景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
-    //设置前景色
+
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
 
-    //设置显示箭头
+    //获取和设置显示箭头
+    bool getShowArrow() const;
     void setShowArrow(bool showArrow);
-    //设置箭头大小
+
+    //获取和设置箭头大小
+    int getArrowSize() const;
     void setArrowSize(int arrowSize);
-    //设置箭头位置
+
+    //获取和设置箭头位置
+    ArrowPosition getArrowPosition() const;
     void setArrowPosition(const ArrowPosition &arrowPosition);
 
-    //设置显示倒三角
+    //获取和设置显示倒三角
+    bool getShowTriangle() const;
     void setShowTriangle(bool showTriangle);
-    //设置倒三角边长
+
+    //获取和设置倒三角边长
+    int getTriangleLen() const;
     void setTriangleLen(int triangleLen);
-    //设置倒三角位置
+
+    //获取和设置倒三角位置
+    TrianglePosition getTrianglePosition() const;
     void setTrianglePosition(const TrianglePosition &trianglePosition);
-    //设置倒三角颜色
+
+    //获取和设置倒三角颜色
+    QColor getTriangleColor() const;
     void setTriangleColor(const QColor &triangleColor);
 
 Q_SIGNALS:

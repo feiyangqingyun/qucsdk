@@ -55,80 +55,82 @@ protected:
     void drawHandle(QPainter *painter);
 
 private:
-    QColor borderOutColorStart;     //外边框渐变开始颜色
-    QColor borderOutColorEnd;       //外边框渐变结束颜色
-    QColor borderInColorStart;      //里边框渐变开始颜色
-    QColor borderInColorEnd;        //里边框渐变结束颜色
+    QColor borderOutColorStart; //外边框渐变开始颜色
+    QColor borderOutColorEnd;   //外边框渐变结束颜色
+    QColor borderInColorStart;  //里边框渐变开始颜色
+    QColor borderInColorEnd;    //里边框渐变结束颜色
 
-    QColor bgColor;                 //背景颜色
-    QColor planeColor;              //姿态仪背景
-    QColor glassColor;              //遮罩层颜色
-    QColor scaleColor;              //刻度尺颜色
-    QColor lineColor;               //线条颜色
-    QColor textColor;               //文字颜色
-    QColor pointerColor;            //指针颜色
-    QColor handleColor;             //手柄颜色
+    QColor bgColor;             //背景颜色
+    QColor planeColor;          //姿态仪背景
+    QColor glassColor;          //遮罩层颜色
+    QColor scaleColor;          //刻度尺颜色
+    QColor lineColor;           //线条颜色
+    QColor textColor;           //文字颜色
+    QColor pointerColor;        //指针颜色
+    QColor handleColor;         //手柄颜色
 
-    int degValue;                   //旋转角度
-    int rollValue;                  //滚动值
+    int degValue;               //旋转角度
+    int rollValue;              //滚动值
 
 public:
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取和设置外边框渐变开始颜色
     QColor getBorderOutColorStart() const;
-    QColor getBorderOutColorEnd()   const;
-    QColor getBorderInColorStart()  const;
-    QColor getBorderInColorEnd()    const;
-
-    QColor getBgColor()             const;
-    QColor getPlaneColor()          const;
-    QColor getGlassColor()          const;
-    QColor getScaleColor()          const;
-    QColor getLineColor()           const;
-    QColor getTextColor()           const;
-    QColor getPointerColor()        const;
-    QColor getHandleColor()         const;
-
-    int getDegValue()               const;
-    int getRollValue()              const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置外边框渐变颜色
     void setBorderOutColorStart(const QColor &borderOutColorStart);
+
+    //获取和设置外边框渐变结束颜色
+    QColor getBorderOutColorEnd() const;
     void setBorderOutColorEnd(const QColor &borderOutColorEnd);
 
-    //设置里边框渐变颜色
+    //获取和设置里边框渐变开始颜色
+    QColor getBorderInColorStart() const;
     void setBorderInColorStart(const QColor &borderInColorStart);
+
+    //获取和设置里边框渐变结束颜色
+    QColor getBorderInColorEnd() const;
     void setBorderInColorEnd(const QColor &borderInColorEnd);
 
-    //设置背景色
+    //获取和设置背景色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
-    //设置姿态仪背景
+    //获取和设置姿态仪背景
+    QColor getPlaneColor() const;
     void setPlaneColor(const QColor &planeColor);
 
-    //设置遮罩层颜色
+    //获取和设置遮罩层颜色
+    QColor getGlassColor() const;
     void setGlassColor(const QColor &glassColor);
 
-    //设置刻度尺颜色
+    //获取和设置刻度尺颜色
+    QColor getScaleColor() const;
     void setScaleColor(const QColor &scaleColor);
 
-    //设置线条颜色
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //设置文字颜色
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置指针颜色
+    //获取和设置指针颜色
+    QColor getPointerColor() const;
     void setPointerColor(const QColor &pointerColor);
 
-    //设置手柄颜色
+    //获取和设置手柄颜色
+    QColor getHandleColor() const;
     void setHandleColor(const QColor &handleColor);
 
-    //设置旋转角度值
+    //获取和设置旋转角度值
+    int getDegValue() const;
     void setDegValue(int degValue);
-    //设置前进旋转值
+
+    //获取和设置前进旋转值
+    int getRollValue() const;
     void setRollValue(int rollValue);
 
 Q_SIGNALS:

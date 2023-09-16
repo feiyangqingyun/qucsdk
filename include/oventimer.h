@@ -14,6 +14,9 @@ class OvenTimer : public QWidget
 
 {
     Q_OBJECT
+
+    Q_PROPERTY(int duration READ getDuration WRITE setDuration)
+
 public:
     explicit OvenTimer(QWidget *parent = 0);
     ~OvenTimer();
@@ -31,9 +34,12 @@ private:
     QTimer *finishTimer;
 
 public:
-    int getDuration()               const;
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取和设置时长
+    int getDuration() const;
 
 public Q_SLOTS:
     void setDuration(int secs);

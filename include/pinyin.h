@@ -4,7 +4,12 @@
 /**
  * 简体转繁体+汉字转拼音带音标类 作者:feiyangqingyun(QQ:517216493) 2019-02-16
  * 1. 简体繁体互相转换。
- * 2. 汉字转拼音带音标。
+ * 2. 支持字符串和字符转换。
+ * 3. 判断字符是否是汉字。
+ * 4. 汉字转拼音带音标。
+ * 5. 格式化拼音显示。
+ * 6. 将单个汉字转换为相应格式的拼音。
+ * 7. 将字符串转换成相应格式的拼音。
  */
 
 #include <QObject>
@@ -38,7 +43,7 @@ private:
     //从文本文件读取汉字与拼音对照表
     QMap<QString, QString> getDict(const QString &fileName);
 
-public slots:
+public Q_SLOTS:
     //初始化
     void initPath(const QString &path);
     void initDict(const QString &pinyin_one = "pinyin_one.txt",
@@ -64,7 +69,6 @@ public slots:
 
     //将字符串转换成相应格式的拼音
     QString getPinYin(const QString &str, const QString &separator, const Format &format);
-
 };
 
 #endif // PINYIN_H

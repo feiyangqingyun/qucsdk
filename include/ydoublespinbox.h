@@ -36,19 +36,20 @@ private slots:
     void initStyle();       //加载样式
 
 public:
-    int getBtnSize()        const;
-    QString getTitle()      const;
-    QString getUnit()       const;
-
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-public Q_SLOTS:
-    //设置按钮尺寸
+    //获取和设置按钮尺寸
+    int getBtnSize() const;
     void setBtnSize(int btnSize);
-    //设置标题
+
+    //获取和设置标题
+    QString getTitle() const;
     void setTitle(const QString &title);
-    //设置单位
+
+    //获取和设置单位
+    QString getUnit() const;
     void setUnit(const QString &unit);
 };
 

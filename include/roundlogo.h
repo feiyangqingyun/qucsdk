@@ -38,31 +38,33 @@ private slots:
     void updateValue();
 
 private:
-    int speed;                  //旋转速度
-    QColor bgColor;             //背景颜色
-    QList<QColor> colors;       //颜色集合
+    int speed;              //旋转速度
+    QColor bgColor;         //背景颜色
+    QList<QColor> colors;   //颜色集合
 
-    int value;                  //当前值
-    QTimer *timer;              //定时器绘制
+    int value;              //当前值
+    QTimer *timer;          //定时器绘制
 
 public:
-    int getSpeed()              const;
-    QColor getBgColor()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
     //设置速度
+    int getSpeed() const;
     void setSpeed(int speed);
 
     //设置颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //设置颜色集合
     void setColors(const QList<QColor> &colors);
 
-    //启动+停止旋转
+public Q_SLOTS:
+    //启动和停止旋转
     void start();
     void stop();
 };
 
-#endif // GAUGEPOWER_H
+#endif // ROUNDLOGO_H

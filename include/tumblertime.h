@@ -39,29 +39,21 @@ private slots:
     void initForm();
 
 public:
-    //获取时钟
-    int getHour()           const;
-    //获取分钟
-    int getMin()            const;
-    //获取秒钟
-    int getSec()            const;
-
-    //获取时间
-    QTime getTime()         const;
-
-public Q_SLOTS:
-    //设置时钟
+    //获取和设置时钟
+    int getHour() const;
     void setHour(int hour);
 
-    //设置分钟
+    //获取和设置分钟
+    int getMin() const;
     void setMin(int min);
 
-    //设置秒钟
+    //获取和设置秒钟
+    int getSec() const;
     void setSec(int sec);
 
-    //设置年月日
+    //获取和设置时间
+    QTime getTime() const;
     void setTime(int hour, int min, int sec);
-
 };
 
 #endif // TUMBLERTIME_H

@@ -34,41 +34,48 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    int angle;                  //旋转角度
-    QColor bodyColor;           //身体颜色
-    QColor eyeColor;            //眼睛颜色
-    QColor eyeballColor;        //眼珠颜色
-    QColor noseColor;           //鼻子颜色
-    QColor earColor;            //耳朵颜色
-    QColor tailColor;           //尾巴颜色
+    int angle;              //旋转角度
+    QColor bodyColor;       //身体颜色
+    QColor eyeColor;        //眼睛颜色
+    QColor eyeballColor;    //眼珠颜色
+    QColor noseColor;       //鼻子颜色
+    QColor earColor;        //耳朵颜色
+    QColor tailColor;       //尾巴颜色
 
 public:
-    int getAngle()              const;
-    QColor getBodyColor()       const;
-    QColor getEyeColor()        const;
-    QColor getEyeballColor()    const;
-    QColor getNoseColor()       const;
-    QColor getEarColor()        const;
-    QColor getTailColor()       const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
+    //获取和设置旋转角度
+    int getAngle() const;
+
+    //获取和设置身体颜色
+    QColor getBodyColor() const;
+    void setBodyColor(const QColor &bodyColor);
+
+    //获取和设置眼睛颜色
+    QColor getEyeColor() const;
+    void setEyeColor(const QColor &eyeColor);
+
+    //获取和设置眼珠颜色
+    QColor getEyeballColor() const;
+    void setEyeballColor(const QColor &eyeballColor);
+
+    //获取和设置鼻子颜色
+    QColor getNoseColor() const;
+    void setNoseColor(const QColor &noseColor);
+
+    //获取和设置耳朵颜色
+    QColor getEarColor() const;
+    void setEarColor(const QColor &earColor);
+
+    //获取和设置尾巴颜色
+    QColor getTailColor() const;
+    void setTailColor(const QColor &tailColor);
 
 public Q_SLOTS:
-    //设置旋转角度
     void setAngle(int angle);
-    //设置身体颜色
-    void setBodyColor(const QColor &bodyColor);
-    //设置眼睛颜色
-    void setEyeColor(const QColor &eyeColor);
-    //设置眼珠颜色
-    void setEyeballColor(const QColor &eyeballColor);
-    //设置鼻子颜色
-    void setNoseColor(const QColor &noseColor);
-    //设置耳朵颜色
-    void setEarColor(const QColor &earColor);
-    //设置尾巴颜色
-    void setTailColor(const QColor &tailColor);
 };
 
 #endif // MAGICMOUSE_H

@@ -100,75 +100,84 @@ private slots:
     void setRange(int min, int max);
 
 public:
-    QColor getTextColor()       const;
-    QColor getBgColor()         const;
-    QColor getSelectTextColor() const;
-    QColor getSelectBgColor()   const;
-    QColor getHoverTextColor()  const;
-    QColor getHoverBgColor()    const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QString getItemTexts()      const;
-    QPixmap getNormalPixmap()   const;
-    QPixmap getSelectPixmap()   const;
-    QPixmap getHoverPixmap()    const;
-
-    int getItemCount()          const;
-    int getItemWidth()          const;
-    int getItemHeight()         const;
-
-    int getScrollWidth()        const;
-    bool getScrollLeft()        const;
-    QColor getScrollColor()     const;
-
-    bool getEnableEdit()        const;
-    bool getEnableAdd()         const;
-    bool getEnableDelete()      const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置文字颜色
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置选中文字颜色
+
+    //获取和设置选中文字颜色
+    QColor getSelectTextColor() const;
     void setSelectTextColor(const QColor &selectTextColor);
-    //设置选中背景颜色
+
+    //获取和设置选中背景颜色
+    QColor getSelectBgColor() const;
     void setSelectBgColor(const QColor &selectBgColor);
-    //设置悬停文字颜色
+
+    //获取和设置悬停文字颜色
+    QColor getHoverTextColor() const;
     void setHoverTextColor(const QColor &hoverTextColor);
-    //设置悬停背景颜色
+
+    //获取和设置悬停背景颜色
+    QColor getHoverBgColor() const;
     void setHoverBgColor(const QColor &hoverBgColor);
 
-    //设置节点集合
+    //获取和设置节点集合
+    QString getItemTexts() const;
     void setItemTexts(const QString &itemTexts);
-    //设置正常图标
+
+    //获取和设置正常图标
+    QPixmap getNormalPixmap() const;
     void setNormalPixmap(const QPixmap &normalPixmap);
-    //设置选中图标
+
+    //获取和设置选中图标
+    QPixmap getSelectPixmap() const;
     void setSelectPixmap(const QPixmap &selectPixmap);
-    //设置悬停图标
+
+    //获取和设置悬停图标
+    QPixmap getHoverPixmap() const;
     void setHoverPixmap(const QPixmap &hoverPixmap);
 
-    //设置节点个数
+    //获取和设置节点个数
+    int getItemCount() const;
     void setItemCount(int itemCount);
-    //设置节点宽度
+
+    //获取和设置节点宽度
+    int getItemWidth() const;
     void setItemWidth(int itemWidth);
-    //设置节点高度
+
+    //获取和设置节点高度
+    int getItemHeight() const;
     void setItemHeight(int itemHeight);
 
-    //设置滚动条宽度
+    //获取和设置滚动条宽度
+    int getScrollWidth() const;
     void setScrollWidth(int scrollWidth);
-    //设置滚动条位置
+
+    //获取和设置滚动条位置
+    bool getScrollLeft() const;
     void setScrollLeft(bool scrollLeft);
-    //设置滚动条颜色
+
+    //获取和设置滚动条颜色
+    QColor getScrollColor() const;
     void setScrollColor(const QColor &scrollColor);
 
-    //设置编辑菜单启用禁用
+    //获取和设置编辑菜单启用禁用
+    bool getEnableEdit() const;
     void setEnableEdit(bool enableEdit);
-    //设置添加菜单启用禁用
+
+    //获取和设置添加菜单启用禁用
+    bool getEnableAdd() const;
     void setEnableAdd(bool enableAdd);
-    //设置删除菜单启用禁用
+
+    //获取和设置删除菜单启用禁用
+    bool getEnableDelete() const;
     void setEnableDelete(bool enableDelete);
 
 Q_SIGNALS:

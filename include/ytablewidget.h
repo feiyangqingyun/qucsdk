@@ -28,11 +28,12 @@ private:
     YScrollBarV *scrollBarV;
     YScrollBarH *scrollBarH;
 
-public:
-    QSize sizeHint()        const;
+private:
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-private slots:
+public Q_SLOTS:
     void setPosition();
     void setRangeV(int min, int max);
     void setRangeH(int min, int max);

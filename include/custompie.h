@@ -56,24 +56,28 @@ private:
     QPoint getOffsetPoint(double angel, int offset = 6);
 
 public:
-    QColor getTextColor()       const;
-    QColor getBorderColor()     const;
-    QString getInfos()          const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置是否全部展开+展开的索引
+    //设置是否全部展开
     void setExplodedAll(bool explodedAll);
+    //设置展开的索引
     void setExplodedIndex(int index);
 
     //设置是否启用默认颜色
     void setDefaultColor(bool defaultColor);
 
-    //设置文字颜色+边框颜色
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
+
+    //获取信息集合
+    QString getInfos() const;
 
     //设置颜色集合
     void setColors(const QList<QColor> &colors);

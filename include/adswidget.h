@@ -62,18 +62,24 @@ private slots:
     void changedAds(QLabel *lab);
 
 public:
-    int getInterval()               const;
-    QSize getBannerFixedSize()      const;
-    BannerStyle getBannerStyle()    const;
-    QString getImageNames()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
+    //获取和设置切换间隔
+    int getInterval() const;
     void setInterval(int interval);
+
+    //获取和设置导航指示器固定尺寸
+    QSize getBannerFixedSize() const;
     void setBannerFixedSize(const QSize &bannerFixedSize);
+
+    //获取和设置导航指示器样式
+    BannerStyle getBannerStyle() const;
     void setBannerStyle(const BannerStyle &bannerStyle);
+
+    //获取和设置图片路径集合
+    QString getImageNames() const;
     void setImageNames(const QString &imageNames);
 };
 

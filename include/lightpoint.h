@@ -32,30 +32,29 @@ protected:
     void drawBg(QPainter *painter);
 
 private:
-    int step;                       //颜色透明渐变步长
-    int interval;                   //定时器间隔
-    QColor bgColor;                 //背景颜色
+    int step;           //颜色透明渐变步长
+    int interval;       //定时器间隔
+    QColor bgColor;     //背景颜色
 
-    QTimer *timer;                  //绘制定时器
-    int offset;                     //偏移量
-    bool add;                       //是否增加
+    QTimer *timer;      //绘制定时器
+    int offset;         //偏移量
+    bool add;           //是否增加
 
 public:
-    int getStep()                   const;
-    int getInterval()               const;
-    QColor getBgColor()             const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置颜色透明渐变步长
+    //获取和设置颜色透明渐变步长
+    int getStep() const;
     void setStep(int step);
 
-    //设置定时器间隔
+    //获取和设置定时器间隔
+    int getInterval() const;
     void setInterval(int interval);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 };
 

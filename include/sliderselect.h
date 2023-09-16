@@ -57,114 +57,120 @@ protected:
     void updateUI();
 
 private:
-    int maxValue;                   //最小值
-    int minValue;                   //最大值
-    int leftValue;                  //范围值左边
-    int rightValue;                 //范围值右边
+    int maxValue;           //最小值
+    int minValue;           //最大值
+    int leftValue;          //范围值左边
+    int rightValue;         //范围值右边
 
-    int rangeValue;                 //当前范围值 最大值-最小值
-    int step;                       //单步步长
+    int rangeValue;         //当前范围值 最大值-最小值
+    int step;               //单步步长
 
-    int borderWidth;                //滑块边框宽度
-    bool horizontal;                //是否横向
+    int borderWidth;        //滑块边框宽度
+    bool horizontal;        //是否横向
 
-    QColor usedColor;               //范围值颜色
-    QColor freeColor;               //范围值外颜色
-    QColor textColor;               //文字颜色
-    QColor rangeTextColor;          //范围文字颜色
-    QColor sliderColor;             //滑块颜色
-    QColor borderColor;             //滑块边框颜色
-    QColor btnNormalColor;          //按钮正常颜色
-    QColor btnPressColor;           //按钮按下颜色
+    QColor usedColor;       //范围值颜色
+    QColor freeColor;       //范围值外颜色
+    QColor textColor;       //文字颜色
+    QColor rangeTextColor;  //范围文字颜色
+    QColor sliderColor;     //滑块颜色
+    QColor borderColor;     //滑块边框颜色
+    QColor btnNormalColor;  //按钮正常颜色
+    QColor btnPressColor;   //按钮按下颜色
 
-    int btnWidth;                   //左右步进按钮宽度
-    int sliderHeight;               //控制滑块高度
+    int btnWidth;           //左右步进按钮宽度
+    int sliderHeight;       //控制滑块高度
 
-    QPoint posPress;                //鼠标按下时的坐标
-    QPoint posMove;                 //鼠标拖动后的坐标
+    QPoint posPress;        //鼠标按下时的坐标
+    QPoint posMove;         //鼠标拖动后的坐标
 
-    bool sliderPress;               //主滑块按下
-    bool leftPress;                 //左控制滑块按下
-    bool rightPress;                //右控制滑块按下
-    bool leftBtnPress;              //左单步按钮按下
-    bool rightBtnPress;             //右单步按钮按下
+    bool sliderPress;       //主滑块按下
+    bool leftPress;         //左控制滑块按下
+    bool rightPress;        //右控制滑块按下
+    bool leftBtnPress;      //左单步按钮按下
+    bool rightBtnPress;     //右单步按钮按下
 
-    QRect sliderRect;               //主滑块rect
-    QRect leftRect;                 //左控制滑块rect
-    QRect rightRect;                //右控制滑块rect
-    QRect leftBtnRect;              //左单步按钮rect
-    QRect rightBtnRect;             //右单步按钮rect
+    QRect sliderRect;       //主滑块rect
+    QRect leftRect;         //左控制滑块rect
+    QRect rightRect;        //右控制滑块rect
+    QRect leftBtnRect;      //左单步按钮rect
+    QRect rightBtnRect;     //右单步按钮rect
 
-    QRect sliderRectTemp;           //主滑块初始rect
-    QRect leftRectTemp;             //左控制滑块初始rect
-    QRect rightRectTemp;            //右控制滑块初始rect
+    QRect sliderRectTemp;   //主滑块初始rect
+    QRect leftRectTemp;     //左控制滑块初始rect
+    QRect rightRectTemp;    //右控制滑块初始rect
 
 public:
-    int getMinValue()               const;
-    int getMaxValue()               const;
-    int getLeftValue()              const;
-    int getRightValue()             const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getRangeValue()             const;
-    int getStep()                   const;
-
-    int getBorderWidth()            const;
-    bool getHorizontal()            const;
-
-    QColor getUsedColor()           const;
-    QColor getFreeColor()           const;
-    QColor getTextColor()           const;
-    QColor getRangeTextColor()      const;
-    QColor getSliderColor()         const;
-    QColor getBorderColor()         const;
-    QColor getBtnNormalColor()      const;
-    QColor getBtnPressColor()       const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    int getMinValue() const;
     void setMinValue(int minValue);
+
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
 
     //设置当前范围值
     void setCurrentRange(int leftValue, int rightValue);
-    void setLeftValue(int leftValue);
-    void setRightValue(int rightValue);
 
-    //设置范围宽度
-    void setRangeValue(int rangeValue);
+    //设置左侧值/右侧值/范围值
+    int getLeftValue() const;
+    int getRightValue() const;
+    int getRangeValue() const;
 
-    //设置单步步长
+    //获取和设置单步步长
+    int getStep() const;
     void setStep(int step);
 
-    //设置滑块边框宽度
+    //获取和设置滑块边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
 
-    //设置方向
+    //获取和设置方向
+    bool getHorizontal() const;
     void setHorizontal(bool horizontal);
 
-    //设置刻度值颜色
+    //获取和设置刻度值颜色
+    QColor getUsedColor() const;
     void setUsedColor(const QColor &usedColor);
-    //设置指针颜色
+
+    //获取和设置指针颜色
+    QColor getFreeColor() const;
     void setFreeColor(const QColor &freeColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getRangeTextColor() const;
     void setRangeTextColor(const QColor &rangeTextColor);
-    //设置滑块颜色
+
+    //获取和设置滑块颜色
+    QColor getSliderColor() const;
     void setSliderColor(const QColor &sliderColor);
-    //设置边框颜色
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置按钮正常颜色
+    //获取和设置按钮正常颜色
+    QColor getBtnNormalColor() const;
     void setBtnNormalColor(const QColor &btnNormalColor);
-    //设置按钮按下颜色
+
+    //获取和设置按钮按下颜色
+    QColor getBtnPressColor() const;
     void setBtnPressColor(const QColor &btnPressColor);
+
+public Q_SLOTS:
+    void setLeftValue(int leftValue);
+    void setRightValue(int rightValue);
+    void setRangeValue(int rangeValue);
 
 Q_SIGNALS:
     void valueChanged(int leftValue, int rightValue);

@@ -3,8 +3,11 @@
 
 /**
  * CPU内存显示控件 作者:feiyangqingyun(QQ:517216493) 2016-11-18
- * 1. 实时显示当前CPU及内存使用情况，包括共多少内存已使用多少内存。
- * 2. 全平台通用，包括windows，linux，ARM。
+ * 1. 实时显示当前CPU占用率。
+ * 2. 实时显示内存使用情况。
+ * 3. 包括共多少内存、已使用多少内存。
+ * 4. 全平台通用，包括windows、linux、ARM。
+ * 5. 发出信号通知占用率和内存使用情况等，以便自行显示到其他地方。
  */
 
 #include <QLabel>
@@ -48,18 +51,24 @@ private slots:
     void setData();         //设置数据
 
 public:
-    bool getShowText()      const;
-    void setShowText(bool showText);
-
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
+    //获取和设置是否显示文本
+    bool getShowText() const;
+    void setShowText(bool showText);
+
 public Q_SLOTS:
+    //开始启动服务
     void start(int interval);
+    //停止服务
     void stop();
 
 Q_SIGNALS:
+    //文本改变信号
     void textChanged(const QString &text);
+    //cpu和内存占用情况数值改变信号
     void valueChanged(quint64 cpuPercent, quint64 memoryPercent, quint64 memoryAll, quint64 memoryUse, quint64 memoryFree);
 };
 

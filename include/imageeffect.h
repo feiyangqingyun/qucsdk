@@ -21,7 +21,6 @@ class ImageEffect : public QObject
 #endif
 
 {
-    Q_OBJECT
 public:
     //通用处理
     static QImage effect(QImage image, int type, int value);
@@ -35,7 +34,6 @@ public:
     static QImage invert(QImage image);
     //变亮变暗效果
     static QImage brightness(QImage image, int value);
-
 };
 
 #endif // IMAGEEFFECT_H

@@ -37,11 +37,11 @@ private:
     QList<QPushButton *> btns;
     QStringList colors;
 
-    int space;                  //按钮之间的间隔
-    int columnCount;            //按钮列数
-    int borderRadius;           //边框圆角
-    int borderWidth;            //边框宽度
-    QColor borderColor;         //边框颜色
+    int space;              //按钮之间的间隔
+    int columnCount;        //按钮列数
+    int borderRadius;       //边框圆角
+    int borderWidth;        //边框宽度
+    QColor borderColor;     //边框颜色
 
 private slots:
     void initStyle();
@@ -49,39 +49,36 @@ private slots:
     void btnClicked();
 
 public:
-    QStringList getColors()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getSpace()              const;
-    int getColumnCount()        const;
-    int getBorderRadius()       const;
-    int getBorderWidth()        const;
-    QColor getBorderColor()     const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置颜色集合
+    //获取和设置颜色集合
+    QStringList getColors() const;
     void setColors(const QStringList &colors);
 
-    //设置按钮间隔
+    //获取和设置按钮间隔
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置列数
+    //获取和设置列数
+    int getColumnCount() const;
     void setColumnCount(int columnCount);
 
-    //设置圆角角度
+    //获取和设置圆角角度
+    int getBorderRadius() const;
     void setBorderRadius(int borderRadius);
 
-    //设置边框宽度
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
 
-    //设置边框颜色
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
 Q_SIGNALS:
     void colorChanged(const QColor &color);
-
 };
 
 #endif // COLORPANELBTN_H

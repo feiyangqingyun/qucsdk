@@ -21,6 +21,7 @@ class CustomGraphics : public QWidget
 
 {
     Q_OBJECT
+
     Q_PROPERTY(bool selectDotVisible READ getSelectDotVisible WRITE setSelectDotVisible)
     Q_PROPERTY(int dotRadius READ getDotRadius WRITE setDotRadius)
     Q_PROPERTY(int lineWidth READ getLineWidth WRITE setLineWidth)
@@ -32,8 +33,8 @@ class CustomGraphics : public QWidget
 
 public:
     typedef struct {
-        QVector<QPoint> pos;
         bool selected;
+        QVector<QPoint> pos;
     } Polygon;
 
     explicit CustomGraphics(QWidget *parent = 0);
@@ -74,33 +75,36 @@ private:
     bool checkPoint(const QVector<QPoint> &points, int x, int y);
 
 public:
-    bool getSelectDotVisible()  const;
-    int getDotRadius()          const;
-    int getLineWidth()          const;
-
-    QColor getDotColor()        const;
-    QColor getLineColor()       const;
-    QColor getPolygonColor()    const;
-    QColor getSelectColor()     const;
-
+    //默认尺寸和最小尺寸
     QSize sizeHint()            const;
     QSize minimumSizeHint()     const;
 
-public Q_SLOTS:
-    //设置选中点可见
+    //获取和设置选中点可见
+    bool getSelectDotVisible() const;
     void setSelectDotVisible(bool selectDotVisible);
-    //设置点的圆角角度
+
+    //获取和设置点的圆角角度
+    int getDotRadius() const;
     void setDotRadius(int dotRadius);
-    //使劲儿中线条宽度
+
+    //获取和设置线条宽度
+    int getLineWidth() const;
     void setLineWidth(int lineWidth);
 
     //设置点颜色
+    QColor getDotColor() const;
     void setDotColor(const QColor &dotColor);
+
     //设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
+
     //设置封闭区域颜色
+    QColor getPolygonColor() const;
     void setPolygonColor(const QColor &polygonColor);
+
     //设置选中颜色
+    QColor getSelectColor() const;
     void setSelectColor(const QColor &selectColor);
 
     //清除临时绘制的

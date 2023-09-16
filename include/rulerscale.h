@@ -43,77 +43,83 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    int minValue;                   //最小值
-    int maxValue;                   //最大值
-    int value;                      //目标值
+    int minValue;           //最小值
+    int maxValue;           //最大值
+    int value;              //目标值
 
-    int borderWidth;                //边框宽度
-    int scaleMajor;                 //大刻度数量
-    int scaleMinor;                 //小刻度数量
+    int borderWidth;        //边框宽度
+    int scaleMajor;         //大刻度数量
+    int scaleMinor;         //小刻度数量
 
-    QColor scaleColor;              //刻度尺颜色
-    QColor scaleNumColor;           //刻度值颜色
-    QColor pointerColor;            //指针颜色
-    QColor borderColor;             //底部边框颜色
-    QColor coverColor;              //盖子颜色
-    QColor textColor;               //文本颜色
+    QColor scaleColor;      //刻度尺颜色
+    QColor scaleNumColor;   //刻度值颜色
+    QColor pointerColor;    //指针颜色
+    QColor borderColor;     //底部边框颜色
+    QColor coverColor;      //盖子颜色
+    QColor textColor;       //文本颜色
 
-    Qt::Orientations orientation;   //方向
+    Qt::Orientations orientation;//方向
 
 public:
-    int getMinValue()               const;
-    int getMaxValue()               const;
-    int getValue()                  const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getBorderWidth()            const;
-    int getScaleMajor()             const;
-    int getScaleMinor()             const;
-
-    QColor getScaleColor()          const;
-    QColor getScaleNumColor()       const;
-    QColor getPointerColor()        const;
-    QColor getBorderColor()         const;
-    QColor getCoverColor()          const;
-    QColor getTextColor()           const;
-
-    Qt::Orientations getOrientation()const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    int getMinValue() const;
     void setMinValue(int minValue);
+
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
 
-    //设置目标值
-    void setValue(int value);
+    //获取和设置目标值
+    int getValue() const;
 
-    //设置边框宽度
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
-    //设置主刻度数量
+
+    //获取和设置主刻度数量
+    int getScaleMajor() const;
     void setScaleMajor(int scaleMajor);
-    //设置小刻度数量
+
+    //获取和设置小刻度数量
+    int getScaleMinor() const;
     void setScaleMinor(int scaleMinor);
 
-    //设置刻度尺颜色
+    //获取和设置刻度尺颜色
+    QColor getScaleColor() const;
     void setScaleColor(const QColor &scaleColor);
-    //设置刻度值颜色
+
+    //获取和设置刻度值颜色
+    QColor getScaleNumColor() const;
     void setScaleNumColor(const QColor &scaleNumColor);
-    //设置指针颜色
+
+    //获取和设置指针颜色
+    QColor getPointerColor() const;
     void setPointerColor(const QColor &pointerColor);
-    //设置底部边框颜色
+
+    //获取和设置底部边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
-    //设置盖子颜色
+    //获取和设置盖子颜色
+    QColor getCoverColor() const;
     void setCoverColor(const QColor &coverColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置刻度尺方向
+    //获取和设置刻度尺方向
+    Qt::Orientations getOrientation() const;
     void setOrientation(const Qt::Orientations &orientation);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(int value);

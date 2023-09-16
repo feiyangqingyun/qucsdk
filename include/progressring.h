@@ -79,137 +79,149 @@ private slots:
     void updateValue();
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
-    QString text;                   //用于直接显示文字
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //目标值
+    int precision;          //精确度(小数点后几位)
+    QString text;           //用于直接显示文字
 
-    bool clipCenter;                //中间部分是否扣掉成透明
-    bool clockWise;                 //顺时针逆时针
-    bool showPercent;               //显示百分比
+    bool clipCenter;        //中间部分是否扣掉成透明
+    bool clockWise;         //顺时针逆时针
+    bool showPercent;       //显示百分比
 
-    int alarmMode;                  //警戒报警模式,进度为不同的颜色
-    int startAngle;                 //起始角度
-    int ringPadding;                //圆环间距
-    int ringWidth;                  //圆环宽度
+    int alarmMode;          //警戒报警模式,进度为不同的颜色
+    int startAngle;         //起始角度
+    int ringPadding;        //圆环间距
+    int ringWidth;          //圆环宽度
 
-    bool animation;                 //是否启用动画显示
-    double animationStep;           //动画显示时步长
+    bool animation;         //是否启用动画显示
+    double animationStep;   //动画显示时步长
 
-    QColor bgColor;                 //背景颜色
-    QColor textColor;               //文字颜色
-    QColor ringColor;               //圆环颜色
-    QColor ringBgColor;             //圆环进度背景
-    QColor circleColor;             //中心圆颜色
+    QColor bgColor;         //背景颜色
+    QColor textColor;       //文字颜色
+    QColor ringColor;       //圆环颜色
+    QColor ringBgColor;     //圆环进度背景
+    QColor circleColor;     //中心圆颜色
 
-    int ringValue1;                 //环形值1
-    int ringValue2;                 //环形值2
-    int ringValue3;                 //环形值3
+    int ringValue1;         //环形值1
+    int ringValue2;         //环形值2
+    int ringValue3;         //环形值3
 
-    QColor ringColor1;              //环形颜色1
-    QColor ringColor2;              //环形颜色2
-    QColor ringColor3;              //环形颜色3
+    QColor ringColor1;      //环形颜色1
+    QColor ringColor2;      //环形颜色2
+    QColor ringColor3;      //环形颜色3
 
-    bool reverse;                   //是否往回走
-    double currentValue;            //当前值
-    QTimer *timer;                  //定时器绘制动画
+    bool reverse;           //是否往回走
+    double currentValue;    //当前值
+    QTimer *timer;          //定时器绘制动画
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
-    QString getText()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getClipCenter()            const;
-    bool getClockWise()             const;
-    bool getShowPercent()           const;
-
-    int getAlarmMode()              const;
-    int getStartAngle()             const;
-    int getRingPadding()            const;
-    int getRingWidth()              const;
-
-    bool getAnimation()             const;
-    double getAnimationStep()       const;
-
-    QColor getBgColor()             const;
-    QColor getTextColor()           const;
-    QColor getRingColor()           const;
-    QColor getRingBgColor()         const;
-    QColor getCircleColor()         const;
-
-    int getRingValue1()             const;
-    int getRingValue2()             const;
-    int getRingValue3()             const;
-
-    QColor getRingColor1()          const;
-    QColor getRingColor2()          const;
-    QColor getRingColor3()          const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
-    void setValue(double value);
-    void setValue(int value);
+    //获取和设置目标值
+    double getValue() const;
+    void setValue(double value);    
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
-    //设置显示的文字
+
+    //获取和设置显示的文字
+    QString getText() const;
     void setText(const QString &text);
 
-    //设置中间部分是否扣掉成透明
+    //获取和设置中间部分是否扣掉成透明
+    bool getClipCenter() const;
     void setClipCenter(bool clipCenter);
-    //设置顺时针逆时针转
+
+    //获取和设置顺时针逆时针转
+    bool getClockWise() const;
     void setClockWise(bool clockWise);
-    //设置显示百分比
+
+    //获取和设置显示百分比
+    bool getShowPercent() const;
     void setShowPercent(bool showPercent);
 
-    //设置启动自动检验
+    //获取和设置启动自动检验
+    int getAlarmMode() const;
     void setAlarmMode(int alarmMode);
-    //设置起始角度
+
+    //获取和设置起始角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置圆环间距
+
+    //获取和设置圆环间距
+    int getRingPadding() const;
     void setRingPadding(int ringPadding);
-    //设置圆环宽度
+
+    //获取和设置圆环宽度
+    int getRingWidth() const;
     void setRingWidth(int ringWidth);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置圆环进度颜色
+
+    //获取和设置圆环进度颜色
+    QColor getRingColor() const;
     void setRingColor(const QColor &ringColor);
-    //设置圆环背景颜色
+
+    //获取和设置圆环背景颜色
+    QColor getRingBgColor() const;
     void setRingBgColor(const QColor &ringBgColor);
-    //设置中心圆颜色
+
+    //获取和设置中心圆颜色
+    QColor getCircleColor() const;
     void setCircleColor(const QColor &circleColor);
 
-    //设置三种值
+    //获取和设置三种值
+    int getRingValue1() const;
     void setRingValue1(int ringValue1);
+
+    int getRingValue2() const;
     void setRingValue2(int ringValue2);
+
+    int getRingValue3() const;
     void setRingValue3(int ringValue3);
 
-    //设置三种颜色
+    //获取和设置三种颜色
+    QColor getRingColor1() const;
     void setRingColor1(const QColor &ringColor1);
+
+    QColor getRingColor2() const;
     void setRingColor2(const QColor &ringColor2);
+
+    QColor getRingColor3() const;
     void setRingColor3(const QColor &ringColor3);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(int value);

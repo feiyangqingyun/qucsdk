@@ -22,11 +22,11 @@ class ImagePilot : public QWidget
 
 public:
     enum PilotStyle {
-        PilotStyle_Blue = 0,        //蓝色风格
-        PilotStyle_Gray = 1,        //灰色风格
-        PilotStyle_Green = 2,       //绿色风格
-        PilotStyle_Red = 3,         //红色风格
-        PilotStyle_Yellow = 4       //黄色风格
+        PilotStyle_Blue = 0,    //蓝色风格
+        PilotStyle_Gray = 1,    //灰色风格
+        PilotStyle_Green = 2,   //绿色风格
+        PilotStyle_Red = 3,     //红色风格
+        PilotStyle_Yellow = 4   //黄色风格
     };
 
     explicit ImagePilot(QWidget *parent = 0);
@@ -39,13 +39,16 @@ private:
     QString imgFile;
 
 public:
-    PilotStyle getPilotStyle()      const;
-    QString getImgFile()            const;
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-public Q_SLOTS:
+    //获取和设置指示灯样式
+    PilotStyle getPilotStyle() const;
     void setPilotStyle(const PilotStyle &pilotStyle);
+
+    //获取和设置图片
+    QString getImgFile() const;
     void setImage(const QString &imgFile);
 };
 

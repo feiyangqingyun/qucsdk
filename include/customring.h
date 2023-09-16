@@ -26,6 +26,7 @@ class CustomRing : public QWidget
 
 {
     Q_OBJECT
+
     Q_PROPERTY(bool showTitle READ getShowTitle WRITE setShowTitle)
     Q_PROPERTY(int titleHeight READ getTitleHeight WRITE setTitleHeight)
     Q_PROPERTY(int titleFontSize READ getTitleFontSize WRITE setTitleFontSize)
@@ -112,71 +113,91 @@ private:
     QList<RingData> inPieInfo;  //里边饼图数据
 
 public:
-    bool getShowTitle()         const;
-    int getTitleHeight()        const;
-    int getTitleFontSize()      const;
-    QString getTitle()          const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getShowLegend()        const;
-    int getLegendHeight()       const;
-    int getLegendFontSize()     const;
-
-    int getHoverOffset()        const;
-    int getHoverAlpha()         const;
-
-    QColor getBgColor()         const;
-    QColor getTextColor()       const;
-    QColor getHighColor()       const;
-    QColor getFlagColor()       const;
-
-    QColor getOutCircleColor()  const;
-    QColor getMidCircleColor()  const;
-    QColor getInCircleColor()   const;
-
-    QString getOutPieInfos()    const;
-    QString getInPieInfos()     const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //显示标题+标题栏高度+标题字号+标题文字
+    //获取和设置显示标题
+    bool getShowTitle() const;
     void setShowTitle(bool showTitle);
+
+    //获取和设置标题栏高度
+    int getTitleHeight() const;
     void setTitleHeight(int titleHeight);
+
+    //获取和设置标题字号
+    int getTitleFontSize() const;
     void setTitleFontSize(int titleFontSize);
+
+    //获取和设置标题文字
+    QString getTitle() const;
     void setTitle(const QString &title);
 
-    //显示图例+图例高度+图例字号
+    //获取和设置显示图例
+    bool getShowLegend() const;
     void setShowLegend(bool showLegend);
+
+    //获取和设置图例高度
+    int getLegendHeight() const;
     void setLegendHeight(int legendHeight);
+
+    //获取和设置图例字号
+    int getLegendFontSize() const;
     void setLegendFontSize(int legendFontSize);
 
-    //设置鼠标悬停偏移值+颜色透明度
+    //获取和设置鼠标悬停偏移值
+    int getHoverOffset() const;
     void setHoverOffset(int hoverOffset);
+
+    //获取和设置鼠标悬停颜色透明度
+    int getHoverAlpha() const;
     void setHoverAlpha(int hoverAlpha);
 
-    //设置背景颜色+文字颜色+高亮颜色+标识颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+    //获取和设置高亮颜色
+    QColor getHighColor() const;
     void setHighColor(const QColor &highColor);
+
+    //获取和设置标识颜色
+    QColor getFlagColor() const;
     void setFlagColor(const QColor &flagColor);
 
-    //设置外圆颜色+中间圆颜色+里边圆颜色
+    //获取和设置外圆颜色
+    QColor getOutCircleColor() const;
     void setOutCircleColor(const QColor &outCircleColor);
+
+    //获取和设置中间圆颜色
+    QColor getMidCircleColor() const;
     void setMidCircleColor(const QColor &midCircleColor);
+
+    //获取和设置里边圆颜色
+    QColor getInCircleColor() const;
     void setInCircleColor(const QColor &inCircleColor);
 
-    //字符串形式设置数据
+    //获取和设置外圆数据
+    QString getOutPieInfos() const;
     void setOutPieInfos(const QString &outPieInfos);
+
+    //获取和设置里圆数据
+    QString getInPieInfos() const;
     void setInPieInfos(const QString &inPieInfos);
 
     //设置颜色集合
     void setOutPieColors(const QList<QColor> &outPieColors);
     void setInPieColors(const QList<QColor> &inPieColors);
 
-    //清空+设置饼图数据
+    //清空饼图数据
     void clearOutPie();
     void clearInPie();
+
+    //设置饼图数据
     void appendOutPie(const RingData &data);
     void appendInPie(const RingData &data);
 };

@@ -62,67 +62,71 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    bool clockWise;                 //顺时针逆时针
-    bool showPercent;               //显示当前百分比
-    int currentValue;               //当前值
-    int maxValue;                   //最大值
-    int interval;                   //旋转间隔
+    bool clockWise;         //顺时针逆时针
+    bool showPercent;       //显示当前百分比
+    int currentValue;       //当前值
+    int maxValue;           //最大值
+    int interval;           //旋转间隔
 
-    int minRadius;                  //最小半径
-    int maxRadius;                  //最大半径
-    int offsetRadius;               //半径偏移量
-    int leftRadius;                 //左边圆半径
-    int rightRadius;                //右边圆半径
-    bool leftIncrease;              //左边递增
-    bool rightIncrease;             //右边递增
+    BarStyle barStyle;      //样式
+    QColor background;      //背景色
+    QColor foreground;      //前景色
+    QColor textColor;       //文字颜色
 
-    BarStyle barStyle;              //样式
-    QColor background;              //背景色
-    QColor foreground;              //前景色
-    QColor textColor;               //文字颜色
+    int minRadius;          //最小半径
+    int maxRadius;          //最大半径
+    int offsetRadius;       //半径偏移量
 
-    QTimer *timer;                  //定时器绘制
+    int leftRadius;         //左边圆半径
+    int rightRadius;        //右边圆半径
+    bool leftIncrease;      //左边递增
+    bool rightIncrease;     //右边递增
 
-private:
+    QTimer *timer;          //定时器绘制
     double degreesToRadians(double value);
 
 private slots:
-    void updateValue();
+    void updateValue();     //更新值
 
 public:
-    bool getClockWise()             const;
-    bool getShowPercent()           const;
-    int getCurrentValue()           const;
-    int getMaxValue()               const;
-    int getInterval()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    BarStyle getBarStyle()          const;
-    QColor getBackground()          const;
-    QColor getForeground()          const;
-    QColor getTextColor()           const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置顺时针逆时针旋转
+    //获取和设置顺时针逆时针旋转
+    bool getClockWise() const;
     void setClockWise(bool clockWise);
-    //设置是否显示百分比
+
+    //获取和设置是否显示百分比
+    bool getShowPercent() const;
     void setShowPercent(bool showPercent);
-    //设置当前值
+
+    //获取和设置当前值
+    int getCurrentValue() const;
     void setCurrentValue(int currentValue);
-    //设置最大值
+
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
-    //设置旋转速度间隔
+
+    //获取和设置旋转速度间隔
+    int getInterval() const;
     void setInterval(int interval);
 
-    //设置样式
+    //获取和设置样式
+    BarStyle getBarStyle() const;
     void setBarStyle(const BarStyle &barStyle);
-    //设置前景色
+
+    //获取和设置前景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
-    //设置前景色
+
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
-    //设置文字颜色
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 };
 

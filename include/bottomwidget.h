@@ -70,20 +70,37 @@ public:
     QString getCurrentUserType()    const;
 
 public Q_SLOTS:
+    //设置软件标题标签可见
     void setLabTitleVisible(bool labTitleVisible);
+    //设置版权所有标签可见
     void setLabCopyrightVisible(bool labCopyrightVisible);
+    //设置当前用户标签可见
     void setLabUserVisible(bool labUserVisible);
+    //设置已运行时间标签可见
     void setLabLiveVisible(bool labLiveVisible);
+    //设置当前时间标签可见
     void setLabDateTimeVisible(bool labDateTimeVisible);
 
+    //设置软件标题
     void setTitle(const QString &title);
+    //设置版本号
     void setVersion(const QString &version);
+    //设置版权所有
     void setCopyright(const QString &copyright);
+
+    //设置当前用户名称
     void setCurrentUserName(const QString &currentUserName);
+    //设置当前用户类型
     void setCurrentUserType(const QString &currentUserType);
+
+    //设置字体名称
     void setFontName(const QString &fontName);
+    //设置字体大小
     void setFontSize(int fontSize);
+
+    //设置间隔条固定宽度1
     void setLineFixedWidth(bool lineFixedWidth);
+    //启动运行时间
     void start(int interval = 1000);
 };
 

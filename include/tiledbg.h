@@ -29,24 +29,25 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    QColor color1;              //颜色1
-    QColor color2;              //颜色2
-    QPixmap bgPix;              //背景图片
+    QColor color1;      //颜色1
+    QColor color2;      //颜色2
+    QPixmap bgPix;      //背景图片
 
 public:
-    QColor getColor1()          const;
-    QColor getColor2()          const;
-    QPixmap getBgPix()          const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置颜色1
+    //获取和设置颜色1
+    QColor getColor1() const;
     void setColor1(const QColor &color1);
-    //设置颜色2
+
+    //获取和设置颜色2
+    QColor getColor2() const;
     void setColor2(const QColor &color2);
-    //设置背景图片
+
+    //获取和设置背景图片
+    QPixmap getBgPix() const;
     void setBgPix(const QPixmap &bgPix);
 };
 

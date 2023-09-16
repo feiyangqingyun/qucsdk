@@ -11,7 +11,7 @@
  * 6. 可设置是否显示值或者百分比。
  * 7. 可设置字体自适应大小。
  * 8. 可设置背景颜色、文字颜色。
- * 9. 精准计算圆角角度，解决了QSS中border-radius当进度小于圆角角度出现方形的BUG。
+ * 9. 精准计算圆角角度，解决了QSS中border-radius当进度小于圆角角度出现方形的bug。
  */
 
 #include <QWidget>
@@ -59,82 +59,90 @@ protected:
     void drawBorder(QPainter *painter);
 
 private:
-    int value1;                 //值1
-    int value2;                 //值2
-    int value3;                 //值3
+    int value1;         //值1
+    int value2;         //值2
+    int value3;         //值3
 
-    QColor color1;              //颜色1
-    QColor color2;              //颜色2
-    QColor color3;              //颜色3
+    QColor color1;      //颜色1
+    QColor color2;      //颜色2
+    QColor color3;      //颜色3
 
-    int radius;                 //圆角角度
-    bool autoRadius;            //自动圆角
+    int radius;         //圆角角度
+    bool autoRadius;    //自动圆角
 
-    bool showValue;             //显示对应的值
-    bool showPercent;           //显示对应的百分比
-    bool autoFont;              //自动字体大小
+    bool showValue;     //显示对应的值
+    bool showPercent;   //显示对应的百分比
+    bool autoFont;      //自动字体大小
 
-    double borderWidth;         //边框宽度
-    QColor borderColor;         //边框颜色
+    double borderWidth; //边框宽度
+    QColor borderColor; //边框颜色
 
-    QColor bgColor;             //背景颜色
-    QColor textColor;           //文字颜色
+    QColor bgColor;     //背景颜色
+    QColor textColor;   //文字颜色
 
-    int width1;                 //值1宽度
-    int width2;                 //值2宽度
-    int width3;                 //值3宽度
+    int width1;         //值1宽度
+    int width2;         //值2宽度
+    int width3;         //值3宽度
 
 public:
-    int getValue1()             const;
-    int getValue2()             const;
-    int getValue3()             const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getColor1()          const;
-    QColor getColor2()          const;
-    QColor getColor3()          const;
-
-    int getRadius()             const;
-    bool getAutoRadius()        const;
-
-    bool getShowValue()         const;
-    bool getShowPercent()       const;
-    bool getAutoFont()          const;
-
-    double getBorderWidth()     const;
-    QColor getBorderColor()     const;
-
-    QColor getBgColor()         const;
-    QColor getTextColor()       const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置三个值
+    //获取和设置三个值
+    int getValue1() const;
     void setValue1(int value1);
+
+    int getValue2() const;
     void setValue2(int value2);
+
+    int getValue3() const;
     void setValue3(int value3);
 
-    //设置三个颜色
+    //获取和设置三个颜色
+    QColor getColor1() const;
     void setColor1(const QColor &color1);
+
+    QColor getColor2() const;
     void setColor2(const QColor &color2);
+
+    QColor getColor3() const;
     void setColor3(const QColor &color3);
 
-    //设置圆角+自动圆角
+    //获取和设置圆角角度
+    int getRadius() const;
     void setRadius(int radius);
+
+    //获取和设置自动圆角
+    bool getAutoRadius() const;
     void setAutoRadius(bool autoRadius);
 
-    //设置显示值+显示百分比+自动字体大小
+    //获取和设置显示值
+    bool getShowValue() const;
     void setShowValue(bool showValue);
+
+    //获取和设置显示百分比
+    bool getShowPercent() const;
     void setShowPercent(bool showPercent);
+
+    //获取和设置自动字体大小
+    bool getAutoFont() const;
     void setAutoFont(bool autoFont);
 
-    //设置边框宽度+颜色
+    //获取和设置边框宽度
+    double getBorderWidth() const;
     void setBorderWidth(double borderWidth);
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置背景颜色+文字颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 };
 

@@ -73,92 +73,106 @@ private:
     void rebuildDataBrushIfNeeded();
 
 private:
-    QColor bgColor;                 //背景颜色
-    QColor textColor;               //文本颜色
-    QColor baseColor;               //未填充区域的背景
-    QColor innerBgColor;            //文本所在圆环的背景
-    QColor borderColor;             //边框颜色
-    QColor progressColor;           //进度颜色
+    QColor bgColor;             //背景颜色
+    QColor textColor;           //文本颜色
+    QColor baseColor;           //未填充区域的背景
+    QColor innerBgColor;        //文本所在圆环的背景
+    QColor borderColor;         //边框颜色
+    QColor progressColor;       //进度颜色
 
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double minValue;            //最小值
+    double maxValue;            //最大值
+    double value;               //目标值
+    int precision;              //精确度
 
-    double nullPosition;            //最小值位置
-    double outlinePenWidth;         //外边框宽度
-    double dataPenWidth;            //数据文本宽度
+    double nullPosition;        //最小值位置
+    double outlinePenWidth;     //外边框宽度
+    double dataPenWidth;        //数据文本宽度
 
-    BarStyle barStyle;              //样式
-    QString format;                 //文本格式
-    bool clockWise;                 //顺时针
-    QGradientStops gradientData;    //颜色集合
+    BarStyle barStyle;          //样式
+    QString format;             //文本格式
+    bool clockWise;             //顺时针
+    QGradientStops gradientData;//颜色集合
 
 public:
-    QColor getBgColor()             const;
-    QColor getTextColor()           const;
-    QColor getBaseColor()           const;
-    QColor getInnerBgColor()        const;
-    QColor getBorderColor()         const;
-    QColor getProgressColor()       const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    double getValue()               const;
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    int getPrecision()              const;
-
-    double getNullPosition()        const;
-    double getOutlinePenWidth()     const;
-    double getDataPenWidth()        const;
-
-    BarStyle getBarStyle()          const;
-    QString	getFormat()             const;
-    bool getClockWise()             const;
-    QGradientStops getGradientData()const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置各种颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+    //获取和设置基准颜色
+    QColor getBaseColor() const;
     void setBaseColor(const QColor &baseColor);
+
+    //获取和设置圆环颜色
+    QColor getInnerBgColor() const;
     void setInnerBgColor(const QColor &innerBgColor);
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
+
+    //获取和设置进度颜色
+    QColor getProgressColor() const;
     void setProgressColor(const QColor &progressColor);
 
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度,小数点后几位
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置最小值位置
+    //获取和设置最小值位置
+    double getNullPosition() const;
     void setNullPosition(double nullPosition);
-    //设置外边框宽度
+
+    //获取和设置外边框宽度
+    double getOutlinePenWidth() const;
     void setOutlinePenWidth(double outlinePenWidth);
-    //设置数据文本宽度
+
+    //获取和设置数据文本宽度
+    double getDataPenWidth() const;
     void setDataPenWidth(double dataPenWidth);
 
-    //设置样式
+    //获取和设置样式
+    BarStyle getBarStyle() const;
     void setBarStyle(const BarStyle &barStyle);
-    //设置格式
+
+    //获取和设置格式
+    QString	getFormat() const;
     void setFormat(const QString &format);
 
-    //设置进度旋转方向
+    //获取和设置进度旋转方向
+    bool getClockWise() const;
     void setClockWise(bool clockWise);
-    //设置颜色集合
+
+    //获取和设置颜色集合
+    QGradientStops getGradientData()const;
     void setGradientData(const QGradientStops &gradientData);
+
+public Q_SLOTS:
+    void setValue(int value);
 };
 
 #endif // PROGRESSROUND_H

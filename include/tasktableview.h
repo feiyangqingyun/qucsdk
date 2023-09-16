@@ -9,9 +9,9 @@
  * 4. 可设置表头文字颜色。
  * 5. 可设置正常状态颜色。
  * 6. 可设置选中状态颜色。
- * 7. 支持撤销上一步操作。
- * 8. 支持全选、反选操作。
- * 9. 支持清空选中。
+ * 7. 可设置阴影轮廓粗细和颜色。
+ * 8. 支持全选、反选、清空选中等操作。
+ * 9. 可设置和获取每一行的选中和未选中状态集合。
  */
 
 #include <QTableView>
@@ -25,8 +25,7 @@ class TaskModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    explicit TaskModel(QObject *parent = 0);
-    ~TaskModel();
+    explicit TaskModel(const QStringList &horizontalLabel, const QStringList &verticalLabel, QObject *parent);
 
 protected:
     //需要重新实现的基类函数
@@ -37,17 +36,8 @@ protected:
 
 private:
     //行标题列标题
-    QStringList horizontalHeader, verticalHeader;
-    //行数列数
-    int row, column;
-
-private:
-    void internalUpdate();
-
-public:
-    //设置行数和列数
-    void setRowCount(int row);
-    void setColumnCount(int column);
+    QStringList horizontalLabel;
+    QStringList verticalLabel;
 };
 
 //任务策略委托
@@ -57,47 +47,56 @@ class TaskDelegate : public QStyledItemDelegate
 
 public:
     explicit TaskDelegate(QWidget *parent = 0);
-    ~TaskDelegate();
 
 protected:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index);
 
 private:
-    QWidget *widget;        //父类控件
-    QModelIndex currentIndex;//当前模型索引
+    QWidget *widget;            //委托所在控件
 
-    QColor bgColor;         //表格背景颜色
-    QColor gridColor;       //表格线条颜色
-    QColor headerTextColor; //表头文字颜色
-    QColor headerBgColor;   //表头背景颜色
-    QColor normalColor;     //正常状态颜色
-    QColor selectColor;     //选中状态颜色
+    QColor bgColor;             //表格背景颜色
+    QColor gridColor;           //表格线条颜色
+    QColor headerTextColor;     //表头文字颜色
+    QColor headerBgColor;       //表头背景颜色
+    QColor normalColor;         //正常状态颜色
+    QColor selectColor;         //选中状态颜色
 
-public Q_SLOTS:
-    //表格背景颜色
+    int shadowWidth;            //阴影轮廓大小
+    QColor shadowColor;         //阴影轮廓颜色
+
+public:
+    //获取和设置表格背景颜色
     QColor getBgColor() const;
     void setBgColor(const QColor &color);
 
-    //表格线条颜色
+    //获取和设置表格线条颜色
     QColor getGridColor() const;
     void setGridColor(const QColor &color);
 
-    //表头文字颜色
+    //获取和设置表头文字颜色
     QColor getHeaderTextColor() const;
     void setHeaderTextColor(const QColor &color);
 
-    //表头背景颜色
+    //获取和设置表头背景颜色
     QColor getHeaderBgColor() const;
     void setHeaderBgColor(const QColor &color);
 
-    //正常状态颜色
+    //获取和设置正常状态颜色
     QColor getNormalColor() const;
     void setNormalColor(const QColor &color);
 
-    //选中状态颜色
+    //获取和设置选中状态颜色
     QColor getSelectColor() const;
     void setSelectColor(const QColor &color);
+
+    //获取和设置阴影轮廓大小
+    int getShadowWidth() const;
+    void setShadowWidth(int width);
+
+    //获取和设置阴影轮廓颜色
+    QColor getShadowColor() const;
+    void setShadowColor(const QColor &color);
 };
 
 #ifdef quc
@@ -107,13 +106,17 @@ class TaskTableView : public QTableView
 #endif
 {
     Q_OBJECT
-
     Q_PROPERTY(QColor bgColor READ getBgColor WRITE setBgColor)
     Q_PROPERTY(QColor gridColor READ getGridColor WRITE setGridColor)
-    Q_PROPERTY(QColor headerTextColor READ getHeaderTextColor WRITE setHeaderTextColor)
+
     Q_PROPERTY(QColor headerBgColor READ getHeaderBgColor WRITE setHeaderBgColor)
+    Q_PROPERTY(QColor headerTextColor READ getHeaderTextColor WRITE setHeaderTextColor)
+
     Q_PROPERTY(QColor normalColor READ getNormalColor WRITE setNormalColor)
     Q_PROPERTY(QColor selectColor READ getSelectColor WRITE setSelectColor)
+
+    Q_PROPERTY(int shadowWidth READ getShadowWidth WRITE setShadowWidth)
+    Q_PROPERTY(QColor shadowColor READ getShadowColor WRITE setShadowColor)
 
 public:
     explicit TaskTableView(QWidget *parent = 0);
@@ -123,50 +126,70 @@ protected:
     void contextMenuEvent(QContextMenuEvent *);
 
 private:
+    //行标题列标题
+    QStringList horizontalLabel;
+    QStringList verticalLabel;
+
+    //行数列数
+    int rowCount;
+    int columnCount;
+
     //右键菜单
     QMenu *menu;
-    //数据模型+自定义委托
-    TaskModel *taskModel;
+    //自定义委托
     TaskDelegate *taskDelegate;
-    //选中操作集合+当前选中操作
-    QList<QItemSelection> listSelection;
-    QItemSelection currentSelection;
 
 private slots:
-    void initForm();        //初始化界面
-    void initMenu();        //初始化菜单
-    void doAction();        //执行菜单操作
-    void updateGridItem();  //更新单元格
-    void onSelectChanged(); //撤销触发选择改动
+    //初始化界面
+    void initForm();
+    //初始化菜单
+    void initMenu();
+    //执行菜单操作
+    void doAction();
 
 public:
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-public Q_SLOTS:
-    //表格背景颜色
+    //获取和设置选中单元格(1,1,0,1... 选中是1不选中是0每行48个值)
+    QString getSelectRow(int row) const;
+    void setSelectRow(int row, const QString &flag);
+
+    //获取和设置表格背景颜色
     QColor getBgColor() const;
     void setBgColor(const QColor &color);
 
-    //表格线条颜色
+    //获取和设置表格线条颜色
     QColor getGridColor() const;
     void setGridColor(const QColor &color);
 
-    //表头文字颜色
-    QColor getHeaderTextColor() const;
-    void setHeaderTextColor(const QColor &color);
-
-    //表头背景颜色
+    //获取和设置表头背景颜色
     QColor getHeaderBgColor() const;
     void setHeaderBgColor(const QColor &color);
 
-    //正常状态颜色
+    //获取和设置表头文字颜色
+    QColor getHeaderTextColor() const;
+    void setHeaderTextColor(const QColor &color);
+
+    //获取和设置正常状态颜色
     QColor getNormalColor() const;
     void setNormalColor(const QColor &color);
 
-    //选中状态颜色
+    //获取和设置选中状态颜色
     QColor getSelectColor() const;
     void setSelectColor(const QColor &color);
+
+    //获取和设置阴影轮廓大小
+    int getShadowWidth() const;
+    void setShadowWidth(int width);
+
+    //获取和设置阴影轮廓颜色
+    QColor getShadowColor() const;
+    void setShadowColor(const QColor &color);
+
+Q_SIGNALS:
+    void selectChanged();
 };
 
 #endif // TASKTABLEVIEW_H

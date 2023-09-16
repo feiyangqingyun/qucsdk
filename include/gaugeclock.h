@@ -58,25 +58,24 @@ protected:
     void drawDot(QPainter *painter);
 
 private:
-    QColor crownColorStart;         //外边框渐变开始颜色
-    QColor crownColorEnd;           //外边框渐变结束颜色
+    QColor crownColorStart;     //外边框渐变开始颜色
+    QColor crownColorEnd;       //外边框渐变结束颜色
 
-    QColor foreground;              //前景色
-    QColor background;              //背景色
+    QColor foreground;          //前景色
+    QColor background;          //背景色
 
-    QColor pointerHourColor;        //时钟指针颜色
-    QColor pointerMinColor;         //分钟指针颜色
-    QColor pointerSecColor;         //秒钟指针颜色
+    QColor pointerHourColor;    //时钟指针颜色
+    QColor pointerMinColor;     //分钟指针颜色
+    QColor pointerSecColor;     //秒钟指针颜色
 
-    SecondStyle secondStyle;        //秒针走动样式
+    SecondStyle secondStyle;    //秒针走动样式
 
-    QTimer *timer;                  //定时器绘制
-    int hour, min, sec, msec;       //时分秒毫秒
+    QTimer *timer;              //定时器绘制
+    int hour, min, sec, msec;   //时分秒毫秒
 
-    QTimer *timerSpring;            //定时器显示弹簧效果
-    double angleSpring;             //弹簧角度
-
-    QAction *action_secondstyle;    //秒针样式右键菜单
+    double angleSpring;         //弹簧角度
+    QTimer *timerSpring;        //定时器显示弹簧效果
+    QAction *action;            //秒针样式右键菜单
 
 private slots:
     void doAction();
@@ -84,42 +83,44 @@ private slots:
     void updateSpring();
 
 public:
-    SecondStyle getSecondStyle()    const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getCrownColorStart()     const;
-    QColor getCrownColorEnd()       const;
-
-    QColor getForeground()          const;
-    QColor getBackground()          const;
-
-    QColor getPointerHourColor()    const;
-    QColor getPointerMinColor()     const;
-    QColor getPointerSecColor()     const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置秒针走动样式
-    void setSecondStyle(const SecondStyle &secondStyle);
     //设置系统时间
     void setSystemDateTime(const QString &year, const QString &month, const QString &day,
                            const QString &hour, const QString &min, const QString &sec);
 
-    //设置外边框渐变颜色
+    //获取和设置秒针走动样式
+    SecondStyle getSecondStyle() const;
+    void setSecondStyle(const SecondStyle &secondStyle);
+
+    //获取和设置外边框渐变开始颜色
+    QColor getCrownColorStart() const;
     void setCrownColorStart(const QColor &crownColorStart);
+
+    //获取和设置外边框渐变结束颜色
+    QColor getCrownColorEnd() const;
     void setCrownColorEnd(const QColor &crownColorEnd);
 
-    //设置前景色
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
-    //设备背景色
+
+    //获取和设置背景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
 
-    //设置时钟指针颜色
+    //获取和设置时钟指针颜色
+    QColor getPointerHourColor() const;
     void setPointerHourColor(const QColor &pointerHourColor);
-    //设置分钟指针颜色
+
+    //获取和设置分钟指针颜色
+    QColor getPointerMinColor() const;
     void setPointerMinColor(const QColor &pointerMinColor);
-    //设置秒钟指针颜色
+
+    //获取和设置秒钟指针颜色
+    QColor getPointerSecColor() const;
     void setPointerSecColor(const QColor &pointerSecColor);
 };
 

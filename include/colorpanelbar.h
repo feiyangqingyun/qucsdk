@@ -67,131 +67,140 @@ protected:
     void drawPercent(QPainter *painter);
 
 private:
-    int borderWidth;            //边框宽度
-    int borderRadius;           //边框圆角
-    QColor borderColor;         //边框颜色
+    int borderWidth;        //边框宽度
+    int borderRadius;       //边框圆角
+    QColor borderColor;     //边框颜色
 
-    bool autoHeight;            //自动高度
-    int percentHeight;          //百分比选中框的高度
-    int percentBorder;          //百分比选中框的边框宽度
-    int percentRadius;          //百分比选中框的边框圆角
-    QColor percentColor;        //百分比选中框的颜色
+    bool autoHeight;        //自动高度
+    int percentHeight;      //百分比选中框的高度
+    int percentBorder;      //百分比选中框的边框宽度
+    int percentRadius;      //百分比选中框的边框圆角
+    QColor percentColor;    //百分比选中框的颜色
 
-    QColor topColor;            //顶部颜色
-    QColor bottomColor;         //底部颜色
-    QColor disableColor;        //禁用状态下背景颜色
+    QColor topColor;        //顶部颜色
+    QColor bottomColor;     //底部颜色
+    QColor disableColor;    //禁用状态下背景颜色
 
-    bool showOverlay;           //是否遮住上部分
-    QColor overlayColor;        //遮住颜色
+    bool showOverlay;       //是否遮住上部分
+    QColor overlayColor;    //遮住颜色
 
-    bool staticMode;            //静态颜色模式
-    bool outMode;               //突出模式
-    bool hsbMode;               //显示HSB颜色
-    bool showValue;             //显示当前值
+    bool staticMode;        //静态颜色模式
+    bool outMode;           //突出模式
+    bool hsbMode;           //显示HSB颜色
+    bool showValue;         //显示当前值
 
-    double minValue;            //最小值
-    double maxValue;            //最大值
-    double value;               //当前值
-    double percent;             //当前百分比
-    QColor color;               //当前颜色
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //当前值
+    double percent;         //当前百分比
+    QColor color;           //当前颜色
 
-    int rightHeight;            //右侧百分比移动区域的高度
-    bool isPressed;             //鼠标是否按下
+    int rightHeight;        //右侧百分比移动区域的高度
+    bool isPressed;         //鼠标是否按下
 
-    QPixmap bgPix;              //背景颜色图片
-    QRect bgRect;               //背景色区域
-    QRect overlayRect;          //遮住部分区域
+    QPixmap bgPix;          //背景颜色图片
+    QRect bgRect;           //背景色区域
+    QRect overlayRect;      //遮住部分区域
 
 private:
-    void initColor();           //获取对应百分比处的颜色
+    //初始化颜色
+    void initColor();
 
 public:
-    int getBorderWidth()        const;
-    int getBorderRadius()       const;
-    QColor getBorderColor()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getAutoHeight()        const;
-    int getPercentHeight()      const;
-    int getPercentBorder()      const;
-    int getPercentRadius()      const;
-    QColor getPercentColor()    const;
-
-    QColor getTopColor()        const;
-    QColor getBottomColor()     const;
-    QColor getDisableColor()    const;
-
-    bool getShowOverlay()       const;
-    QColor getOverlayColor()    const;
-
-    bool getStaticMode()        const;
-    bool getOutMode()           const;
-    bool getHSBMode()           const;
-    bool getShowValue()         const;
-
-    double getMinValue()        const;
-    double getMaxValue()        const;
-    double getValue()           const;
-    double getPercent()         const;
-    QColor getColor()           const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置边框宽度
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
-    //设置边框圆角
+
+    //获取和设置边框圆角
+    int getBorderRadius() const;
     void setBorderRadius(int borderRadius);
-    //设置边框颜色
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置百分比选择框是否自动高度
+    //获取和设置百分比选择框是否自动高度
+    bool getAutoHeight() const;
     void setAutoHeight(bool autoHeight);
-    //设置百分比选中框高度
+
+    //获取和设置百分比选中框高度
+    int getPercentHeight() const;
     void setPercentHeight(int percentHeight);
-    //设置百分比选中框的边框宽度
+
+    //获取和设置百分比选中框的边框宽度
+    int getPercentBorder() const;
     void setPercentBorder(int percentBorder);
-    //设置百分比选中框的边框圆角
+
+    //获取和设置百分比选中框的边框圆角
+    int getPercentRadius() const;
     void setPercentRadius(int percentRadius);
-    //设置百分比选中框的颜色
+
+    //获取和设置百分比选中框的颜色
+    QColor getPercentColor() const;
     void setPercentColor(const QColor &percentColor);
 
-    //设置顶部颜色
+    //获取和设置顶部颜色
+    QColor getTopColor() const;
     void setTopColor(const QColor &topColor);
-    //设置底部颜色
+
+    //获取和设置底部颜色
+    QColor getBottomColor() const;
     void setBottomColor(const QColor &bottomColor);
-    //设置禁用状态下背景颜色
+
+    //获取和设置禁用状态下背景颜色
+    QColor getDisableColor() const;
     void setDisableColor(const QColor &disableColor);
 
-    //设置是否遮住上部分
+    //获取和设置是否遮住上部分
+    bool getShowOverlay() const;
     void setShowOverlay(bool showOverlay);
-    //设置遮住颜色
+
+    //获取和设置遮住颜色
+    QColor getOverlayColor() const;
     void setOverlayColor(const QColor &overlayColor);
 
-    //设置是否为静态颜色模式
+    //获取和设置是否为静态颜色模式
+    bool getStaticMode() const;
     void setStaticMode(bool staticMode);
-    //设置是否突出显示选择框
+
+    //获取和设置是否突出显示选择框
+    bool getOutMode() const;
     void setOutMode(bool outMode);
-    //设置是否为HSB颜色模式
+
+    //获取和设置是否为HSB颜色模式
+    bool getHSBMode() const;
     void setHSBMode(bool hsbMode);
-    //设置是否显示当前值
+
+    //获取和设置是否显示当前值
+    bool getShowValue() const;
     void setShowValue(bool showValue);
 
-    //设置最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
     void setMinValue(int minValue);
 
-    //设置最大值
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
     void setMaxValue(int maxValue);
 
-    //设置当前值
+    //获取和设置当前值
+    double getValue() const;
     void setValue(double value);
     void setValue(int value);
 
-    //设置当前百分比
+    //获取和设置当前百分比
+    double getPercent() const;
     void setPercent(double percent);
     void setPercent(int percent);
+
+    //获取当前颜色
+    QColor getColor() const;
 
 Q_SIGNALS:
     void colorChanged(const QColor &color, double value, double percent);

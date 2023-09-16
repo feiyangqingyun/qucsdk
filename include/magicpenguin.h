@@ -70,8 +70,9 @@ protected:
     void drawLeftFoot2(QPainter *painter);
 
 public:
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 };
 
 #endif // MAGICPENGUIN_H

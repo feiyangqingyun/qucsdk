@@ -34,30 +34,36 @@ protected:
     void drawCode(QPainter *painter);
 
 private:
-    int codeLen;                    //验证码长度
-    int noiseCount;                 //噪点数量
-    int lineCount;                  //干扰线数量
+    int codeLen;                //验证码长度
+    int noiseCount;             //噪点数量
+    int lineCount;              //干扰线数量
 
-    QString code;                   //当前验证码
-    QStringList listCode;           //验证码池列表
-    QStringList colorList;          //颜色集合
+    QString code;               //当前验证码
+    QStringList listCode;       //验证码池列表
+    QStringList colorList;      //颜色集合
 
 private:
-    void updateCode();
+    void updateCode();          //更新验证码
 
 public:
-    int getCodeLen()                const;
-    int getNoiseCount()             const;
-    int getLineCount()              const;
-    QString getCode()               const;
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
+    //载入验证码
     void loadCode();
+    //获取验证码
+    QString getCode() const;
+
+    //获取和设置验证码长度
+    int getCodeLen() const;
     void setCodeLen(int codeLen);
+
+    //获取和设置干扰噪点数量
+    int getNoiseCount() const;
     void setNoiseCount(int noiseCount);
+
+    //获取和设置干扰线条数量
+    int getLineCount() const;
     void setLineCount(int lineCount);
 };
 

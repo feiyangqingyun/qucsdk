@@ -51,10 +51,10 @@ class ProgressWater : public QWidget
 
 public:
     enum PercentStyle {
-        PercentStyle_Rect = 0,          //矩形风格
-        PercentStyle_Circle = 1,        //圆形风格
-        PercentStyle_Ellipse = 2,       //椭圆风格
-        PercentStyle_Cylinder = 3       //圆柱风格
+        PercentStyle_Rect = 0,      //矩形风格
+        PercentStyle_Circle = 1,    //圆形风格
+        PercentStyle_Ellipse = 2,   //椭圆风格
+        PercentStyle_Cylinder = 3   //圆柱风格
     };
 
     explicit ProgressWater(QWidget *parent = 0);
@@ -68,89 +68,99 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    int maxValue;                   //最小值
-    int minValue;                   //最大值
-    int value;                      //目标值
+    int maxValue;           //最小值
+    int minValue;           //最大值
+    int value;              //目标值
 
-    double borderWidth;             //边框宽度
-    double borderPadding;           //边框间距
-    double waterHeight;             //水波高度
-    double waterDensity;            //水波密度
+    double borderWidth;     //边框宽度
+    double borderPadding;   //边框间距
+    double waterHeight;     //水波高度
+    double waterDensity;    //水波密度
 
-    bool showValue;                 //是否显示值
-    bool showPercent;               //是否显示百分比
-    bool reverse;                   //反向
+    bool showValue;         //是否显示值
+    bool showPercent;       //是否显示百分比
+    bool reverse;           //反向
 
-    QColor borderColor;             //边框颜色
-    QColor bgColor;                 //背景颜色
-    QColor usedColor;               //进度颜色
-    QColor textColor;               //文字颜色
+    QColor borderColor;     //边框颜色
+    QColor bgColor;         //背景颜色
+    QColor usedColor;       //进度颜色
+    QColor textColor;       //文字颜色
 
-    PercentStyle percentStyle;      //进度样式风格
+    PercentStyle percentStyle;//进度样式风格
 
-    double offset;                  //水波偏移量
-    QTimer *timer;                  //定时器绘制动画
+    double offset;          //水波偏移量
+    QTimer *timer;          //定时器绘制动画
 
 public:
-    int getMinValue()               const;
-    int getMaxValue()               const;
-    int getValue()                  const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    double getBorderWidth()         const;
-    double getBorderPadding()       const;
-    double getWaterHeight()         const;
-    double getWaterDensity()        const;
-
-    bool getShowPercent()           const;
-    bool getShowValue()             const;
-    bool getReverse()               const;
-
-    QColor getBorderColor()         const;
-    QColor getBgColor()             const;
-    QColor getUsedColor()           const;
-    QColor getTextColor()           const;
-
-    PercentStyle getPercentStyle()  const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    int getMinValue() const;
     void setMinValue(int minValue);
+
+    //获取和设置最大值
+    int getMaxValue() const;
     void setMaxValue(int maxValue);
 
-    //设置目标值
-    void setValue(int value);
+    //获取和设置目标值
+    int getValue() const;
 
-    //设置边框宽度+边框间距+水波高度+水波密度
+    //获取和设置边框宽度
+    double getBorderWidth() const;
     void setBorderWidth(double borderWidth);
+
+    //获取和设置边框间距
+    double getBorderPadding() const;
     void setBorderPadding(double borderPadding);
+
+    //获取和设置水波高度
+    double getWaterHeight() const;
     void setWaterHeight(double waterHeight);
+
+    //获取和设置水波密度
+    double getWaterDensity() const;
     void setWaterDensity(double waterDensity);
 
-    //设置是否显示值
+    //获取和设置是否显示值
+    bool getShowPercent() const;
     void setShowValue(bool showValue);
-    //设置是否显示百分比
+
+    //获取和设置是否显示百分比
+    bool getShowValue() const;
     void setShowPercent(bool showPercent);
-    //设置波浪是否反向走
+
+    //获取和设置波浪是否反向走
+    bool getReverse() const;
     void setReverse(bool reverse);
 
-    //设置边框颜色
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置进度颜色
+
+    //获取和设置进度颜色
+    QColor getUsedColor() const;
     void setUsedColor(const QColor &usedColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置进度样式风格
+    //获取和设置进度样式风格
+     PercentStyle getPercentStyle() const;
     void setPercentStyle(const PercentStyle &percentStyle);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
     //启动和停止波浪
     void start();
     void stop();

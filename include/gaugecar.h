@@ -39,6 +39,10 @@ class GaugeCar : public QWidget
     Q_PROPERTY(int startAngle READ getStartAngle WRITE setStartAngle)
     Q_PROPERTY(int endAngle READ getEndAngle WRITE setEndAngle)
 
+    Q_PROPERTY(double piePercentStart READ getPiePercentStart WRITE setPiePercentStart)
+    Q_PROPERTY(double piePercentMid READ getPiePercentMid WRITE setPiePercentMid)
+    Q_PROPERTY(double piePercentEnd READ getPiePercentEnd WRITE setPiePercentEnd)
+
     Q_PROPERTY(QColor outerCircleColor READ getOuterCircleColor WRITE setOuterCircleColor)
     Q_PROPERTY(QColor innerCircleColor READ getInnerCircleColor WRITE setInnerCircleColor)
 
@@ -96,12 +100,16 @@ private:
     double minValue;            //最小值
     double maxValue;            //最大值
     double value;               //目标值
-    int precision;              //精确度,小数点后几位
+    int precision;              //精确度(小数点后几位)
 
     int scaleMajor;             //大刻度数量
     int scaleMinor;             //小刻度数量
     int startAngle;             //开始旋转角度
     int endAngle;               //结束旋转角度
+
+    double piePercentStart;     //饼圆开始占比
+    double piePercentMid;       //饼圆中间占比
+    double piePercentEnd;       //饼圆结束占比
 
     QColor outerCircleColor;    //外圆背景颜色
     QColor innerCircleColor;    //内圆背景颜色
@@ -124,98 +132,124 @@ private:
     PointerStyle pointerStyle;  //指针样式
 
 public:
-    double getMinValue()        const;
-    double getMaxValue()        const;
-    double getValue()           const;
-    int getPrecision()          const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getScaleMajor()         const;
-    int getScaleMinor()         const;
-    int getStartAngle()         const;
-    int getEndAngle()           const;
-
-    QColor getOuterCircleColor()const;
-    QColor getInnerCircleColor()const;
-
-    QColor getPieColorStart()   const;
-    QColor getPieColorMid()     const;
-    QColor getPieColorEnd()     const;
-
-    QColor getCoverCircleColor()const;
-    QColor getScaleColor()      const;
-    QColor getPointerColor()    const;
-    QColor getCenterCircleColor()const;
-    QColor getTextColor()       const;
-
-    bool getShowOverlay()       const;
-    QColor getOverlayColor()    const;
-
-    int getCircleWidth()        const;
-    PieStyle getPieStyle()      const;
-    PointerStyle getPointerStyle()const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置当前值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置主刻度数量
+    //获取和设置主刻度数量
+    int getScaleMajor() const;
     void setScaleMajor(int scaleMajor);
-    //设置小刻度数量
+
+    //获取和设置小刻度数量
+    int getScaleMinor() const;
     void setScaleMinor(int scaleMinor);
-    //设置开始旋转角度
+
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置外圆背景颜色
+    //获取和设置开始饼圆占比
+    double getPiePercentStart() const;
+    void setPiePercentStart(double piePercentStart);
+
+    //获取和设置中间饼圆占比
+    double getPiePercentMid() const;
+    void setPiePercentMid(double piePercentMid);
+
+    //获取和设置结束饼圆占比
+    double getPiePercentEnd() const;
+    void setPiePercentEnd(double piePercentEnd);
+
+    //获取和设置外圆背景颜色
+    QColor getOuterCircleColor() const;
     void setOuterCircleColor(const QColor &outerCircleColor);
-    //设置内圆背景颜色
+
+    //获取和设置内圆背景颜色
+    QColor getInnerCircleColor() const;
     void setInnerCircleColor(const QColor &innerCircleColor);
 
-    //设置饼圆三种颜色
+    //获取和设置开始饼圆颜色
+    QColor getPieColorStart() const;
     void setPieColorStart(const QColor &pieColorStart);
+
+    //获取和设置中间饼圆颜色
+    QColor getPieColorMid() const;
     void setPieColorMid(const QColor &pieColorMid);
+
+    //获取和设置结束饼圆颜色
+    QColor getPieColorEnd() const;
     void setPieColorEnd(const QColor &pieColorEnd);
 
-    //设置覆盖圆背景颜色
+    //获取和设置覆盖圆背景颜色
+    QColor getCoverCircleColor() const;
     void setCoverCircleColor(const QColor &coverCircleColor);
-    //设置刻度尺颜色
+
+    //获取和设置刻度尺颜色
+    QColor getScaleColor() const;
     void setScaleColor(const QColor &scaleColor);
-    //设置指针颜色
+
+    //获取和设置指针颜色
+    QColor getPointerColor() const;
     void setPointerColor(const QColor &pointerColor);
-    //设置中心圆颜色
+
+    //获取和设置中心圆颜色
+    QColor getCenterCircleColor() const;
     void setCenterCircleColor(const QColor &centerCircleColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置是否显示遮罩层
+    //获取和设置是否显示遮罩层
+    bool getShowOverlay() const;
     void setShowOverlay(bool showOverlay);
-    //设置遮罩层颜色
+
+    //获取和设置遮罩层颜色
+    QColor getOverlayColor() const;
     void setOverlayColor(const QColor &overlayColor);
 
-    //设置中间圆宽度
+    //获取和设置中间圆宽度
+    int getCircleWidth() const;
     void setCircleWidth(int circleWidth);
-    //设置饼图样式
+
+    //获取和设置饼图样式
+    PieStyle getPieStyle() const;
     void setPieStyle(const PieStyle &pieStyle);
-    //设置指针样式
+
+    //获取和设置指针样式
+    PointerStyle getPointerStyle() const;
     void setPointerStyle(const PointerStyle &pointerStyle);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
+
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(int value);
 };
 

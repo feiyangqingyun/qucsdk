@@ -22,7 +22,6 @@ class ProgressTip : public QWidget
 
 {
     Q_OBJECT
-
     Q_PROPERTY(double minValue READ getMinValue WRITE setMinValue)
     Q_PROPERTY(double maxValue READ getMaxValue WRITE setMaxValue)
     Q_PROPERTY(double value READ getValue WRITE setValue)
@@ -47,64 +46,75 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    double minValue;            //最小值
-    double maxValue;            //最大值
-    double value;               //目标值
+    double minValue;    //最小值
+    double maxValue;    //最大值
+    double value;       //目标值
 
-    bool percent;               //百分比显示
-    int padding;                //边距
-    int radius;                 //圆角角度
+    bool percent;       //百分比显示
+    int padding;        //边距
+    int radius;         //圆角角度
 
-    QBrush valueBrush;          //进度画刷
-    QColor valueColor;          //进度颜色
-    QColor bgColor;             //背景颜色
-    QColor tipColor;            //提示背景颜色
-    QColor textColor;           //文字颜色
+    QBrush valueBrush;  //进度画刷
+    QColor valueColor;  //进度颜色
+    QColor bgColor;     //背景颜色
+    QColor tipColor;    //提示背景颜色
+    QColor textColor;   //文字颜色
 
 public:
-    double getMinValue()        const;
-    double getMaxValue()        const;
-    double getValue()           const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getPercent()           const;
-    int getPadding()            const;
-    int getRadius()             const;
-
-    QBrush getValueBrush()      const;
-    QColor getValueColor()      const;
-    QColor getBgColor()         const;
-    QColor getTipColor()        const;
-    QColor getTextColor()       const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置百分比显示
+    //获取和设置百分比显示
+    bool getPercent() const;
     void setPercent(bool percent);
-    //设置边距
+
+    //获取和设置边距
+    int getPadding() const;
     void setPadding(int padding);
-    //设置圆角角度
+
+    //获取和设置圆角角度
+    int getRadius() const;
     void setRadius(int radius);
 
-    //设置进度画刷+进度颜色+背景颜色+提示背景+文字颜色
+    //获取和设置进度画刷
+    QBrush getValueBrush() const;
     void setValueBrush(const QBrush &valueBrush);
+
+    //获取和设置进度颜色
+    QColor getValueColor() const;
     void setValueColor(const QColor &valueColor);
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //获取和设置提示背景
+    QColor getTipColor() const;
     void setTipColor(const QColor &tipColor);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(double value);

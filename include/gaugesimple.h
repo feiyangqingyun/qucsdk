@@ -88,138 +88,142 @@ private slots:
     void updateValue();
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
+    double minValue;            //最小值
+    double maxValue;            //最大值
+    double value;               //目标值
 
-    int scaleMajor;                 //大刻度数量
-    int scaleMinor;                 //小刻度数量
-    int startAngle;                 //开始旋转角度
-    int endAngle;                   //结束旋转角度
+    int scaleMajor;             //大刻度数量
+    int scaleMinor;             //小刻度数量
+    int startAngle;             //开始旋转角度
+    int endAngle;               //结束旋转角度
 
-    bool animation;                 //是否启用动画显示
-    double animationStep;           //动画显示时步长
+    bool animation;             //是否启用动画显示
+    double animationStep;       //动画显示时步长
 
-    bool showUserValue;             //显示用户设定值
-    double userValue;               //用户设定值
-    QColor userValueColor;          //用户设定值颜色
+    bool showUserValue;         //显示用户设定值
+    double userValue;           //用户设定值
+    QColor userValueColor;      //用户设定值颜色
 
-    QColor usedColor;               //当前值颜色
-    QColor freeColor;               //剩余值颜色
+    QColor usedColor;           //当前值颜色
+    QColor freeColor;           //剩余值颜色
 
-    QColor scaleColor;              //刻度尺颜色
-    QColor pointerColor;            //指针颜色
-    QColor textColor;               //文字颜色
-    QColor titleColor;              //标题颜色
+    QColor scaleColor;          //刻度尺颜色
+    QColor pointerColor;        //指针颜色
+    QColor textColor;           //文字颜色
+    QColor titleColor;          //标题颜色
 
-    QString title;                  //仪表盘标题
+    QString title;              //仪表盘标题
+    bool showOverlay;           //显示遮罩层
+    QColor overlayColor;        //遮罩层颜色
+    PointerStyle pointerStyle;  //指针样式
 
-    bool showOverlay;               //显示遮罩层
-    QColor overlayColor;            //遮罩层颜色
-
-    PointerStyle pointerStyle;      //指针样式
-
-    bool reverse;                   //是否往回走
-    double currentValue;            //当前值
-    QTimer *timer;                  //定时器绘制动画
+    bool reverse;               //是否往回走
+    double currentValue;        //当前值
+    QTimer *timer;              //定时器绘制动画
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getScaleMajor()             const;
-    int getScaleMinor()             const;
-    int getStartAngle()             const;
-    int getEndAngle()               const;
-
-    bool getAnimation()             const;
-    double getAnimationStep()       const;
-
-    bool getShowUserValue()         const;
-    double getUserValue()           const;
-    QColor getUserValueColor()      const;
-
-    QColor getUsedColor()           const;
-    QColor getFreeColor()           const;
-
-    QColor getScaleColor()          const;
-    QColor getPointerColor()        const;
-    QColor getTextColor()           const;
-    QColor getTitleColor()          const;
-
-    QString getTitle()              const;
-
-    bool getShowOverlay()           const;
-    QColor getOverlayColor()        const;
-
-    PointerStyle getPointerStyle()  const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置主刻度数量
+    //获取和设置主刻度数量
+    int getScaleMajor() const;
     void setScaleMajor(int scaleMajor);
-    //设置小刻度数量
+
+    //获取和设置小刻度数量
+    int getScaleMinor() const;
     void setScaleMinor(int scaleMinor);
-    //设置开始旋转角度
+
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
 
-    //设置是否显示用户设定值
+    //获取和设置是否显示用户设定值
+    bool getShowUserValue() const;
     void setShowUserValue(bool showUserValue);
 
-    //设置用户值
-    void setUserValue(double userValue);
-    void setUserValue(int userValue);
+    //获取和设置用户值    
+    double getUserValue() const;
+    void setUserValue(double userValue);    
 
-    //设置用户设定值颜色
+    //获取和设置用户设定值颜色
+    QColor getUserValueColor() const;
     void setUserValueColor(const QColor &userValueColor);
 
-    //设置当前值颜色
+    //获取和设置当前值颜色
+    QColor getUsedColor() const;
     void setUsedColor(const QColor &usedColor);
-    //设置剩余值颜色
+
+    //获取和设置剩余值颜色
+    QColor getFreeColor() const;
     void setFreeColor(const QColor &freeColor);
 
-    //设置刻度尺颜色
+    //获取和设置刻度尺颜色
+    QColor getScaleColor() const;
     void setScaleColor(const QColor &scaleColor);
-    //设置指针颜色
+
+    //获取和设置指针颜色
+    QColor getPointerColor() const;
     void setPointerColor(const QColor &pointerColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置标题颜色
+
+    //获取和设置标题颜色
+    QColor getTitleColor() const;
     void setTitleColor(const QColor &titleColor);
 
-    //设置标题
+    //获取和设置标题
+    QString getTitle() const;
     void setTitle(const QString &title);
 
-    //设置是否显示遮罩层
+    //获取和设置是否显示遮罩层
+    bool getShowOverlay() const;
     void setShowOverlay(bool showOverlay);
-    //设置遮罩层颜色
+
+    //获取和设置遮罩层颜色
+    QColor getOverlayColor() const;
     void setOverlayColor(const QColor &overlayColor);
 
-    //设置指针样式
+    //获取和设置指针样式
+    PointerStyle getPointerStyle() const;
     void setPointerStyle(const PointerStyle &pointerStyle);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
+    void setUserValue(int userValue);
+
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(double value);
 };
 

@@ -70,7 +70,7 @@ private:
     QTimer *timerSpring;        //定时器显示弹簧效果
     double angleSpring;         //弹簧角度
 
-    QAction *action_secondstyle;//秒针样式右键菜单
+    QAction *action;            //秒针样式右键菜单
 
 private Q_SLOTS:
     void doAction();
@@ -78,16 +78,18 @@ private Q_SLOTS:
     void updateSpring();
 
 public:
-    ClockStyle getClockStyle()      const;
-    SecondStyle getSecondStyle()    const;
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-public Q_SLOTS:
-    //设置图片背景时钟样式
+    //获取和设置图片背景时钟样式
+    ClockStyle getClockStyle() const;
     void setClockStyle(const ClockStyle &clockStyle);
-    //设置秒针走动样式
+
+    //获取和设置秒针走动样式
+    SecondStyle getSecondStyle() const;
     void setSecondStyle(const SecondStyle &secondStyle);
+
     //设置系统时间
     void setSystemDateTime(const QString &year, const QString &month, const QString &day,
                            const QString &hour, const QString &min, const QString &sec);

@@ -20,7 +20,6 @@ class ImagePower : public QWidget
     Q_OBJECT
 
     Q_PROPERTY(QImage image READ getImage WRITE setImage)
-    Q_PROPERTY(int imageValue READ getImageValue WRITE setImageValue)
     Q_PROPERTY(int value READ getValue WRITE setValue)
 
 public:
@@ -30,20 +29,20 @@ protected:
     void paintEvent(QPaintEvent *event);
 
 private:
-    QImage image;                   //电池电量图片
-    int imageValue;                 //电池电量图片表示的电量
-    int value;                      //当前电量
+    QImage image;       //电池电量图片
+    int value;          //当前电量
 
 public:
-    QImage getImage()               const;
-    int getImageValue()             const;
-    int getValue()                  const;
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-public Q_SLOTS:
+    //获取和设置电池图片
+    QImage getImage() const;
     void setImage(const QImage &image);
-    void setImageValue(int imageValue);
+
+    //获取和设置电量值(范围 0-5)
+    int getValue() const;
     void setValue(int value);
 };
 

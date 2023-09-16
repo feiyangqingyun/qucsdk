@@ -89,40 +89,41 @@ private slots:
     void updateScale();
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double minValue;            //最小值
+    double maxValue;            //最大值
+    double value;               //目标值
+    int precision;              //精确度(小数点后几位)
 
-    int scaleMajor;                 //大刻度数量
-    int scaleMinor;                 //小刻度数量
-    int startAngle;                 //开始旋转角度
-    int endAngle;                   //结束旋转角度
+    int scaleMajor;             //大刻度数量
+    int scaleMinor;             //小刻度数量
+    int startAngle;             //开始旋转角度
+    int endAngle;               //结束旋转角度
 
-    bool animation;                 //是否启用动画显示
-    double animationStep;           //动画显示时步长
+    bool animation;             //是否启用动画显示
+    double animationStep;       //动画显示时步长
 
-    QColor arcColor;                //圆弧颜色
-    QColor scaleColor;              //刻度尺颜色
-    QColor scaleNumColor;           //刻度值颜色
-    QColor pointerColor;            //指针颜色
-    QColor textColor;               //文字颜色
+    QColor arcColor;            //圆弧颜色
+    QColor scaleColor;          //刻度尺颜色
+    QColor scaleNumColor;       //刻度值颜色
+    QColor pointerColor;        //指针颜色
+    QColor textColor;           //文字颜色
 
-    PointerStyle pointerStyle;      //指针样式
-    ScaleStyle scaleStyle;          //刻度尺进度样式
+    PointerStyle pointerStyle;  //指针样式
+    ScaleStyle scaleStyle;      //刻度尺进度样式
 
-    int seconds;                    //检测总时长
-    int interval;                   //时长进度更新间隔
+    int seconds;                //检测总时长
+    int interval;               //时长进度更新间隔
 
-    double timeValue;               //当前时间对应的刻度值
-    double scaleValue;              //当前时间对应的进度值
-    QDateTime startTime;            //启动开始时间,用于计时比较
-    QTimer *timerScale;             //定时器更新进度
+    double timeValue;           //当前时间对应的刻度值
+    double scaleValue;          //当前时间对应的进度值
+    QDateTime startTime;        //启动开始时间,用于计时比较
+    QTimer *timerScale;         //定时器更新进度
 
-    bool reverse;                   //是否往回走
-    double currentValue;            //当前值
-    QTimer *timer;                  //定时器绘制动画
+    bool reverse;               //是否往回走
+    double currentValue;        //当前值
+    QTimer *timer;              //定时器绘制动画
 
+private:
     //找到当前值,用于比较当前值改变刻度颜色
     double tempValue;
     double offset;
@@ -134,90 +135,99 @@ private:
     double getValueByRotate(double rotate);
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
-
-    int getScaleMajor()             const;
-    int getScaleMinor()             const;
-    int getStartAngle()             const;
-    int getEndAngle()               const;
-
-    bool getAnimation()             const;
-    double getAnimationStep()       const;
-
-    QColor getArcColor()            const;
-    QColor getScaleColor()          const;
-    QColor getScaleNumColor()       const;
-    QColor getPointerColor()        const;
-    QColor getTextColor()           const;
-
-    PointerStyle getPointerStyle()  const;
-    ScaleStyle getScaleStyle()      const;
-
-    int getSeconds()                const;
-    int getInterval()               const;
-
+    //默认尺寸和最小尺寸
     QSize sizeHint()                const;
     QSize minimumSizeHint()         const;
 
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置主刻度数量
+    //获取和设置主刻度数量
+    int getScaleMajor() const;
     void setScaleMajor(int scaleMajor);
-    //设置小刻度数量
+
+    //获取和设置小刻度数量
+    int getScaleMinor() const;
     void setScaleMinor(int scaleMinor);
-    //设置开始旋转角度
+
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置是否启用动画显示
+    //获取和设置是否启用动画显示
+    bool getAnimation() const;
     void setAnimation(bool animation);
-    //设置动画显示的步长
+
+    //获取和设置动画显示的步长
+    double getAnimationStep() const;
     void setAnimationStep(double animationStep);
 
-    //设置圆弧颜色
+    //获取和设置圆弧颜色
+    QColor getArcColor() const;
     void setArcColor(const QColor &arcColor);
-    //设置刻度尺颜色
+
+    //获取和设置刻度尺颜色
+    QColor getScaleColor() const;
     void setScaleColor(const QColor &scaleColor);
-    //设置刻度值颜色
+
+    //获取和设置刻度值颜色
+    QColor getScaleNumColor() const;
     void setScaleNumColor(const QColor &scaleNumColor);
-    //设置指针颜色
+
+    //获取和设置指针颜色
+    QColor getPointerColor() const;
     void setPointerColor(const QColor &pointerColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置指针样式
+    //获取和设置指针样式
+    PointerStyle getPointerStyle() const;
     void setPointerStyle(const PointerStyle &pointerStyle);
-    //设置刻度进度样式
+
+    //获取和设置刻度进度样式
+    ScaleStyle getScaleStyle() const;
     void setScaleStyle(const ScaleStyle &scaleStyle);
 
-    //设置总秒数
+    //获取和设置总秒数
+    int getSeconds() const;
     void setSeconds(int seconds);
-    //设置进度更新间隔
+
+    //获取和设置进度更新间隔
+    int getInterval() const;
     void setInterval(int interval);
 
+public Q_SLOTS:
+    //设置的当前值
+    void setValue(int value);
     //启动和停止时间进度更新
     void start();
     void stop();
 
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(int value);
 };
 

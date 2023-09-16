@@ -63,19 +63,20 @@ private slots:
     void leaveImageChanged(QVariant index);
 
 public:
-    QString getNormalImage()    const;
-    QString getEnterImage()     const;
-    QString getLeaveImage()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置普通状态图片
+    //获取和设置普通状态图片
+    QString getNormalImage() const;
     void setNormalImage(QString normalImage);
-    //设置进入状态图片
+
+    //获取和设置进入状态图片
+    QString getEnterImage() const;
     void setEnterImage(QString enterImage);
-    //设置离开状态图片
+
+    //获取和设置离开状态图片
+    QString getLeaveImage() const;
     void setLeaveImage(QString leaveImage);
 
 Q_SIGNALS:

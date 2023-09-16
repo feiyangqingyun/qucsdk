@@ -60,100 +60,106 @@ protected:
     void drawTip(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double minValue;            //最小值
+    double maxValue;            //最大值
+    double value;               //目标值
+    int precision;              //精确度
 
-    int longStep;                   //长线条等分步长
-    int shortStep;                  //短线条等分步长
-    int space;                      //间距
+    int longStep;               //长线条等分步长
+    int shortStep;              //短线条等分步长
+    int space;                  //间距
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
-    QColor lineColor;               //线条颜色
+    QColor bgColorStart;        //背景渐变开始颜色
+    QColor bgColorEnd;          //背景渐变结束颜色
+    QColor lineColor;           //线条颜色
 
-    QColor sliderColorTop;          //滑块上部颜色
-    QColor sliderColorBottom;       //滑块下部颜色
+    QColor sliderColorTop;      //滑块上部颜色
+    QColor sliderColorBottom;   //滑块下部颜色
 
-    QColor tipBgColor;              //当前值背景色
-    QColor tipTextColor;            //当前值文字颜色
+    QColor tipBgColor;          //当前值背景色
+    QColor tipTextColor;        //当前值文字颜色
 
-    bool pressed;                   //是否鼠标按下
-    double currentValue;            //当前值
+    bool pressed;               //是否鼠标按下
+    double currentValue;        //当前值
 
-    double longLineHeight;          //长刻度高度
-    double shortLineHeight;         //短刻度高度
-    double sliderTopHeight;         //滑块上部高度
-    double sliderBottomHeight;      //滑块底部高度
+    double longLineHeight;      //长刻度高度
+    double shortLineHeight;     //短刻度高度
+    double sliderTopHeight;     //滑块上部高度
+    double sliderBottomHeight;  //滑块底部高度
 
-    QPointF sliderLastPot;          //滑块最后的坐标
-    QPointF sliderTopPot;           //滑块顶部坐标
-    QPointF sliderLeftPot;          //滑块左边坐标
-    QPointF sliderRightPot;         //滑块右边坐标
+    QPointF sliderLastPot;      //滑块最后的坐标
+    QPointF sliderTopPot;       //滑块顶部坐标
+    QPointF sliderLeftPot;      //滑块左边坐标
+    QPointF sliderRightPot;     //滑块右边坐标
 
-    QRectF sliderRect;              //滑块矩形区域
-    QRectF tipRect;                 //提示信息矩形区域
-    QPointF lineLeftPot;            //主线左边坐标
-    QPointF lineRightPot;           //主线右边坐标
+    QRectF sliderRect;          //滑块矩形区域
+    QRectF tipRect;             //提示信息矩形区域
+    QPointF lineLeftPot;        //主线左边坐标
+    QPointF lineRightPot;       //主线右边坐标
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getLongStep()               const;
-    int getShortStep()              const;
-    int getSpace()                  const;
-
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-    QColor getLineColor()           const;
-
-    QColor getSliderColorTop()      const;
-    QColor getSliderColorBottom()   const;
-
-    QColor getTipBgColor()          const;
-    QColor getTipTextColor()        const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
-    void setValue(double value);
-    void setValue(int value);
+    //获取和设置目标值
+    double getValue() const;
+    void setValue(double value);    
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
-    //设置线条等分步长
+
+    //获取和设置线条等分步长
+    int getLongStep() const;
     void setLongStep(int longStep);
+
+    int getShortStep() const;
     void setShortStep(int shortStep);
-    //设置间距
+
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
-    //设置线条颜色
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //设置滑块颜色
+    //获取和设置滑块颜色
+    QColor getSliderColorTop() const;
     void setSliderColorTop(const QColor &sliderColorTop);
+
+    QColor getSliderColorBottom() const;
     void setSliderColorBottom(const QColor &sliderColorBottom);
 
-    //设置提示信息背景
+    //获取和设置提示信息背景
+    QColor getTipBgColor() const;
     void setTipBgColor(const QColor &tipBgColor);
+
+    QColor getTipTextColor() const;
     void setTipTextColor(const QColor &tipTextColor);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(double value);

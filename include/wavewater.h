@@ -71,25 +71,28 @@ private slots:
     void dropStone(int x, int y, int stoneSize, int stoneWeight);
 
 public:
-    int getDamping()        const;
-    int getRefractive()     const;
-    int getStoneSize()      const;
-    int getStoneWeight()    const;
-    QPixmap getImage()      const;
-
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-public Q_SLOTS:
-    //设置衰减率系数
+    //获取和设置衰减率系数
+    int getDamping() const;
     void setDamping(int damping);
-    //设置折射率系数
+
+    //获取和设置折射率系数
+    int getRefractive() const;
     void setRefractive(int refractive);
-    //设置石头大小
+
+    //获取和设置石头大小
+    int getStoneSize() const;
     void setStoneSize(int stoneSize);
-    //设置石头重量
+
+    //获取和设置石头重量
+    int getStoneWeight() const;
     void setStoneWeight(int stoneWeight);
-    //设置背景图片
+
+    //获取和设置背景图片
+    QPixmap getImage() const;
     void setImage(const QPixmap &pixmap);
 };
 

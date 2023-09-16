@@ -31,11 +31,26 @@ class IconHelper : public QObject
 {
     Q_OBJECT
 
+private:
+    //阿里巴巴图形字体类
+    static IconHelper *iconFontAliBaBa;
+    //FontAwesome图形字体类
+    static IconHelper *iconFontAwesome;
+    //FontAwesome6图形字体类
+    static IconHelper *iconFontAwesome6;
+    //天气图形字体类
+    static IconHelper *iconFontWeather;
+    //图形字体索引
+    static int iconFontIndex;
+
 public:
     //样式颜色结构体
     struct StyleColor {
         QString position;           //位置 left right top bottom
         bool defaultBorder;         //默认有边框
+
+        quint32 btnWidth;           //按钮宽度
+        quint32 btnHeight;          //按钮高度
 
         quint32 iconSize;           //图标字体尺寸
         quint32 iconWidth;          //图标图片宽度
@@ -56,6 +71,9 @@ public:
         StyleColor() {
             position = "left";
             defaultBorder = false;
+
+            btnWidth = 0;
+            btnHeight = 0;
 
             iconSize = 12;
             iconWidth = 15;
@@ -90,21 +108,16 @@ public:
         }
     };
 
-    //阿里巴巴图形字体类
-    static IconHelper *iconFontAliBaBa;
-    //FontAwesome图形字体类
-    static IconHelper *iconFontAwesome;
-    //天气图形字体类
-    static IconHelper *iconFontWeather;
-    //图形字体索引
-    static int iconFontIndex;
 
     //初始化图形字体
     static void initFont();
+    //设置引用图形字体文件索引
+    static void setIconFontIndex(int index);
 
     //获取图形字体
     static QFont getIconFontAliBaBa();
     static QFont getIconFontAwesome();
+    static QFont getIconFontAwesome6();
     static QFont getIconFontWeather();
 
     //根据值获取图形字体类

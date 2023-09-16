@@ -55,72 +55,79 @@ private:
     double qRadiansToDegrees(double radians);
 
 private:
-    QColor headColor;           //鱼头颜色
-    QColor bodyColor;           //鱼身颜色
-    QColor finColor;            //鱼鳍颜色
-    QColor tailColor;           //鱼尾颜色
-    QColor baseColor;           //基准颜色
+    QColor headColor;       //鱼头颜色
+    QColor bodyColor;       //鱼身颜色
+    QColor finColor;        //鱼鳍颜色
+    QColor tailColor;       //鱼尾颜色
+    QColor baseColor;       //基准颜色
 
-    bool finMove;               //鱼鳍是否摆动
-    int speed;                  //游动的速度即尾巴摆动的频率
-    double wave;                //晃动的幅度
-    double currentAngle;        //旋转的角度
-    int currentValue;           //游动的位置
+    bool finMove;           //鱼鳍是否摆动
+    int speed;              //游动的速度即尾巴摆动的频率
+    double wave;            //晃动的幅度
+    double currentAngle;    //旋转的角度
+    int currentValue;       //游动的位置
 
-    double headLen;             //鱼头尺寸
-    double bodyLen;             //鱼身尺寸
-    double finLen;              //鱼鳍尺寸
-    double tailLen;             //鱼尾尺寸
+    double headLen;         //鱼头尺寸
+    double bodyLen;         //鱼身尺寸
+    double finLen;          //鱼鳍尺寸
+    double tailLen;         //鱼尾尺寸
 
-    QPointF headPos;            //鱼头坐标
-    QTimer *timer;              //定时器处理游动
-
-public:
-    QColor getHeadColor()       const;
-    QColor getBodyColor()       const;
-    QColor getFinColor()        const;
-    QColor getTailColor()       const;
-    QColor getBaseColor()       const;
-
-    bool getFinMove()           const;
-    int getSpeed()              const;
-    double getWave()            const;
-    double getCurrentAngle()    const;
-
-    double getHeadLen()         const;
-    QPointF getHeadPos()        const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
+    QPointF headPos;        //鱼头坐标
+    QTimer *timer;          //定时器处理游动
 
 private slots:
-    void updateValue();
+    void updateValue();     //更新数值
 
-public slots:
-    //设置鱼头颜色
+public:
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取鱼头坐标
+    QPointF getHeadPos() const;
+
+    //获取和设置鱼头颜色
+    QColor getHeadColor() const;
     void setHeadColor(const QColor &headColor);
+
     //设置鱼身颜色
+    QColor getBodyColor() const;
     void setBodyColor(const QColor &bodyColor);
+
     //设置鱼鳍颜色
+    QColor getFinColor() const;
     void setFinColor(const QColor &finColor);
+
     //设置鱼尾颜色
+    QColor getTailColor() const;
     void setTailColor(const QColor &tailColor);
+
     //设置基准颜色
+    QColor getBaseColor() const;
     void setBaseColor(const QColor &baseColor);
 
     //设置鱼鳍是否摆动
+    bool getFinMove() const;
     void setFinMove(bool finMove);
+
     //设置游动的速度
+    int getSpeed() const;
     void setSpeed(int speed);
+
     //设置滑动的幅度
+    double getWave() const;
     void setWave(double wave);
 
     //设置当前旋转的角度
-    void setCurrentAngle(double currentAngle);
-    void setCurrentAngle(int currentAngle);
+    double getCurrentAngle() const;
+    void setCurrentAngle(double currentAngle);    
 
     //设置头部的长度
+    double getHeadLen() const;
     void setHeadLen(int headLen);
+
+public Q_SLOTS:
+    void setCurrentAngle(int currentAngle);
 };
 
 #endif // MAGICFISH_H

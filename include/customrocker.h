@@ -43,48 +43,50 @@ protected:
     void resetPoint(const QPoint &point);
 
 private:
-    bool online;                //是否只在线上
-    int borderWidth;            //边框宽度
-    int rockerRadius;           //摇杆圆半径
+    bool online;            //是否只在线上
+    int borderWidth;        //边框宽度
+    int rockerRadius;       //摇杆圆半径
 
-    QColor borderColor;         //边框颜色
-    QColor bgColor;             //背景颜色
-    QColor rockerColor;         //摇杆颜色
+    QColor borderColor;     //边框颜色
+    QColor bgColor;         //背景颜色
+    QColor rockerColor;     //摇杆颜色
 
-    int radius;                 //圆半径
-    bool pressed;               //鼠标是否按下
-    QPoint currentPoint;        //当前坐标
-    QPoint centerPoint;         //中心坐标
+    int radius;             //圆半径
+    bool pressed;           //鼠标是否按下
+    QPoint currentPoint;    //当前坐标
+    QPoint centerPoint;     //中心坐标
 
 private:
+    double getDistance() ;
     double twoPtDistance(const QPointF &pt1, const QPointF &pt2);
 
-public:
-    double getDistance()             ;
-    bool getOnline()            const;
-    int getBorderWidth()        const;
-    int getRockerRadius()       const;
-
-    QColor getBorderColor()     const;
-    QColor getBgColor()         const;
-    QColor getRockerColor()     const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
 public Q_SLOTS:
-    //设置是否限定边缘移动
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取和设置是否限定边缘移动
+    bool getOnline() const;
     void setOnline(bool online);
-    //设置边框宽度
+
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
-    //设置摇杆圆角角度
+
+    //获取和设置摇杆圆角角度
+    int getRockerRadius() const;
     void setRockerRadius(int rockerRadius);
 
-    //设置边框颜色
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置摇杆颜色
+
+    //获取和设置摇杆颜色
+    QColor getRockerColor() const;
     void setRockerColor(const QColor &rockerColor);
 
 Q_SIGNALS:

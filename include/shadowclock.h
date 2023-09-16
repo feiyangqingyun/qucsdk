@@ -41,40 +41,46 @@ protected:
     void drawText(QPainter *painter);
 
 private:
-    int radiusWidth;            //半径宽度
-    int shadowWidth;            //光晕宽度
+    int radiusWidth;        //半径宽度
+    int shadowWidth;        //光晕宽度
 
-    QColor textColor;           //文本颜色
-    QColor shadowColor;         //光晕颜色
-    QColor hourColor;           //时钟颜色
-    QColor minuteColor;         //分钟颜色
-    QColor secondColor;         //秒钟颜色
+    QColor textColor;       //文本颜色
+    QColor shadowColor;     //光晕颜色
+    QColor hourColor;       //时钟颜色
+    QColor minuteColor;     //分钟颜色
+    QColor secondColor;     //秒钟颜色
 
 public:
-    int getRadiusWidth()        const;
-    int getShadowWidth()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getTextColor()       const;
-    QColor getShadowColor()     const;
-    QColor getHourColor()       const;
-    QColor getMinuteColor()     const;
-    QColor getSecondColor()     const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置半径宽度+光晕宽度
+    //获取和设置半径宽度
+    int getRadiusWidth() const;
     void setRadiusWidth(int radiusWidth);
+
+    //获取和设置光晕宽度
+    int getShadowWidth() const;
     void setShadowWidth(int shadowWidth);
 
-    //设置文本颜色+光晕颜色
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+    //获取和设置光晕颜色
+    QColor getShadowColor() const;
     void setShadowColor(const QColor &shadowColor);
 
-    //设置时钟分钟秒钟颜色
+    //获取和设置时钟颜色
+    QColor getHourColor() const;
     void setHourColor(const QColor &hourColor);
+
+    //获取和设置分钟颜色
+    QColor getMinuteColor() const;
     void setMinuteColor(const QColor &minuteColor);
+
+    //获取和设置秒钟颜色
+    QColor getSecondColor() const;
     void setSecondColor(const QColor &secondColor);
 };
 

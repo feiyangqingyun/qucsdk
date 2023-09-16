@@ -40,56 +40,56 @@ public:
     explicit TimeAxis(QWidget *parent = 0);
 
 private:
-    int itemMargin;         //节点边距
-    int itemHeight;         //节点高度
-    int infoPadding;        //信息边距
-    int infoHeight;         //信息高度
-
-    QColor baseColor;       //基准颜色
-    QColor lineColor;       //线条颜色
-
-    QString title;          //标题
-    QString infos;          //信息集合
-
     //时间轴主控件
     TimeAxisWidget *timeAxisWidget;
 
 public:
-    int getItemMargin()     const;
-    int getItemHeight()     const;
-    int getInfoPadding()    const;
-    int getInfoHeight()     const;
-
-    QColor getBaseColor()   const;
-    QColor getLineColor()   const;
-
-    QString getTitle()      const;
-    QString getInfos()      const;
-
-    QSize sizeHint()        const;
-    QSize minimumSizeHint() const;
-
+    //获取时间轴区域
     TimeAxisWidget *getWidget();
 
-public Q_SLOTS:
-    //设置节点边距+节点高度
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取和设置节点边距
+    int getItemMargin() const;
     void setItemMargin(int itemMargin);
+
+    //获取和设置节点高度
+    int getItemHeight() const;
     void setItemHeight(int itemHeight);
 
-    //设置信息边距+信息高度
+    //获取和设置信息边距
+    int getInfoPadding() const;
     void setInfoPadding(int infoPadding);
+
+    //获取和设置信息高度
+    int getInfoHeight() const;
     void setInfoHeight(int infoHeight);
 
-    //设置基准颜色+线条颜色
+    //获取和设置基准颜色
+    QColor getBaseColor() const;
     void setBaseColor(const QColor &baseColor);
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //设置标题+信息集合
+    //获取和设置标题
+    QString getTitle() const;
     void setTitle(const QString &title);
+
+    //获取和设置信息集合
+    QString getInfos() const;
     void setInfos(const QString &infos);
 };
 
+#ifdef quc
+class Q_DECL_EXPORT TimeAxisWidget : public QWidget
+#else
 class TimeAxisWidget : public QWidget
+#endif
+
 {
     Q_OBJECT
 
@@ -126,38 +126,43 @@ private:
     QList<TimeAxisInfo> itemInfos;
 
 public:
-    int getItemMargin()     const;
-    int getItemHeight()     const;
-    int getInfoPadding()    const;
-    int getInfoHeight()     const;
-
-    QColor getBaseColor()   const;
-    QColor getLineColor()   const;
-
-    QString getTitle()      const;
-    QString getInfos()      const;
-
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-public Q_SLOTS:
-    //设置节点边距+节点高度
+    //获取和设置节点边距
+    int getItemMargin() const;
     void setItemMargin(int itemMargin);
+
+    //获取和设置节点高度
+    int getItemHeight() const;
     void setItemHeight(int itemHeight);
 
-    //设置信息边距+信息高度
+    //获取和设置信息边距
+    int getInfoPadding() const;
     void setInfoPadding(int infoPadding);
+
+    //获取和设置信息高度
+    int getInfoHeight() const;
     void setInfoHeight(int infoHeight);
 
-    //设置基准颜色+线条颜色
+    //获取和设置基准颜色
+    QColor getBaseColor() const;
     void setBaseColor(const QColor &baseColor);
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //设置标题+信息集合
+    //获取和设置标题
+    QString getTitle() const;
     void setTitle(const QString &title);
+
+    //获取和设置信息集合
+    QString getInfos() const;
     void setInfos(const QString &infos);
 
-    //设置信息集合,结构体方式
+    //获取和设置信息集合,结构体方式
     void setItemInfos(const QList<TimeAxisInfo> &itemInfos);
 };
 

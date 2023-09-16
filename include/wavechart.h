@@ -51,84 +51,94 @@ protected:
     void drawTitle(QPainter *painter);
     void drawPoint(QPainter *painter);
 
-private slots:
-    void updateData();
-
 private:
-    QRectF pointRect;               //绘制数据区域
-    QVector<double> listData;       //数据集合
+    QRectF pointRect;       //绘制数据区域
+    QVector<double> listData;//数据集合
 
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double xStep;                   //x轴步长
-    double yStep;                   //y轴步长
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double xStep;           //x轴步长
+    double yStep;           //y轴步长
 
-    double space;                   //间隔
-    QString title;                  //标题
-    int smoothType;                 //平滑类型 0-不平滑 1-平滑算法1 2-平滑算法2
+    double space;           //间隔
+    QString title;          //标题
+    int smoothType;         //平滑类型 0-不平滑 1-平滑算法1 2-平滑算法2
 
-    bool showHLine;                 //是否显示横线
-    bool showPoint;                 //是否显示坐标点
-    bool showPointBg;               //是否显示坐标背景
+    bool showHLine;         //是否显示横线
+    bool showPoint;         //是否显示坐标点
+    bool showPointBg;       //是否显示坐标背景
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
-    QColor textColor;               //文字颜色
-    QColor pointColor;              //坐标点颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
+    QColor textColor;       //文字颜色
+    QColor pointColor;      //坐标点颜色
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getXStep()               const;
-    double getYStep()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    double getSpace()               const;
-    QString getTitle()              const;
-    int getSmoothType()             const;
+    //获取和设置最小值
+    double getMinValue() const;
+    void setMinValue(double minValue);
 
-    bool getShowHLine()             const;
-    bool getShowPoint()             const;
-    bool getShowPointBg()           const;
+    //获取和设置最大值
+    double getMaxValue() const;
+    void setMaxValue(double maxValue);
 
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-    QColor getTextColor()           const;
-    QColor getPointColor()          const;
+    //获取和设置X步长
+    double getXStep() const;
+    void setXStep(double xStep);
 
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    //获取和设置Y步长
+    double getYStep() const;
+    void setYStep(double yStep);
+
+    //获取和设置间隔
+    double getSpace() const;
+    void setSpace(double space);
+
+    //获取和设置标题
+    QString getTitle() const;
+    void setTitle(const QString &title);
+
+    //获取和设置平滑类型
+    int getSmoothType() const;
+    void setSmoothType(int smoothType);
+
+    //获取和设置显示横线
+    bool getShowHLine() const;
+    void setShowHLine(bool showHLine);
+
+    //获取和设置显示坐标点
+    bool getShowPoint() const;
+    void setShowPoint(bool showPoint);
+
+    //获取和设置显示坐标背景
+    bool getShowPointBg() const;
+    void setShowPointBg(bool showPointBg);
+
+    //获取和设置背景开始颜色
+    QColor getBgColorStart() const;
+    void setBgColorStart(const QColor &bgColorStart);
+
+    //获取和设置背景结束颜色
+    QColor getBgColorEnd() const;
+    void setBgColorEnd(const QColor &bgColorEnd);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
+    void setTextColor(const QColor &textColor);
+
+    //获取和设置数据点颜色
+    QColor getPointColor() const;
+    void setPointColor(const QColor &pointColor);
 
 public Q_SLOTS:
     //添加和设置数据数据
     void addData(double data);
     void setData(QVector<double> data);
     void clearData();
-
-    //设置范围值及步长
-    void setMinValue(double minValue);
-    void setMaxValue(double maxValue);
-    void setXStep(double xStep);
-    void setYStep(double yStep);
-
-    //设置间隔
-    void setSpace(double space);
-    //设置标题
-    void setTitle(const QString &title);
-    //设置平滑类型
-    void setSmoothType(int smoothType);
-
-    //设置显示横线
-    void setShowHLine(bool showHLine);
-    //设置显示坐标点
-    void setShowPoint(bool showPoint);
-    //设置显示坐标背景
-    void setShowPointBg(bool showPointBg);
-
-    //设置颜色
-    void setBgColorStart(const QColor &bgColorStart);
-    void setBgColorEnd(const QColor &bgColorEnd);
-    void setTextColor(const QColor &textColor);
-    void setPointColor(const QColor &pointColor);
 };
 
 #endif // WAVECHART_H

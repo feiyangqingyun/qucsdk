@@ -41,29 +41,21 @@ private slots:
     void currentValueChanged(const QString &);
 
 public:
-    //获取年份
-    int getYear()           const;
-    //获取月份
-    int getMonth()          const;
-    //获取日期
-    int getDay()            const;
-
-    //获取日期
-    QDate getDate()         const;
-
-public Q_SLOTS:
-    //设置年份
+    //获取和设置年份
+    int getYear() const;
     void setYear(int year);
 
-    //设置月份
+    //获取和设置月份
+    int getMonth() const;
     void setMonth(int month);
 
-    //设置日期
+    //获取和设置日期
+    int getDay() const;
     void setDay(int day);
 
-    //设置年月日
+    //获取和设置日期
+    QDate getDate() const;
     void setDate(int year, int month, int day);
-
 };
 
 #endif // TUMBLERDATE_H

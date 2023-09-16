@@ -42,39 +42,39 @@ protected:
     void drawBorder(QPainter *painter);
 
 private:
-    int percent;                //当前百分比
-    int borderWidth;            //边框宽度
-    QColor borderColor;         //边框颜色
-    QColor cursorColor;         //鼠标按下处的文字形状颜色
+    int percent;        //当前百分比
+    int borderWidth;    //边框宽度
+    QColor borderColor; //边框颜色
+    QColor cursorColor; //鼠标按下处的文字形状颜色
 
-    QColor color;               //鼠标按下处的颜色
-    double hue;                 //hue值
-    double sat;                 //sat值
+    QColor color;       //鼠标按下处的颜色
+    double hue;         //hue值
+    double sat;         //sat值
 
-    QPoint lastPos;             //最后鼠标按下去的坐标
-    QPixmap bgPix;              //背景颜色图片
+    QPoint lastPos;     //最后鼠标按下去的坐标
+    QPixmap bgPix;      //背景颜色图片
 
 public:
-    int getPercent()            const;
-    QColor getBorderColor()     const;
-    QColor getCursorColor()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getColor()           const;
-    double getHue()             const;
-    double getSat()             const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置百分比
+    //获取和设置百分比
+    int getPercent() const;
     void setPercent(int percent);
 
-    //设置边框颜色
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置文字形状颜色
+    //获取和设置文字形状颜色
+    QColor getCursorColor() const;
     void setCursorColor(const QColor &cursorColor);
+
+    //获取颜色值
+    QColor getColor() const;
+    double getHue() const;
+    double getSat() const;
 
 Q_SIGNALS:
     void colorChanged(const QColor &color, double hue, double sat);

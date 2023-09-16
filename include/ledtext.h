@@ -33,30 +33,31 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    QString text;                   //文字
-    int step;                       //步长
+    QString text;       //文字
+    int step;           //步长
 
-    QColor foreground;              //前景色
-    QColor background;              //背景色
+    QColor foreground;  //前景色
+    QColor background;  //背景色
 
 public:
-    QString getText()               const;
-    int getStep()                   const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getForeground()          const;
-    QColor getBackground()          const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置字模信息
+    //获取和设置字模信息
+    QString getText() const;
     void setText(const QString &text);
+
+    //获取和设置步长
+    int getStep() const;
     void setStep(int step);
 
-    //设置前景色
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
-    //设置背景色
+
+    //获取和设置背景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
 };
 

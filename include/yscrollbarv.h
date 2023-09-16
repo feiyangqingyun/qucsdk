@@ -25,20 +25,20 @@ private:
     int stepSingle;
     int stepDouble;
 
-public:
-    int getStepSingle() const;
-    int getStepDouble() const;
-
 private slots:
     void initStyle();
     void buttonClicked();
 
-public Q_SLOTS:
+public:
     //设置联动的滚动条
     void setScrollBar(QScrollBar *scrollBar);
-    //设置单步滚动距离
+
+    //获取和设置单步滚动距离
+    int getStepSingle() const;
     void setStepSingle(int stepSingle);
-    //设置双倍滚动距离
+
+    //获取和设置双倍滚动距离
+    int getStepDouble() const;
     void setStepDouble(int stepDouble);
 };
 

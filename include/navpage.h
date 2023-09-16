@@ -121,33 +121,9 @@ private slots:
     void receivePage(quint32 pageCurrent, quint32 pageCount, quint32 resultCount, quint32 resultCurrent);
 
 public:
-    bool getShowStyle()         const;
-    bool getShowLabInfo()       const;
-    bool getShowGoPage()        const;
-    NavPosition getNavPosition()const;
-
-    int getPageButtonCount()    const;
-    int getSpacing()            const;
-    int getFontSize()           const;
-
-    int getBorderRadius()       const;
-    int getBorderWidth()        const;
-    QColor getBorderColor()     const;
-
-    QColor getNormalBgColor()   const;
-    QColor getNormalTextColor() const;
-
-    QColor getHoverBgColor()    const;
-    QColor getHoverTextColor()  const;
-
-    QColor getPressedBgColor()  const;
-    QColor getPressedTextColor()const;
-
-    QColor getCheckedBgColor()  const;
-    QColor getCheckedTextColor()const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
     //提供接口获取按钮和标签控件
     QLabel *getLabInfo();
@@ -155,43 +131,79 @@ public:
     QList<QPushButton *> getBtnPage();
     QList<QPushButton *> getBtnAll();
 
-public Q_SLOTS:
-    //设置显示样式
+    //获取和设置显示样式
+    bool getShowStyle() const;
     void setShowStyle(bool showStyle);
-    //设置显示提示信息标签
+
+    //获取和设置显示提示信息标签
+    bool getShowLabInfo() const;
     void setShowLabInfo(bool showLabInfo);
-    //设置显示跳转页码
+
+    //获取和设置显示跳转页码
+    bool getShowGoPage() const;
     void setShowGoPage(bool showGoPage);
-    //设置导航位置
+
+    //获取和设置导航位置
+    NavPosition getNavPosition() const;
     void setNavPosition(const NavPosition &navPosition);
 
-    //设置页码按钮数量+间隔+字体大小
+    //获取和设置页码按钮数量
+    int getPageButtonCount() const;
     void setPageButtonCount(int pageButtonCount);
+
+    //获取和设置页码间隔
+    int getSpacing() const;
     void setSpacing(int spacing);
+
+    //获取和设置页码字体大小
+    int getFontSize() const;
     void setFontSize(int fontSize);
 
-    //设置边框圆角+宽度+颜色
+    //获取和设置边框圆角
+    int getBorderRadius() const;
     void setBorderRadius(int borderRadius);
+
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置正常状态背景颜色+文字颜色
+    //获取和设置正常状态背景颜色
+    QColor getNormalBgColor() const;
     void setNormalBgColor(const QColor &normalBgColor);
+
+    //获取和设置正常状态文字颜色
+    QColor getNormalTextColor() const;
     void setNormalTextColor(const QColor &normalTextColor);
 
-    //设置悬停状态背景颜色+文字颜色
+    //获取和设置悬停状态背景颜色
+    QColor getHoverBgColor() const;
     void setHoverBgColor(const QColor &hoverBgColor);
+
+    //获取和设置悬停状态文字颜色
+    QColor getHoverTextColor() const;
     void setHoverTextColor(const QColor &hoverTextColor);
 
-    //设置按下状态背景颜色+文字颜色
+    //获取和设置按下状态背景颜色
+    QColor getPressedBgColor() const;
     void setPressedBgColor(const QColor &pressedBgColor);
+
+    //获取和设置按下状态文字颜色
+    QColor getPressedTextColor() const;
     void setPressedTextColor(const QColor &pressedTextColor);
 
-    //设置选中状态背景颜色+文字颜色
+    //获取和设置选中状态背景颜色
+    QColor getCheckedBgColor() const;
     void setCheckedBgColor(const QColor &checkedBgColor);
+
+    //获取和设置选中状态文字颜色
+    QColor getCheckedTextColor() const;
     void setCheckedTextColor(const QColor &checkedTextColor);
 
-    //统一设置 普通+加深 颜色
+    //统一设置颜色
     void setNormalColor(const QColor &bgColor, const QColor &textColor);
     void setDarkColor(const QColor &bgColor, const QColor &textColor);
 

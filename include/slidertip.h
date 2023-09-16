@@ -24,6 +24,7 @@ class SliderTip : public QSlider
 {
     Q_OBJECT
     Q_ENUMS(ArrowStyle)
+
     Q_PROPERTY(int borderRadius READ getBorderRadius WRITE setBorderRadius)
     Q_PROPERTY(int arrowSize READ getArrowSize WRITE setArrowSize)
     Q_PROPERTY(ArrowStyle arrowStyle READ getArrowStyle WRITE setArrowStyle)
@@ -55,64 +56,66 @@ protected:
     void mouseMoveEvent(QMouseEvent *);
 
 private:
-    int borderRadius;               //边框圆角角度
-    int arrowSize;                  //箭头大小
-    ArrowStyle arrowStyle;          //箭头样式
+    int borderRadius;       //边框圆角角度
+    int arrowSize;          //箭头大小
+    ArrowStyle arrowStyle;  //箭头样式
 
-    QColor background;              //背景色
-    QColor foreground;              //前景色
+    QColor background;      //背景色
+    QColor foreground;      //前景色
 
-    int labTipWidth;                //气泡提示宽度
-    int labTipHeight;               //气泡提示高度
-    QFont labTipFont;               //气泡提示字体
+    int labTipWidth;        //气泡提示宽度
+    int labTipHeight;       //气泡提示高度
+    QFont labTipFont;       //气泡提示字体
 
-    bool showTime;                  //是否显示时间
-    bool clickEnable;               //是否单击切换到当前
-    QString unit;                   //单位
+    bool showTime;          //是否显示时间
+    bool clickEnable;       //是否单击切换到当前
+    QString unit;           //单位
 
-    NavLabel *labTip;               //气泡提示标签
+    NavLabel *labTip;       //气泡提示标签
 
 public:
-    int getBorderRadius()           const;
-    int getArrowSize()              const;
-    ArrowStyle getArrowStyle()      const;
-
-    QColor getBackground()          const;
-    QColor getForeground()          const;
-
-    int getLabTipWidth()            const;
-    int getLabTipHeight()           const;
-    QFont getLabTipFont()           const;
-
-    bool getShowTime()              const;
-    bool getClickEnable()           const;
-    QString getUnit()               const;
-
-public Q_SLOTS:
-    //设置边框圆角角度
+    //获取和设置边框圆角角度
+    int getBorderRadius() const;
     void setBorderRadius(int borderRadius);
-    //设置箭头大小
+
+    //获取和设置箭头大小
+    int getArrowSize() const;
     void setArrowSize(int arrowSize);
-    //设置箭头样式
+
+    //获取和设置箭头样式
+    ArrowStyle getArrowStyle() const;
     void setArrowStyle(const ArrowStyle &arrowStyle);
 
-    //设置前景色
+    //获取和设置前景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
-    //设置前景色
+
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
 
-    //设置气泡提示宽度
+    //获取和设置气泡提示宽度
+    int getLabTipWidth() const;
     void setLabTipWidth(int labTipWidth);
-    //设置气泡提示高度
+
+    //获取和设置气泡提示高度
+    int getLabTipHeight() const;
     void setLabTipHeight(int labTipHeight);
-    //设置气泡提示字体
+
+    //获取和设置气泡提示字体
+    QFont getLabTipFont() const;
     void setLabTipFont(const QFont &labTipFont);
 
-    //设置显示时间
+    //获取和设置显示时间
+    bool getShowTime() const;
     void setShowTime(bool showTime);
-    //设置是否单击切换到当前
+
+    //获取和设置是否单击切换到当前
+    bool getClickEnable() const;
     void setClickEnable(bool clickEnable);
-    //设置单位字符
+
+    //获取和设置单位字符
+    QString getUnit() const;
     void setUnit(const QString &unit);
 
 Q_SIGNALS:

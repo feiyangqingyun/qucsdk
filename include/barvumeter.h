@@ -3,6 +3,11 @@
 
 /**
  * 音量条控件 作者:来源于网络 整理:feiyangqingyun(QQ:517216493) 2016-10-08
+ * 1. 可设置最大值最小值范围值。
+ * 2. 可设置左通道、右通道音量值。
+ * 3. 可设置背景颜色。
+ * 4. 可设置值进度颜色。
+ * 5. 可设置大值颜色、小值颜色。
  */
 
 #include <QWidget>
@@ -32,7 +37,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent *);
-    void drawBorder(QPainter *painter);
+    void drawBg(QPainter *painter);
     void drawBar(QPainter *painter);
     void drawValue(QPainter *painter);
 
@@ -48,32 +53,46 @@ private:
     QColor colorLow;        //小值颜色
 
 public:
-    double getMinValue()    const;
-    double getMaxValue()    const;
-    double getLeftValue()   const;
-    double getRightValue()  const;
-
-    QColor getColorBg()     const;
-    QColor getColorValue()  const;
-    QColor getColorLow()    const;
-    QColor getColorHigh()   const;
-
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-public Q_SLOTS:
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
+
+    //获取和设置左通道音量值
+    double getLeftValue() const;
     void setLeftValue(double leftValue);
+
+    //获取和设置右通道音量值
+    double getRightValue() const;
     void setRightValue(double rightValue);
 
+    //获取和设置背景颜色
+    QColor getColorBg() const;
     void setColorBg(const QColor &colorBg);
+
+    //获取和设置值进度颜色
+    QColor getColorValue() const;
     void setColorValue(const QColor &colorValue);
+
+    //获取和设置大值颜色
+    QColor getColorLow() const;
     void setColorHigh(const QColor &colorHigh);
+
+    //获取和设置小值颜色
+    QColor getColorHigh() const;
     void setColorLow(const QColor &colorLow);
 
 Q_SIGNALS:
+    //左通道音量值改变
     void valueLChanged(double);
+    //右通道音量值改变
     void valueRChanged(double);
 };
 

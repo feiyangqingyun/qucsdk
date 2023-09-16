@@ -60,88 +60,96 @@ protected:
     void drawSlider(QPainter *painter);
 
 private:
-    int space;                      //滑块离背景间隔
-    int rectRadius;                 //圆角角度
-    bool checked;                   //是否选中
-    bool showText;                  //显示文字
-    bool showCircle;                //显示小圆
-    bool animation;                 //动画过渡
+    int space;              //滑块离背景间隔
+    int rectRadius;         //圆角角度
+    bool checked;           //是否选中
+    bool showText;          //显示文字
+    bool showCircle;        //显示小圆
+    bool animation;         //动画过渡
+    ButtonStyle buttonStyle;//开关按钮样式
 
-    ButtonStyle buttonStyle;        //开关按钮样式
+    QColor bgColorOff;      //关闭时背景颜色
+    QColor bgColorOn;       //打开时背景颜色
+    QColor sliderColorOff;  //关闭时滑块颜色
+    QColor sliderColorOn;   //打开时滑块颜色
+    QColor textColorOff;    //关闭时文字颜色
+    QColor textColorOn;     //打开时文字颜色
 
-    QColor bgColorOff;              //关闭时背景颜色
-    QColor bgColorOn;               //打开时背景颜色
-    QColor sliderColorOff;          //关闭时滑块颜色
-    QColor sliderColorOn;           //打开时滑块颜色
-    QColor textColorOff;            //关闭时文字颜色
-    QColor textColorOn;             //打开时文字颜色
+    QString textOff;        //关闭时显示的文字
+    QString textOn;         //打开时显示的文字
 
-    QString textOff;                //关闭时显示的文字
-    QString textOn;                 //打开时显示的文字
-
-    int step;                       //每次移动的步长
-    int startX;                     //滑块开始X轴坐标
-    int endX;                       //滑块结束X轴坐标
-    QTimer *timer;                  //定时器绘制
+    int step;               //每次移动的步长
+    int startX;             //滑块开始X轴坐标
+    int endX;               //滑块结束X轴坐标
+    QTimer *timer;          //定时器绘制
 
 private slots:
     void change();
     void updateValue();
 
 public:
-    int getSpace()                  const;
-    int getRectRadius()             const;
-    bool getChecked()               const;
-    bool getShowText()              const;
-    bool getShowCircle()            const;
-    bool getAnimation()             const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    ButtonStyle getButtonStyle()    const;
-
-    QColor getBgColorOff()          const;
-    QColor getBgColorOn()           const;
-    QColor getSliderColorOff()      const;
-    QColor getSliderColorOn()       const;
-    QColor getTextColorOff()        const;
-    QColor getTextColorOn()         const;
-
-    QString getTextOff()            const;
-    QString getTextOn()             const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置间隔
+    //获取和设置间隔
+    int getSpace() const;
     void setSpace(int space);
-    //设置圆角角度
+
+    //获取和设置圆角角度
+    int getRectRadius() const;
     void setRectRadius(int rectRadius);
-    //设置是否选中
+
+    //获取和设置是否选中
+    bool getChecked() const;
     void setChecked(bool checked);
-    //设置是否显示文字
+
+    //获取和设置是否显示文字
+    bool getShowText() const;
     void setShowText(bool showText);
-    //设置是否显示小圆
+
+    //获取和设置是否显示小圆
+    bool getShowCircle() const;
     void setShowCircle(bool showCircle);
-    //设置是否动画过渡
+
+    //获取和设置是否动画过渡
+    bool getAnimation() const;
     void setAnimation(bool animation);
 
-    //设置风格样式
+    //获取和设置风格样式
+    ButtonStyle getButtonStyle() const;
     void setButtonStyle(const ButtonStyle &buttonStyle);
 
-    //设置背景颜色
+    //获取和设置关闭时背景颜色
+    QColor getBgColorOff() const;
     void setBgColorOff(const QColor &bgColorOff);
+
+    //获取和设置打开时背景颜色
+    QColor getBgColorOn() const;
     void setBgColorOn(const QColor &bgColorOn);
 
-    //设置滑块颜色
+    //获取和设置关闭时滑块颜色
+    QColor getSliderColorOff() const;
     void setSliderColorOff(const QColor &sliderColorOff);
+
+    //获取和设置打开时滑块颜色
+    QColor getSliderColorOn() const;
     void setSliderColorOn(const QColor &sliderColorOn);
 
-    //设置文字颜色
+    //获取和设置关闭时文字颜色
+    QColor getTextColorOff() const;
     void setTextColorOff(const QColor &textColorOff);
+
+    //获取和设置打开时文字颜色
+    QColor getTextColorOn() const;
     void setTextColorOn(const QColor &textColorOn);
 
-    //设置文字
+    //获取和设置关闭时的文字
+    QString getTextOff() const;
     void setTextOff(const QString &textOff);
+
+    //获取和设置打开时的文字
+    QString getTextOn() const;
     void setTextOn(const QString &textOn);
 
 Q_SIGNALS:

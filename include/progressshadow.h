@@ -48,61 +48,70 @@ protected:
     void drawText(QPainter *painter);
 
 private:
-    double minValue;            //最小值
-    double maxValue;            //最大值
-    double value;               //目标值
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //目标值
 
-    int precision;              //精确度,小数点后几位
-    int nullPosition;           //起始角度
-    bool percent;               //百分比显示
+    int precision;          //精确度
+    int nullPosition;       //起始角度
+    bool percent;           //百分比显示
 
-    QColor shadowColor;         //光晕颜色
-    QColor progressColor;       //进度颜色
-    QColor bgColor;             //背景颜色
-    QColor textColor;           //文字颜色
+    QColor shadowColor;     //光晕颜色
+    QColor progressColor;   //进度颜色
+    QColor bgColor;         //背景颜色
+    QColor textColor;       //文字颜色
 
 public:
-    double getMinValue()        const;
-    double getMaxValue()        const;
-    double getValue()           const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getPrecision()          const;
-    int getNullPosition()       const;
-    bool getPercent()           const;
-
-    QColor getShadowColor()     const;
-    QColor getProgressColor()   const;
-    QColor getBgColor()         const;
-    QColor getTextColor()       const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
-    //设置最小值位置
+
+    //获取和设置最小值位置
+    int getNullPosition() const;
     void setNullPosition(int nullPosition);
-    //设置百分比显示
+
+    //获取和设置百分比显示
+    bool getPercent() const;
     void setPercent(bool percent);
 
-    //设置光晕颜色+进度颜色+背景颜色+文字颜色
+    //获取和设置光晕颜色
+    QColor getShadowColor() const;
     void setShadowColor(const QColor &shadowColor);
+
+    //获取和设置进度颜色
+    QColor getProgressColor() const;
     void setProgressColor(const QColor &progressColor);
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+public Q_SLOTS:
+    void setValue(int value);
 
 Q_SIGNALS:
     void valueChanged(double value);

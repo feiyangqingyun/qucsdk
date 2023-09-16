@@ -33,15 +33,19 @@ private slots:
     void currentIndexChanged(int index);
 
 public:
+    //获取和设置是否显示颜色名称
     bool getShowColorName() const;
-    QString getColorName()  const;
-
-public Q_SLOTS:
     void setShowColorName(bool showColorName);
+
+    //获取和设置当前颜色名称
+    QString getColorName() const;
     void setColorName(const QString &colorName);
+
+    //初始化下拉框节点集合
     void initItems();
 
 Q_SIGNALS:
+    //颜色改变信号
     void colorChanged(const QString &colorName);
     void colorChanged(const QColor &color);
 };

@@ -9,7 +9,7 @@
  * 4. 可设置进度是否圆角。
  * 5. 可设置是否自动圆角。
  * 6. 可设置渐变颜色进度。
- * 6. 精准计算圆角角度，解决了QSS中border-radius当进度小于圆角角度出现方形的BUG。
+ * 7. 精准计算圆角角度，解决了QSS中border-radius当进度小于圆角角度出现方形的bug。
  */
 
 #include <QProgressBar>
@@ -58,35 +58,44 @@ private:
     QColor borderColor;         //边框颜色
 
 public:
-    QBrush getValueBrush()      const;
-    QColor getValueColor()      const;
-    QColor getBgColor()         const;
-    QColor getTextColor()       const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getRadius()             const;
-    bool getAutoRadius()        const;
-    bool getShowProgressRadius()const;
-
-    double getBorderWidth()     const;
-    QColor getBorderColor()     const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置进度画刷+进度颜色+背景颜色+文字颜色
+    //获取和设置进度画刷
+    QBrush getValueBrush() const;
     void setValueBrush(const QBrush &valueBrush);
+
+    //获取和设置进度颜色
+    QColor getValueColor() const;
     void setValueColor(const QColor &valueColor);
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置圆角+自动圆角+是否显示进度圆角角度
+    //获取和设置圆角角度
+    int getRadius() const;
     void setRadius(int radius);
+
+    //获取和设置自动圆角
+    bool getAutoRadius() const;
     void setAutoRadius(bool autoRadius);
+
+    //获取和设置是否显示进度圆角角度
+    bool getShowProgressRadius() const;
     void setShowProgressRadius(bool showProgressRadius);
 
-    //设置边框宽度+颜色
+    //获取和设置边框宽度
+    double getBorderWidth() const;
     void setBorderWidth(double borderWidth);
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 };
 

@@ -4,7 +4,7 @@
 /**
  * 图标编辑控件 作者:feiyangqingyun(QQ:517216493) 2017-02-10
  * 来源于Qt官方教材
- * 1. 可设置伸缩因子。
+ * 1. 可设置缩放因子。
  * 2. 可设置宫格线条颜色。
  * 3. 可设置画笔颜色。
  * 4. 可设置ico图片。
@@ -47,20 +47,28 @@ private:
     QRect pixelRect(int i, int j) const;
 
 public:
-    int getZoomFactor()             const;
-    QColor getLineColor()           const;
-    QColor getPenColor()            const;
-    QImage getIconImage()           const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
+    //获取和设置伸缩因子
+    int getZoomFactor() const;
     void setZoomFactor(int zoomFactor);
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
+
+    //获取和设置画笔颜色
+    QColor getPenColor() const;
     void setPenColor(const QColor &penColor);
+
+    //获取和设置图标图片
+    QImage getIconImage() const;
     void setIconImage(const QImage &iconImage);
     void setIconImage(const QString &iconFile);
+
+    //保存图标文件
     void saveIcon(const QString &file);
     void saveBg(const QString &file);
 };

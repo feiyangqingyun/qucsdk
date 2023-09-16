@@ -19,6 +19,7 @@ class ImageCalendar : public QWidget
 {
     Q_OBJECT
     Q_ENUMS(CalendarStyle)
+
     Q_PROPERTY(CalendarStyle calendarStyle READ getCalendarStyle WRITE setCalendarStyle)
 
 public:
@@ -37,22 +38,22 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    CalendarStyle calendarStyle;    //背景样式
     QImage calendarBg;              //主背景
     QStringList imageNames;         //图片名称集合
     QDateTime currentDate;          //当前时间
+    CalendarStyle calendarStyle;    //背景样式
 
-private Q_SLOTS:
+private slots:
     void changeStyle();
     void changeDate();
 
 public:
-    CalendarStyle getCalendarStyle()const;
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-public Q_SLOTS:
-    //设置图片日历样式
+    //获取和设置图片日历样式
+    CalendarStyle getCalendarStyle() const;
     void setCalendarStyle(const CalendarStyle &calendarStyle);
 };
 

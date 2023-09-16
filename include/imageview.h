@@ -11,17 +11,23 @@
  * 5. 增加设置是否渐变显示图像。
  * 6. 增加设置键盘翻页。
  * 7. 增加移动到第一张、末一张、上一张、下一张。
- * 8. 修正内存泄露BUG及其他BUG。
+ * 8. 修正内存泄露和其他bug。
  */
 
 #include <QWidget>
 
 class QToolButton;
 
+#ifdef quc
+class Q_DECL_EXPORT ImageNum : public QWidget
+#else
 class ImageNum : public QWidget
+#endif
+
 {
     Q_OBJECT
-public: ImageNum(QWidget *parent = 0);
+public:
+    ImageNum(QWidget *parent = 0);
 
 protected:
     void paintEvent(QPaintEvent *);
@@ -32,7 +38,7 @@ private:
     int totalNum;       //总数
     int currentIndex;   //当前索引
 
-public slots:
+public Q_SLOTS:
     //设置总数
     void setTotalNum(int totalNum);
     //设置当前索引
@@ -47,7 +53,6 @@ class ImageView : public QWidget
 
 {
     Q_OBJECT
-
     Q_PROPERTY(QColor bgColorStart READ getBgColorStart WRITE setBgColorStart)
     Q_PROPERTY(QColor bgColorEnd READ getBgColorEnd WRITE setBgColorEnd)
 
@@ -72,74 +77,77 @@ protected:
     void showEvent(QShowEvent *);
 
 private:
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
+    QColor bgColorStart;    //背景渐变开始颜色
+    QColor bgColorEnd;      //背景渐变结束颜色
 
-    int bottomSpace;                //底部间距
-    int buttonSpace;                //按钮间距
-    QSize icoSize;                  //翻页按钮图标大小
+    int bottomSpace;        //底部间距
+    int buttonSpace;        //按钮间距
+    QSize icoSize;          //翻页按钮图标大小
 
-    bool fill;                      //是否填充
-    bool fade;                      //是否渐变显示
-    bool keyMove;                   //是否支持按键移动
+    bool fill;              //是否填充
+    bool fade;              //是否渐变显示
+    bool keyMove;           //是否支持按键移动
 
-    QToolButton *preButton;         //向前移按钮
-    QToolButton *nextButton;        //向后移按钮
+    QToolButton *preButton; //向前移按钮
+    QToolButton *nextButton;//向后移按钮
 
-    QStringList imageNames;         //图片名称集合
-    int currentIndex;               //当前图片索引
-    QImage currentImage;            //当前图片数据
+    QStringList imageNames; //图片名称集合
+    int currentIndex;       //当前图片索引
+    QImage currentImage;    //当前图片数据
 
-    ImageNum *num;                  //显示当前索引和总数的对象
+    ImageNum *num;          //显示当前索引和总数的对象
 
-    int totalNum;                   //总数
-    double opacity;                 //当前透明值
-    QTimer *timer;                  //定时器改变透明值
+    int totalNum;           //总数
+    double opacity;         //当前透明值
+    QTimer *timer;          //定时器改变透明值
 
 private slots:
-    void calcGeo();
-    void doFading();
+    void calcGeo();         //重新计算
+    void doFading();        //渐变显示
 
 public:
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getBottomSpace()            const;
-    int getButtonSpace()            const;
-    QSize getIcoSize()              const;
+    //获取和设置背景开始颜色
+    QColor getBgColorStart() const;
+    void setBgColorStart(const QColor &bgColorStart);
 
-    bool getFill()                  const;
-    bool getFade()                  const;
-    bool getKeyMove()               const;
+    //获取和设置背景结束颜色
+    QColor getBgColorEnd() const;
+    void setBgColorEnd(const QColor &bgColorEnd);
 
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    //获取和设置底部间距
+    int getBottomSpace() const;
+    void setBottomSpace(int bottomSpace);
 
-public slots:
+    //获取和设置按钮间距
+    int getButtonSpace() const;
+    void setButtonSpace(int buttonSpace);
+
+    //获取和设置翻页图标大小
+    QSize getIcoSize() const;
+    void setIcoSize(const QSize &icoSize);
+
+    //获取和设置图像是否拉伸填充
+    bool getFill() const;
+    void setFill(bool fill);
+
+    //获取和设置是否渐变显示
+    bool getFade() const;
+    void setFade(bool fade);
+
+    //获取和设置键盘按键是否能够移动
+    bool getKeyMove() const;
+    void setKeyMove(bool keyMove);
+
+public Q_SLOTS:
     //载入图像文件夹
     void load();
     void load(const QString &strFolder);
-
     //清除图像
     void clear();
-
-    //设置背景颜色
-    void setBgColorStart(const QColor &bgColorStart);
-    void setBgColorEnd(const QColor &bgColorEnd);
-
-    //设置间距
-    void setBottomSpace(int bottomSpace);
-    void setButtonSpace(int buttonSpace);
-
-    //设置翻页图标大小
-    void setIcoSize(const QSize &icoSize);
-
-    //设置图像是否拉伸填充
-    void setFill(bool fill);
-    //设置是否渐变显示
-    void setFade(bool fade);
-    //设置键盘按键是否能够移动
-    void setKeyMove(bool keyMove);
 
     //移动到第一张
     void moveFirst();
@@ -152,7 +160,7 @@ public slots:
     //移动到指定索引图片
     void moveTo(int index);
 
-signals:
+Q_SIGNALS:
     //总数发生改变时触发
     void totalNumChanged(int totalNum);
     //当前图片索引发生改变时触发

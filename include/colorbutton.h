@@ -22,6 +22,7 @@ class ColorButton : public QWidget
     Q_OBJECT
     Q_ENUMS(ColorMode)
     Q_ENUMS(TextAlign)
+
     Q_PROPERTY(int borderRadius READ getBorderRadius WRITE setBorderRadius)
     Q_PROPERTY(int borderWidth READ getBorderWidth WRITE setBorderWidth)
     Q_PROPERTY(QColor borderColor READ getBorderColor WRITE setBorderColor)
@@ -100,69 +101,76 @@ private:
     bool isPressed;             //是否按下
 
 public:
-    int getBorderRadius()       const;
-    int getBorderWidth()        const;
-    QColor getBorderColor()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getShowSuperText()     const;
-    QString getSuperText()      const;
-    QFont getSuperTextFont()    const;
-    TextAlign getSuperTextAlign()const;
-    QColor getSuperTextColor()  const;
-
-    QString getText()           const;
-    QFont getTextFont()         const;
-    TextAlign getTextAlign()    const;
-    QColor getTextColor()       const;
-
-    QColor getNormalColor()     const;
-    QColor getPressedColor()    const;
-
-    bool getCanMove()           const;
-    QPixmap getBgImage()        const;
-    ColorMode getColorMode()    const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置边框圆角角度
+    //获取和设置边框圆角角度
+    int getBorderRadius() const;
     void setBorderRadius(int borderRadius);
-    //设置边框宽度
+
+    //获取和设置边框宽度
+    int getBorderWidth() const;
     void setBorderWidth(int borderWidth);
-    //设置边框颜色
+
+    //获取和设置边框颜色
+    QColor getBorderColor() const;
     void setBorderColor(const QColor &borderColor);
 
-    //设置是否显示角标
+    //获取和设置是否显示角标
+    bool getShowSuperText() const;
     void setShowSuperText(bool showSuperText);
-    //设置角标文字
+
+    //获取和设置角标文字
+    QString getSuperText() const;
     void setSuperText(const QString &superText);
-    //设置角标文字字体
+
+    //获取和设置角标文字字体
+    QFont getSuperTextFont() const;
     void setSuperTextFont(const QFont &superTextFont);
-    //设置角标文字对齐方式
+
+    //获取和设置角标文字对齐方式
+    TextAlign getSuperTextAlign() const;
     void setSuperTextAlign(const TextAlign &superTextAlign);
-    //设置角标文字颜色
+
+    //获取和设置角标文字颜色
+    QColor getSuperTextColor() const;
     void setSuperTextColor(const QColor &superTextColor);
 
-    //设置文字
+    //获取和设置文字
+    QString getText() const;
     void setText(const QString &text);
-    //设置文字字体
+
+    //获取和设置文字字体
+    QFont getTextFont() const;
     void setTextFont(const QFont &textFont);
-    //设置文字对齐方式
+
+    //获取和设置文字对齐方式
+    TextAlign getTextAlign() const;
     void setTextAlign(const TextAlign &textAlign);
-    //设置文字颜色
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置正常颜色
+    //获取和设置正常颜色
+    QColor getNormalColor() const;
     void setNormalColor(const QColor &normalColor);
-    //设置按下颜色
+
+    //获取和设置按下颜色
+    QColor getPressedColor() const;
     void setPressedColor(const QColor &pressedColor);
 
-    //设置是否可以移动
+    //获取和设置是否可以移动
+    bool getCanMove() const;
     void setCanMove(bool canMove);
-    //设置背景图片
+
+    //获取和设置背景图片
+    QPixmap getBgImage() const;
     void setBgImage(const QPixmap &bgImage);
-    //设置颜色模式
+
+    //获取和设置颜色模式
+    ColorMode getColorMode() const;
     void setColorMode(const ColorMode &colorMode);
 
 Q_SIGNALS:

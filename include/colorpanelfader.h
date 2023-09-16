@@ -40,27 +40,28 @@ private:
     QSpacerItem *spacer2;
     QList<ColorPanelBar *> items;
 
-    int barSpace;               //柱状条间隔
-    int groupSpace;             //分组间隔
-    QColor bgColor;             //背景颜色
+    int barSpace;       //柱状条间隔
+    int groupSpace;     //分组间隔
+    QColor bgColor;     //背景颜色
 
 private slots:
     void colorChanged(const QColor &color, double value, double percent);
 
 public:
-    int getBarSpace()           const;
-    int getGroupSpace()         const;
-    QColor getBgColor()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public:
-    //设置柱状条间隔
+    //获取和设置柱状条间隔
+    int getBarSpace() const;
     void setBarSpace(int barSpace);
-    //设置分组间隔
+
+    //获取和设置分组间隔
+    int getGroupSpace() const;
     void setGroupSpace(int groupSpace);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
 Q_SIGNALS:

@@ -5,10 +5,10 @@
  * 柱状双向刻度尺控件 作者:feiyangqingyun(QQ:517216493) 2016-11-29
  * 1. 可设置目标值范围值。
  * 2. 可设置两种样式 单向标尺/双向标尺。
- * 2. 可设置刻度尺颜色、文字颜色、告警颜色。
- * 3. 可设置长线条步长及短线条步长。
- * 4. 同时支持左右不同刻度尺。
- * 5. 支持负数刻度值。
+ * 3. 可设置刻度尺颜色、文字颜色、告警颜色。
+ * 4. 可设置长线条步长及短线条步长。
+ * 5. 同时支持左右不同刻度尺。
+ * 6. 支持负数刻度值。
  */
 
 #include <QWidget>
@@ -22,6 +22,7 @@ class RulerDouble : public QWidget
 {
     Q_OBJECT
     Q_ENUMS(ScaleStyle)
+
     Q_PROPERTY(double minValue READ getMinValue WRITE setMinValue)
     Q_PROPERTY(double maxValue READ getMaxValue WRITE setMaxValue)
     Q_PROPERTY(double value READ getValue WRITE setValue)
@@ -64,98 +65,107 @@ protected:
     void drawRightPointer(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    double alarmValue;              //告警值
+    double minValue;        //最小值
+    double maxValue;        //最大值
+    double value;           //目标值
+    double alarmValue;      //告警值
 
-    double maxValueRight;           //右边最小值
-    double minValueRight;           //右边最大值
-    double valueRight;              //右边目标值
-    double alarmValueRight;         //右边告警值
+    double maxValueRight;   //右边最小值
+    double minValueRight;   //右边最大值
+    double valueRight;      //右边目标值
+    double alarmValueRight; //右边告警值
 
-    int longStep;                   //长线条等分步长
-    int shortStep;                  //短线条等分步长
-    int longStepRight;              //右边长线条等分步长
-    int shortStepRight;             //右边短线条等分步长
+    int longStep;           //长线条等分步长
+    int shortStep;          //短线条等分步长
+    int longStepRight;      //右边长线条等分步长
+    int shortStepRight;     //右边短线条等分步长
 
-    QColor bgColor;                 //背景色
-    QColor scaleColor;              //刻度颜色
-    QColor textColor;               //文字颜色
-    QColor alarmScaleColor;         //告警刻度颜色
+    QColor bgColor;         //背景色
+    QColor scaleColor;      //刻度颜色
+    QColor textColor;       //文字颜色
+    QColor alarmScaleColor; //告警刻度颜色
 
-    int space;                      //间距
-    ScaleStyle scaleStyle;          //刻度标尺样式
+    int space;              //间距
+    ScaleStyle scaleStyle;  //刻度标尺样式
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    double getAlarmValue()          const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    double getMinValueRight()       const;
-    double getMaxValueRight()       const;
-    double getValueRight()          const;
-    double getAlarmValueRight()     const;
-
-    int getLongStep()               const;
-    int getShortStep()              const;
-    int getLongStepRight()          const;
-    int getShortStepRight()         const;
-
-    QColor getBgColor()             const;
-    QColor getScaleColor()          const;
-    QColor getTextColor()           const;
-    QColor getAlarmScaleColor()     const;
-
-    int getSpace()                  const;
-    ScaleStyle getScaleStyle()      const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
     void setRangeRight(double minValueRight, double maxValueRight);
     void setRangeRight(int minValueRight, int maxValueRight);
 
-    //设置最大最小值
+    //获取和设置最大最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
+
+    double getMinValueRight() const;
     void setMinValueRight(double minValue);
+
+    double getMaxValueRight() const;
     void setMaxValueRight(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
-    void setValueRight(double valueRight);
-    void setValueRight(int valueRight);
 
-    //设置警戒值
+    double getValueRight() const;
+    void setValueRight(double valueRight);
+
+    //获取和设置警戒值
+    double getAlarmValue() const;
     void setAlarmValue(double alarmValue);
+
+    double getAlarmValueRight() const;
     void setAlarmValueRight(double alarmValueRight);
 
-    //设置线条等分步长
+    //获取和设置线条等分步长
+    int getLongStep() const;
     void setLongStep(int longStep);
+
+    int getShortStep() const;
     void setShortStep(int shortStep);
+
+    int getLongStepRight() const;
     void setLongStepRight(int longStepRight);
+
+    int getShortStepRight() const;
     void setShortStepRight(int shortStepRight);
 
-    //设置背景色
+    //获取和设置背景色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置刻度颜色
+
+    //获取和设置刻度颜色
+    QColor getScaleColor() const;
     void setScaleColor(const QColor &scaleColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置告警刻度颜色
+
+    //获取和设置告警刻度颜色
+    QColor getAlarmScaleColor() const;
     void setAlarmScaleColor(const QColor &alarmScaleColor);
 
-    //设置间距
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
-    //设置刻度样式
+
+    //获取和设置刻度样式
+    ScaleStyle getScaleStyle() const;
     void setScaleStyle(const ScaleStyle &scaleStyle);
+
+public Q_SLOTS:
+    void setValue(int value);
+    void setValueRight(int valueRight);
 };
 
 #endif // BARSCALE_H

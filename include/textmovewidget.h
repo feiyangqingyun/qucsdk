@@ -26,6 +26,7 @@ class TextMoveWidget : public QWidget
 {
     Q_OBJECT
     Q_ENUMS(MoveStyle)
+
     Q_PROPERTY(int step READ getStep WRITE setStep)
     Q_PROPERTY(int interval READ getInterval WRITE setInterval)
     Q_PROPERTY(int sleep READ getSleep WRITE setSleep)
@@ -56,71 +57,74 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    int step;                       //每次移动的步长
-    int interval;                   //定时器间隔
-    int sleep;                      //静态文本停留间隔
+    int step;               //每次移动的步长
+    int interval;           //定时器间隔
+    int sleep;              //静态文本停留间隔
 
-    QString staticText;             //静态文本
-    QString text;                   //滚动文本
-    int textSize;                   //文本大小
-    QColor foreground;              //前景色
-    QColor background;              //背景色
+    QString staticText;     //静态文本
+    QString text;           //滚动文本
+    int textSize;           //文本大小
+    QColor foreground;      //前景色
+    QColor background;      //背景色
 
-    bool mouseHoverStop;            //鼠标悬停停止
-    MoveStyle moveStyle;            //滚动样式
+    bool mouseHoverStop;    //鼠标悬停停止
+    MoveStyle moveStyle;    //滚动样式
 
-    bool mouseHover;                //鼠标是否悬停
-    bool moveRight;                 //是否往右移动
-    int initX;                      //当前X轴坐标
-    int initY;                      //当前Y轴坐标
-    QLabel *labText;                //显示文字的标签
-    QDateTime lastTime;             //最后静态文本时间
-    QTimer *timer;                  //定时器绘制
+    bool mouseHover;        //鼠标是否悬停
+    bool moveRight;         //是否往右移动
+    int initX;              //当前X轴坐标
+    int initY;              //当前Y轴坐标
+    QLabel *labText;        //显示文字的标签
+    QDateTime lastTime;     //最后静态文本时间
+    QTimer *timer;          //定时器绘制
 
 private slots:
-    void updatePos();
+    void updatePos();       //更新坐标
 
 public:
-    int getStep()                   const;
-    int getInterval()               const;
-    int getSleep()                  const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QString getStaticText()         const;
-    QString getText()               const;
-    int getTextSize()               const;
-    QColor getForeground()          const;
-    QColor getBackground()          const;
-
-    bool getMouseHoverStop()        const;
-    MoveStyle getMoveStyle()        const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置步长
+    //获取和设置步长
+    int getStep() const;
     void setStep(int step);
-    //设置间隔
+
+    //获取和设置间隔
+    int getInterval() const;
     void setInterval(int interval);
-    //设置静态文本停留间隔
+
+    //获取和设置静态文本停留间隔
+    int getSleep() const;
     void setSleep(int sleep);
 
-    //设置静态文本
+    //获取和设置静态文本
+    QString getStaticText() const;
     void setStaticText(const QString &staticText);
-    //设置文本
+
+    //获取和设置文本
+    QString getText() const;
     void setText(const QString &text);
-    //设置文本大小
+
+    //获取和设置文本大小
+    int getTextSize() const;
     void setTextSize(int textSize);
-    //设置前景色
+
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
-    //设置背景色
+
+    //获取和设置背景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
 
-    //设置鼠标悬停停止滚动
+    //获取和设置鼠标悬停停止滚动
+    bool getMouseHoverStop() const;
     void setMouseHoverStop(bool mouseHoverStop);
-    //设置滚动样式
-    void setMoveStyle(const MoveStyle &moveStyle);
 
+    //获取和设置滚动样式
+    MoveStyle getMoveStyle() const;
+    void setMoveStyle(const MoveStyle &moveStyle);
 };
 
 #endif // TEXTMOVEWIDGET_H

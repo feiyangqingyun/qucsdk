@@ -21,6 +21,7 @@ class ShadowCalendar : public QWidget
 
 {
     Q_OBJECT
+
     Q_PROPERTY(QColor bgColor READ getBgColor WRITE setBgColor)
     Q_PROPERTY(QColor textColor READ getTextColor WRITE setTextColor)
     Q_PROPERTY(QColor shadowColor READ getShadowColor WRITE setShadowColor)
@@ -60,19 +61,24 @@ private:
     DateItem dateItem[6][7];    //日期数组
 
 public:
-    QColor getBgColor()         const;
-    QColor getTextColor()       const;
-    QColor getShadowColor()     const;
-    QColor getSelectColor()     const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
-    //设置背景颜色+文字颜色+光晕颜色+选中颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
+
+    //获取和设置光晕颜色
+    QColor getShadowColor() const;
     void setShadowColor(const QColor &shadowColor);
+
+    //获取和设置选中颜色
+    QColor getSelectColor() const;
     void setSelectColor(const QColor &selectColor);
 };
 

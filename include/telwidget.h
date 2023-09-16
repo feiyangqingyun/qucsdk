@@ -34,7 +34,12 @@ class QLabel;
 class QSpacerItem;
 
 //字母高亮背景类
+#ifdef quc
+class Q_DECL_EXPORT TelHigh : public QWidget
+#else
 class TelHigh : public QWidget
+#endif
+
 {
     Q_OBJECT
 public:
@@ -51,27 +56,34 @@ private:
     QColor textColor;       //文字颜色
 
 public:
-    int getFontSize()       const;
-    QPixmap getBgImage()    const;
-    QColor getBgColor()     const;
-    QString getText()       const;
-    QColor getTextColor()   const;
-
-public Q_SLOTS:
-    //设置字体大小
+    //获取和设置字体大小
+    int getFontSize() const;
     void setFontSize(int fontSize);
-    //设置背景图片
+
+    //获取和设置背景图片
+    QPixmap getBgImage() const;
     void setBgImage(const QPixmap &bgImage);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置显示的文字
+
+    //获取和设置显示的文字
+    QString getText() const;
     void setText(const QString &text);
-    //设置文字颜色
+
+    //获取和设置文字颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 };
 
 //中间字母分隔类
+#ifdef quc
+class Q_DECL_EXPORT TelBanner : public QWidget
+#else
 class TelBanner : public QWidget
+#endif
+
 {
     Q_OBJECT
 public:
@@ -91,39 +103,46 @@ private:
     QColor lineColor;       //线条颜色
 
 public:
-    bool getLine()          const;
-    int getPadding()        const;
-    int getFontSize()       const;
-    QString getText()       const;
-
-    QColor getTextColor()   const;
-    QColor getBgColor()     const;
-    QColor getLineColor()   const;
-
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-public Q_SLOTS:
-    //设置是否绘制线条
+    //获取和设置是否绘制线条
+    bool getLine() const;
     void setLine(bool line);
-    //设置左侧距离
+
+    //获取和设置左侧距离
+    int getPadding() const;
     void setPadding(int padding);
-    //设置字体大小
+
+    //获取和设置字体大小
+    int getFontSize() const;
     void setFontSize(int fontSize);
-    //设置要绘制的文字
+
+    //获取和设置要绘制的文字
+    QString getText() const;
     void setText(const QString &text);
 
-    //设置字体颜色
+    //获取和设置字体颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置背景颜色
-    void setBgColor(const QColor &bgColor);
-    //设置线条颜色
-    void setLineColor(const QColor &lineColor);
 
+    //获取和设置背景颜色
+    QColor getBgColor() const;
+    void setBgColor(const QColor &bgColor);
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
+    void setLineColor(const QColor &lineColor);
 };
 
 //右侧字母导航类
+#ifdef quc
+class Q_DECL_EXPORT TelLetter : public QWidget
+#else
 class TelLetter : public QWidget
+#endif
+
 {
     Q_OBJECT
 public:
@@ -146,21 +165,20 @@ private:
     void checkPos(const QPoint &pos);
 
 public:
-    QString getLetters()    const;
-    QString getHighLetter() const;
-
-    QColor getNormalColor() const;
-    QColor getHighColor()   const;
-
-public slots:
-    //设置字母集合
+    //获取和设置字母集合
+    QString getLetters() const;
     void setLetters(const QString &letters);
-    //设置高亮字母
+
+    //获取和设置高亮字母
+    QString getHighLetter() const;
     void setHighLetter(const QString &highLetter);
 
-    //设置正常文字颜色
+    //获取和设置正常文字颜色
+    QColor getNormalColor() const;
     void setNormalColor(const QColor &normalColor);
-    //设置高亮文字颜色
+
+    //获取和设置高亮文字颜色
+    QColor getHighColor() const;
     void setHighColor(const QColor &highColor);
 
 Q_SIGNALS:
@@ -168,7 +186,12 @@ Q_SIGNALS:
 };
 
 //通讯录按钮类
+#ifdef quc
+class Q_DECL_EXPORT TelButton : public QWidget
+#else
 class TelButton : public QWidget
+#endif
+
 {
     Q_OBJECT
 public:
@@ -198,44 +221,48 @@ private:
     QPoint lastPos;         //按下坐标
 
 public:
-    bool getPixVisible()    const;
-    int getPadding()        const;
-    int getSpace()          const;
-
-    QPixmap getPixmap()     const;
-    QString getName()       const;
-    QString getType()       const;
-    QString getTel()        const;
-
-    QColor getBgColor()     const;
-    QColor getNameColor()   const;
-    QColor getTypeColor()   const;
-
-    QSize sizeHint()        const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
     QSize minimumSizeHint() const;
 
-public slots:
-    //设置图标可见
+    //获取和设置图标可见
+    bool getPixVisible() const;
     void setPixVisible(bool pixVisible);
 
-    //设置左侧间隔+文字间隔
+    //获取和设置左侧间隔
+    int getPadding() const;
     void setPadding(int padding);
+
+    //获取和设置文字间隔
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置小图标
+    //获取和设置小图标
+    QPixmap getPixmap() const;
     void setPixmap(const QPixmap &pixmap);
-    //设置姓名
+
+    //获取和设置姓名
+    QString getName() const;
     void setName(const QString &name);
-    //设置类型
+
+    //获取和设置类型
+    QString getType() const;
     void setType(const QString &type);
-    //设置电话
+
+    //获取和设置电话
+    QString getTel() const;
     void setTel(const QString &tel);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置姓名颜色
+
+    //获取和设置姓名颜色
+    QColor getNameColor() const;
     void setNameColor(const QColor &nameColor);
-    //设置类型颜色
+
+    //获取和设置类型颜色
+    QColor getTypeColor() const;
     void setTypeColor(const QColor &typeColor);
 
 Q_SIGNALS:
@@ -255,7 +282,12 @@ public:
 
 
 //通讯录面板类
+#ifdef quc
+class Q_DECL_EXPORT TelPanel : public QWidget
+#else
 class TelPanel : public QWidget
+#endif
+
 {
     Q_OBJECT
 public:
@@ -308,54 +340,58 @@ private slots:
     void setRange(int min, int max);//设置滚动条范围值
 
 public:
-    int getStep()                   const;
-    int getMargin()                 const;
-    int getSpace()                  const;
-    bool getAutoWidth()             const;
-    bool getAutoHeight()            const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getNormalColor()         const;
-    QColor getHighColor()           const;
-
-    int getPosition()               const;
-    int getColumnCount()            const;
-
-    QList<QWidget *> getItems()     const;
-    QList<int> getIndexs()          const;
-    QList<QWidget *> getBanners()   const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置每次滚动条移动的步长
+    //获取和设置每次滚动条移动的步长
+    int getStep() const;
     void setStep(int step);
 
-    //设置四个方位边距
+    //获取和设置四个方位边距
     void setMargin(int left, int top, int right, int bottom);
+    int getMargin() const;
     void setMargin(int margin);
 
-    //设置元素间距
+    //获取和设置元素间距
+    int getSpace() const;
     void setSpace(int space);
 
-    //设置是否自动宽度+高度
+    //获取和设置是否自动宽度
+    bool getAutoWidth() const;
     void setAutoWidth(bool autoWidth);
+
+    //获取和设置是否自动高度
+    bool getAutoHeight() const;
     void setAutoHeight(bool autoHeight);
 
-    //设置滚动条位置
-    void setPosition(int value);
-
-    //设置滚动条正常颜色+高亮颜色
+    //获取和设置滚动条正常颜色
+    QColor getNormalColor() const;
     void setNormalColor(const QColor &normalColor);
+
+    //获取和设置滚动条高亮颜色
+    QColor getHighColor() const;
     void setHighColor(const QColor &highColor);
 
-    //设置分割窗体+索引位置
-    void setIndexs(const QList<int> indexs);
-    void setBanners(QList<QWidget *> banners);
+    //获取和设置滚动条位置
+    int getPosition() const;
+    void setPosition(int value);
 
-    //设置窗体元素集合+列数
+    //获取和设置分割窗体
+    int getColumnCount() const;
     void setColumnCount(int columnCount);
+
+    //获取和设置索引位置
+    QList<int> getIndexs() const;
+    void setIndexs(const QList<int> indexs);
+
+    //获取和设置元素集合
+    QList<QWidget *> getItems() const;
     void setItems(QList<QWidget *> items);
+
+    //获取和设置顶部集合
+    QList<QWidget *> getBanners() const;
+    void setBanners(QList<QWidget *> banners);
 
 Q_SIGNALS:
     void positionChanged(int value);
@@ -370,6 +406,7 @@ class TelWidget : public QWidget
 
 {
     Q_OBJECT
+
     Q_PROPERTY(QString names READ getNames WRITE setNames)
     Q_PROPERTY(QString types READ getTypes WRITE setTypes)
     Q_PROPERTY(QString tels READ getTels WRITE setTels)
@@ -425,72 +462,23 @@ protected:
     void paintEvent(QPaintEvent *);
 
 private:
-    QString names;                  //姓名集合
-    QString types;                  //类型集合
-    QString tels;                   //电话集合
+    QString names;              //姓名集合
+    QString types;              //类型集合
+    QString tels;               //电话集合
 
-    QPixmap bgImage;                //背景图片
-    QColor bgColor;                 //背景颜色
+    QPixmap bgImage;            //背景图片
+    QColor bgColor;             //背景颜色
 
-    int telHighFontSize;            //高亮标签字体大小
-    QPixmap telHighBgImage;         //高亮标签背景图片
-    QColor telHighBgColor;          //高亮标签背景颜色
-    QColor telHighTextColor;        //高亮标签文字颜色
+    int lastPosition;           //最后滚动条位置
+    TelHigh *telHigh;           //高亮字母标签
+    TelBanner *telBanner;       //顶部间隔字母导航
+    TelLetter *telLetter;       //右侧字母标签
+    TelPanel *telPanel;         //通讯录面板
 
-    QColor telBannerBgColor;        //顶部字母导航背景颜色
-    QColor telBannerTextColor;      //顶部字母导航文字颜色
-    QColor telBannerLineColor;      //顶部字母导航线条颜色
-
-    QColor telLetterNormalColor;    //右侧字母导航正常颜色
-    QColor telLetterHighColor;      //右侧字母导航高亮颜色
-
-    QColor telButtonBgColor;        //通讯录按钮背景颜色
-    QColor telButtonNameColor;      //通讯录按钮姓名颜色
-    QColor telButtonTypeColor;      //通讯录按钮类型颜色
-
-    QColor telPanelNormalColor;     //滚动条正常颜色
-    QColor telPanelHighColor;       //滚动条高亮颜色
-
-    int lastPosition;               //最后滚动条位置
-    TelHigh *telHigh;               //高亮字母标签
-    TelBanner *telBanner;           //顶部间隔字母导航
-    TelLetter *telLetter;           //右侧字母标签
-    TelPanel *telPanel;             //通讯录面板
-
-    QList<QWidget *> items;         //通讯录按钮集合
-    QList<QWidget *> banners;       //通讯录字母分割集合
-    QList<QPixmap> pixmaps;         //联系人图片集合
-    QTimer *timer;                  //隐藏高亮标签定时器
-
-public:
-    QString getNames()              const;
-    QString getTypes()              const;
-    QString getTels()               const;
-
-    QPixmap getBgImage()            const;
-    QColor getBgColor()             const;
-
-    int getTelHighFontSize()        const;
-    QPixmap getTelHighBgImage()     const;
-    QColor getTelHighBgColor()      const;
-    QColor getTelHighTextColor()    const;
-
-    QColor getTelBannerBgColor()    const;
-    QColor getTelBannerTextColor()  const;
-    QColor getTelBannerLineColor()  const;
-
-    QColor getTelLetterNormalColor()const;
-    QColor getTelLetterHighColor()  const;
-
-    QColor getTelButtonBgColor()    const;
-    QColor getTelButtonNameColor()  const;
-    QColor getTelButtonTypeColor()  const;
-
-    QColor getTelPanelNormalColor() const;
-    QColor getTelPanelHighColor()   const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    QList<QWidget *> items;     //通讯录按钮集合
+    QList<QWidget *> banners;   //通讯录字母分割集合
+    QList<QPixmap> pixmaps;     //联系人图片集合
+    QTimer *timer;              //隐藏高亮标签定时器
 
 private slots:
     void initControl();
@@ -500,49 +488,96 @@ private slots:
     void positionChanged(int value);
     void letterClicked(const QString &letter, int letterY);
 
-public Q_SLOTS:
-    //设置姓名+类型+电话集合
+public:
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取和设置姓名
+    QString getNames() const;
     void setNames(const QString &names);
+
+    //获取和设置类型
+    QString getTypes() const;
     void setTypes(const QString &types);
+
+    //获取和设置电话集合
+    QString getTels() const;
     void setTels(const QString &tels);
+
+    //批量设置姓名/类型/电话
     void setInfo(const QString &names, const QString &types, const QString &tels);
-    void setInfo(const QStringList &names, const QStringList &types,
-                 const QStringList &tels, const QList<QPixmap> &pixmaps);
+    void setInfo(const QStringList &names, const QStringList &types, const QStringList &tels, const QList<QPixmap> &pixmaps);
 
     //添加单个联系人
-    void addInfo(const QString &name, const QString &type,
-                 const QString &tel, const QPixmap &pixmap);
+    void addInfo(const QString &name, const QString &type, const QString &tel, const QPixmap &pixmap);
     //删除单个联系人
     void deleteInfo(const QString &name, const QString &tel, bool one = true);
     //清空联系人
     void clearInfo();
 
-    //设置背景图+背景颜色
+    //获取和设置背景图
+    QPixmap getBgImage() const;
     void setBgImage(const QPixmap &bgImage);
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
-    //设置高亮字母标签相关属性
+    //获取和设置高亮字母字体大小
+    int getTelHighFontSize() const;
     void setTelHighFontSize(int telHighFontSize);
+
+    //获取和设置高亮字母背景图片
+    QPixmap getTelHighBgImage() const;
     void setTelHighBgImage(const QPixmap &telHighBgImage);
+
+    //获取和设置高亮字母背景颜色
+    QColor getTelHighBgColor() const;
     void setTelHighBgColor(const QColor &telHighBgColor);
+
+    //获取和设置高亮字母文字颜色
+    QColor getTelHighTextColor() const;
     void setTelHighTextColor(const QColor &telHighTextColor);
 
-    //设置顶部字母导航相关属性
+    //获取和设置顶部字母导航背景颜色
+    QColor getTelBannerBgColor() const;
     void setTelBannerBgColor(const QColor &telBannerBgColor);
+
+    //获取和设置顶部字母导航文字颜色
+    QColor getTelBannerTextColor() const;
     void setTelBannerTextColor(const QColor &telBannerTextColor);
+
+    //获取和设置顶部字母导航线条颜色
+    QColor getTelBannerLineColor() const;
     void setTelBannerLineColor(const QColor &telBannerLineColor);
 
-    //设置右侧字母导航相关属性
+    //获取和设置右侧字母导航正常颜色
+    QColor getTelLetterNormalColor() const;
     void setTelLetterNormalColor(const QColor &telLetterNormalColor);
+
+    //获取和设置右侧字母导航加深颜色
+    QColor getTelLetterHighColor() const;
     void setTelLetterHighColor(const QColor &telLetterHighColor);
 
-    //设置通讯录按钮相关属性
+    //获取和设置通讯录按钮背景颜色
+    QColor getTelButtonBgColor() const;
     void setTelButtonBgColor(const QColor &telButtonBgColor);
+
+    //获取和设置通讯录按钮姓名颜色
+    QColor getTelButtonNameColor() const;
     void setTelButtonNameColor(const QColor &telButtonNameColor);
+
+    //获取和设置通讯录按钮类型颜色
+    QColor getTelButtonTypeColor() const;
     void setTelButtonTypeColor(const QColor &telButtonTypeColor);
 
-    //设置滚动条相关属性
+    //获取和设置滚动条正常颜色
+    QColor getTelPanelNormalColor() const;
     void setTelPanelNormalColor(const QColor &telPanelNormalColor);
+
+    //获取和设置滚动条高亮颜色
+    QColor getTelPanelHighColor() const;
     void setTelPanelHighColor(const QColor &telPanelHighColor);
 
 Q_SIGNALS:

@@ -112,98 +112,120 @@ private:
     QLCDNumber *lcd;            //数码管
 
 public:
-    double getMinValue()        const;
-    double getMaxValue()        const;
-    double getValue()           const;
-    double getAnimationValue()  const;
-    int getPrecision()          const;
-    int getDigitCount()         const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getScaleMajor()         const;
-    int getScaleMinor()         const;
-    int getStartAngle()         const;
-    int getEndAngle()           const;
-
-    bool getAnimation()         const;
-    int getAnimationDuration()  const;
-    QEasingCurve getAnimationType()const;
-
-    int getRingWidth()          const;
-    int getRingPercentStart()   const;
-    int getRingPercentMid()     const;
-    int getRingPercentEnd()     const;
-
-    QColor getRingColorStart()  const;
-    QColor getRingColorMid()    const;
-    QColor getRingColorEnd()    const;
-
-    QColor getPointerColor()    const;
-    QColor getBgColor()         const;
-    QColor getTextColor()       const;
-    QString getUnit()           const;
-    QString getText()           const;
-
-    QSize sizeHint()            const;
-    QSize minimumSizeHint()     const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
+
+    //获取和设置动画值
+    double getAnimationValue()  const;
     void setAnimationValue(double value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
-    //设置数码管的长度
+
+    //获取和设置数码管的长度
+    int getDigitCount() const;
     void setDigitCount(int digitCount);
 
-    //设置主刻度数量
+    //获取和设置主刻度数量
+    int getScaleMajor() const;
     void setScaleMajor(int scaleMajor);
-    //设置小刻度数量
+
+    //获取和设置小刻度数量
+    int getScaleMinor() const;
     void setScaleMinor(int scaleMinor);
-    //设置开始旋转角度
+
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置是否启用动画+动画时长+动画类型
+    //获取和设置启用动画
+    bool getAnimation() const;
     void setAnimation(bool animation);
+
+    //获取和设置动画时长
+    int getAnimationDuration() const;
     void setAnimationDuration(int animationDuration);
+
+    //获取和设置动画类型
+    QEasingCurve getAnimationType() const;
     void setAnimationType(const QEasingCurve &animationType);
 
-    //设置饼圆宽度
+    //获取和设置饼圆宽度
+    int getRingWidth() const;
     void setRingWidth(int ringWidth);
 
-    //设置三个圆环所占比例
+    //获取和设置开始圆环占比
+    int getRingPercentStart() const;
     void setRingPercentStart(int ringPercentStart);
+
+    //获取和设置中间圆环占比
+    int getRingPercentMid() const;
     void setRingPercentMid(int ringPercentMid);
+
+    //获取和设置结束圆环占比
+    int getRingPercentEnd() const;
     void setRingPercentEnd(int ringPercentEnd);
 
-    //设置三个圆环颜色
+    //获取和设置开始圆环颜色
+    QColor getRingColorStart() const;
     void setRingColorStart(const QColor &ringColorStart);
+
+    //获取和设置中间圆环颜色
+    QColor getRingColorMid() const;
     void setRingColorMid(const QColor &ringColorMid);
+
+    //获取和设置结束圆环颜色
+    QColor getRingColorEnd() const;
     void setRingColorEnd(const QColor &ringColorEnd);
 
-    //设置指针颜色
+    //获取和设置指针颜色
+    QColor getPointerColor() const;
     void setPointerColor(const QColor &pointerColor);
-    //设置背景颜色
+
+    //获取和设置背景颜色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
-    //设置单位
+
+    //获取和设置单位
+    QString getUnit() const;
     void setUnit(const QString &unit);
-    //设置中间描述文字
+
+    //获取和设置中间描述文字
+    QString getText() const;
     void setText(const QString &text);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
+
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(int value);
 };
 

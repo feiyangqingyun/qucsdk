@@ -81,7 +81,7 @@ private:
     double minValue;                //最小值
     double maxValue;                //最大值
     double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    int precision;                  //精确度(小数点后几位)
 
     int startAngle;                 //开始旋转角度
     int endAngle;                   //结束旋转角度
@@ -103,6 +103,7 @@ private:
     QPropertyAnimation *animation;  //动画对象
 
 private slots:
+    //设置动画样式
     void setEasingCurve();
     void updateRadius(QVariant radius);
 
@@ -113,71 +114,80 @@ private:
     void setPressedValue(QPointF pressedPoint);
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getStartAngle()             const;
-    int getEndAngle()               const;
-
-    QColor getBgColor()             const;
-    QColor getProgressColor()       const;
-    QColor getProgressBgColor()     const;
-    QColor getCircleColorStart()    const;
-    QColor getCircleColorEnd()      const;
-    QColor getTextColor()           const;
-
-    bool getShowPointer()           const;
-    bool getShowValue()             const;
-    PointerStyle getPointerStyle()  const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置开始旋转角度
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置背景色
+    //获取和设置背景色
+    QColor getBgColor() const;
     void setBgColor(const QColor &bgColor);
 
-    //设置进度颜色
+    //获取和设置进度颜色
+    QColor getProgressColor() const;
     void setProgressColor(const QColor &progressColor);
+
+    //获取和设置进度背景颜色
+    QColor getProgressBgColor() const;
     void setProgressBgColor(const QColor &progressBgColor);
 
-    //设置中间圆颜色
+    //获取和设置中间圆开始颜色
+    QColor getCircleColorStart() const;
     void setCircleColorStart(const QColor &circleColorStart);
+
+    //获取和设置中间圆结束颜色
+    QColor getCircleColorEnd() const;
     void setCircleColorEnd(const QColor &circleColorEnd);
 
-    //设置文本颜色
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置是否显示指示器
+    //获取和设置是否显示指示器
+    bool getShowPointer() const;
     void setShowPointer(bool showPointer);
-    //设置是否显示当前值
+
+    //获取和设置是否显示当前值
+    bool getShowValue() const;
     void setShowValue(bool showValue);
-    //设置指针样式
+
+    //获取和设置指针样式
+    PointerStyle getPointerStyle() const;
     void setPointerStyle(const PointerStyle &pointerStyle);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
+
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(int value);
 };
 

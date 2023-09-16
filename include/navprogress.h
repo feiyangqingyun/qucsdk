@@ -54,56 +54,59 @@ protected:
     void drawCurrentBg_ZFB(QPainter *painter);
 
 private:
-    QStringList topInfo;            //导航顶部标签数据
-    QStringList bottomInfo;         //导航底部标签数据
+    QStringList topInfo;        //导航顶部标签数据
+    QStringList bottomInfo;     //导航底部标签数据
 
-    int maxStep;                    //最大步数
-    int currentStep;                //当前第几步
-    NavStyle navStyle;              //导航样式
+    int maxStep;                //最大步数
+    int currentStep;            //当前第几步
+    NavStyle navStyle;          //导航样式
 
-    QColor background;              //背景色
-    QColor foreground;              //前景色
-    QColor currentBackground;       //当前背景色
-    QColor currentForeground;       //当前前景色
+    QColor background;          //背景色
+    QColor foreground;          //前景色
+    QColor currentBackground;   //当前背景色
+    QColor currentForeground;   //当前前景色
 
-    QFont iconFont;                 //图形字体
-
-public:
-    QStringList getTopInfo()        const;
-    QStringList getBottomInfo()     const;
-
-    int getMaxStep()                const;
-    int getCurrentStep()            const;
-    NavStyle getNavStyle()          const;
-
-    QColor getBackground()          const;
-    QColor getForeground()          const;
-    QColor getCurrentBackground()   const;
-    QColor getCurrentForeground()   const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
+    QFont iconFont;             //图形字体
 
 public Q_SLOTS:
-    //设置导航顶部标签数据
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
+
+    //获取和设置导航顶部标签数据
+    QStringList getTopInfo() const;
     void setTopInfo(const QStringList &topInfo);
-    //设置导航底部标签数据
+
+    //获取和设置导航底部标签数据
+    QStringList getBottomInfo() const;
     void setBottomInfo(const QStringList &bottomInfo);
 
-    //设置最大步数
+    //获取和设置最大步数
+    int getMaxStep() const;
     void setMaxStep(int maxStep);
-    //设置当前第几步
+
+    //获取和设置当前第几步
+    int getCurrentStep() const;
     void setCurrentStep(int currentStep);
-    //设置导航样式
+
+    //获取和设置导航样式
+    NavStyle getNavStyle() const;
     void setNavStyle(const NavStyle &navStyle);
 
-    //设置前景色
+    //获取和设置前景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
-    //设置前景色
+
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
-    //设置当前前景色
+
+    //获取和设置当前前景色
+    QColor getCurrentBackground() const;
     void setCurrentBackground(const QColor &currentBackground);
-    //设置当前前景色
+
+    //获取和设置当前前景色
+    QColor getCurrentForeground() const;
     void setCurrentForeground(const QColor &currentForeground);
 };
 

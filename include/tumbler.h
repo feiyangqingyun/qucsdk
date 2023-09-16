@@ -46,56 +46,60 @@ protected:
     void drawText(QPainter *painter, int index, int offset);
 
 private:
-    QStringList listValue;          //值队列
-    int currentIndex;               //当前索引
-    QString currentValue;           //当前值
-    bool horizontal;                //是否横向显示
+    QStringList listValue;  //值队列
+    int currentIndex;       //当前索引
+    QString currentValue;   //当前值
+    bool horizontal;        //是否横向显示
 
-    QColor foreground;              //前景色
-    QColor background;              //背景色
-    QColor lineColor;               //线条颜色
-    QColor textColor;               //当前文本颜色
+    QColor foreground;      //前景色
+    QColor background;      //背景色
+    QColor lineColor;       //线条颜色
+    QColor textColor;       //当前文本颜色
 
-    int percent;                    //比例
-    int offset;                     //偏离值
-    bool pressed;                   //鼠标是否按下
-    int pressedPos;                 //按下处坐标
-    int currentPos;                 //当前值对应起始坐标
+    int percent;            //比例
+    int offset;             //偏离值
+    bool pressed;           //鼠标是否按下
+    int pressedPos;         //按下处坐标
+    int currentPos;         //当前值对应起始坐标
 
 private:
-    void checkPosition();
+    void checkPosition();   //检验位置
 
 public:
-    QStringList getListValue()      const;
-    int getCurrentIndex()           const;
-    QString getCurrentValue()       const;
-    bool getHorizontal()            const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getForeground()          const;
-    QColor getBackground()          const;
-    QColor getLineColor()           const;
-    QColor getTextColor()           const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置值队列
+    //获取和设置值队列
+    QStringList getListValue() const;
     void setListValue(const QStringList &listValue);
-    //设置当前索引
+
+    //获取和设置当前索引
+    int getCurrentIndex() const;
     void setCurrentIndex(int currentIndex);
-    //设置当前值
+
+    //获取和设置当前值
+    QString getCurrentValue() const;
     void setCurrentValue(const QString &currentValue);
-    //设置横向显示,如果为假则纵向显示
+
+    //获取和设置横向显示(如果为假则纵向显示)
+    bool getHorizontal() const;
     void setHorizontal(bool horizontal);
 
-    //设置前景色
+    //获取和设置前景色
+    QColor getForeground() const;
     void setForeground(const QColor &foreground);
-    //设置背景色
+
+    //获取和设置背景色
+    QColor getBackground() const;
     void setBackground(const QColor &background);
-    //设置线条颜色
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
-    //设置文本颜色
+
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
 Q_SIGNALS:

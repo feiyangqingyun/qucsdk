@@ -19,10 +19,14 @@
 #include <QAbstractListModel>
 #include <QListView>
 #include <QStringList>
-
 class NavListView;
 
+#ifdef quc
+class Q_DECL_EXPORT NavDelegate : public QStyledItemDelegate
+#else
 class NavDelegate : public QStyledItemDelegate
+#endif
+
 {
     Q_OBJECT
 public:
@@ -38,8 +42,12 @@ private:
     QFont iconFont;
 };
 
-
+#ifdef quc
+class Q_DECL_EXPORT NavModel : public QAbstractListModel
+#else
 class NavModel : public QAbstractListModel
+#endif
+
 {
     Q_OBJECT
 public:
@@ -51,7 +59,10 @@ public:
         int level;                  //层级,父节点-1,子节点-2
         bool expand;                //是否打开子节点
         bool last;                  //是否末尾元素
+
         QChar icon;                 //左侧图标
+        QString image;              //图片路径
+
         QString text;               //显示的节点文字
         QString tip;                //右侧描述文字
         QString parentText;         //父节点名称
@@ -112,9 +123,11 @@ class NavListView : public QListView
     Q_PROPERTY(int parentMargin READ getParentMargin WRITE setParentMargin)
     Q_PROPERTY(int parentFontSize READ getParentFontSize WRITE setParentFontSize)
     Q_PROPERTY(int parentHeight READ getParentHeight WRITE setParentHeight)
+
     Q_PROPERTY(QColor parentBgNormalColor READ getParentBgNormalColor WRITE setParentBgNormalColor)
     Q_PROPERTY(QColor parentBgSelectedColor READ getParentBgSelectedColor WRITE setParentBgSelectedColor)
     Q_PROPERTY(QColor parentBgHoverColor READ getParentBgHoverColor WRITE setParentBgHoverColor)
+
     Q_PROPERTY(QColor parentTextNormalColor READ getParentTextNormalColor WRITE setParentTextNormalColor)
     Q_PROPERTY(QColor parentTextSelectedColor READ getParentTextSelectedColor WRITE setParentTextSelectedColor)
     Q_PROPERTY(QColor parentTextHoverColor READ getParentTextHoverColor WRITE setParentTextHoverColor)
@@ -123,9 +136,11 @@ class NavListView : public QListView
     Q_PROPERTY(int childMargin READ getChildMargin WRITE setChildMargin)
     Q_PROPERTY(int childFontSize READ getChildFontSize WRITE setChildFontSize)
     Q_PROPERTY(int childHeight READ getChildHeight WRITE setChildHeight)
+
     Q_PROPERTY(QColor childBgNormalColor READ getChildBgNormalColor WRITE setChildBgNormalColor)
     Q_PROPERTY(QColor childBgSelectedColor READ getChildBgSelectedColor WRITE setChildBgSelectedColor)
     Q_PROPERTY(QColor childBgHoverColor READ getChildBgHoverColor WRITE setChildBgHoverColor)
+
     Q_PROPERTY(QColor childTextNormalColor READ getChildTextNormalColor WRITE setChildTextNormalColor)
     Q_PROPERTY(QColor childTextSelectedColor READ getChildTextSelectedColor WRITE setChildTextSelectedColor)
     Q_PROPERTY(QColor childTextHoverColor READ getChildTextHoverColor WRITE setChildTextHoverColor)
@@ -172,9 +187,11 @@ private:
     int parentMargin;               //父节点边距
     int parentFontSize;             //父节点字体大小
     int parentHeight;               //父节点高度
+
     QColor parentBgNormalColor;     //父节点正常背景色
     QColor parentBgSelectedColor;   //父节点选中背景色
     QColor parentBgHoverColor;      //父节点悬停背景色
+
     QColor parentTextNormalColor;   //父节点正常文字颜色
     QColor parentTextSelectedColor; //父节点选中文字颜色
     QColor parentTextHoverColor;    //父节点悬停文字颜色
@@ -183,9 +200,11 @@ private:
     int childMargin;                //子节点边距
     int childFontSize;              //子节点字体大小
     int childHeight;                //子节点高度
+
     QColor childBgNormalColor;      //子节点正常背景色
     QColor childBgSelectedColor;    //子节点选中背景色
     QColor childBgHoverColor;       //子节点悬停背景色
+
     QColor childTextNormalColor;    //子节点正常文字颜色
     QColor childTextSelectedColor;  //子节点选中文字颜色
     QColor childTextHoverColor;     //子节点悬停文字颜色
@@ -197,106 +216,157 @@ private slots:
     void setData(const QStringList &listItems);
 
 public:
-    QString getItems()              const;
-    bool getRightIconVisible()      const;
-    bool getTipVisible()            const;
-    int getTipWidth()               const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    bool getSeparateVisible()       const;
-    int getSeparateHeight()         const;
-    QColor getSeparateColor()       const;
-
-    bool getLineLeft()              const;
-    bool getLineVisible()           const;
-    int getLineWidth()              const;
-    QColor getLineColor()           const;
-
-    bool getTriangleLeft()          const;
-    bool getTriangleVisible()       const;
-    int getTriangleWidth()          const;
-    QColor getTriangleColor()       const;
-
-    int getParentIconMargin()       const;
-    int getParentMargin()           const;
-    int getParentFontSize()         const;
-    int getParentHeight()           const;
-    QColor getParentBgNormalColor() const;
-    QColor getParentBgSelectedColor()const;
-    QColor getParentBgHoverColor()  const;
-    QColor getParentTextNormalColor()const;
-    QColor getParentTextSelectedColor()const;
-    QColor getParentTextHoverColor()const;
-
-    int getChildIconMargin()        const;
-    int getChildMargin()            const;
-    int getChildFontSize()          const;
-    int getChildHeight()            const;
-    QColor getChildBgNormalColor()  const;
-    QColor getChildBgSelectedColor()const;
-    QColor getChildBgHoverColor()   const;
-    QColor getChildTextNormalColor()const;
-    QColor getChildTextSelectedColor()const;
-    QColor getChildTextHoverColor() const;
-
-    ExpendMode getExpendMode()      const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置节点数据
-    void setItems(const QString &items);
     //设置选中指定行
     void setCurrentRow(int row);
-    //设置父节点右侧图标是否显示
+    //主动更新
+    void updatex();
+
+    //获取和设置节点数据
+    QString getItems() const;
+    void setItems(const QString &items);
+
+    //获取和设置父节点右侧图标是否显示
+    bool getRightIconVisible() const;
     void setRightIconVisible(bool rightIconVisible);
 
-    //设置提示信息 是否显示+宽度
+    //获取和设置提示信息是否显示
+    bool getTipVisible() const;
     void setTipVisible(bool tipVisible);
+
+    //获取和设置提示信息宽度
+    int getTipWidth() const;
     void setTipWidth(int tipWidth);
 
-    //设置行分隔符 是否显示+高度+颜色
+    //获取和设置行分隔符是否显示
+    bool getSeparateVisible() const;
     void setSeparateVisible(bool separateVisible);
+
+    //获取和设置行分隔符高度
+    int getSeparateHeight() const;
     void setSeparateHeight(int separateHeight);
+
+    //获取和设置行分隔符颜色
+    QColor getSeparateColor() const;
     void setSeparateColor(const QColor &separateColor);
 
-    //设置线条 位置+可见+宽度+颜色
+    //获取和设置线条位置
+    bool getLineLeft() const;
     void setLineLeft(bool lineLeft);
+
+    //获取和设置线条可见
+    bool getLineVisible() const;
     void setLineVisible(bool lineVisible);
+
+    //获取和设置线条宽度
+    int getLineWidth() const;
     void setLineWidth(int lineWidth);
+
+    //获取和设置线条颜色
+    QColor getLineColor() const;
     void setLineColor(const QColor &lineColor);
 
-    //设置三角形 位置+可见+宽度+颜色
+    //获取和设置三角形位置
+    bool getTriangleLeft() const;
     void setTriangleLeft(bool triangleLeft);
+
+    //获取和设置三角形可见
+    bool getTriangleVisible() const;
     void setTriangleVisible(bool triangleVisible);
+
+    //获取和设置三角形宽度
+    int getTriangleWidth() const;
     void setTriangleWidth(int triangleWidth);
+
+    //获取和设置三角形颜色
+    QColor getTriangleColor() const;
     void setTriangleColor(const QColor &triangleColor);
 
-    //设置父节点 图标边距+左侧边距+字体大小+节点高度+颜色集合
+    //获取和设置父节点图标边距
+    int getParentIconMargin() const;
     void setParentIconMargin(int parentIconMargin);
+
+    //获取和设置父节点左侧边距
+    int getParentMargin() const;
     void setParentMargin(int parentMargin);
+
+    //获取和设置父节点字体大小
+    int getParentFontSize() const;
     void setParentFontSize(int parentFontSize);
+
+    //获取和设置父节点节点高度
+    int getParentHeight() const;
     void setParentHeight(int parentHeight);
+
+    //获取和设置父节点正常背景颜色
+    QColor getParentBgNormalColor() const;
     void setParentBgNormalColor(const QColor &parentBgNormalColor);
+
+    //获取和设置父节点选中背景颜色
+    QColor getParentBgSelectedColor() const;
     void setParentBgSelectedColor(const QColor &parentBgSelectedColor);
+
+    //获取和设置父节点悬停背景颜色
+    QColor getParentBgHoverColor() const;
     void setParentBgHoverColor(const QColor &parentBgHoverColor);
+
+    //获取和设置父节点正常文字颜色
+    QColor getParentTextNormalColor() const;
     void setParentTextNormalColor(const QColor &parentTextNormalColor);
+
+    //获取和设置父节点选中文字颜色
+    QColor getParentTextSelectedColor() const;
     void setParentTextSelectedColor(const QColor &parentTextSelectedColor);
+
+    //获取和设置父节点悬停文字颜色
+    QColor getParentTextHoverColor() const;
     void setParentTextHoverColor(const QColor &parentTextHoverColor);
 
-    //设置子节点 图标边距+左侧边距+字体大小+节点高度+颜色集合
+    //获取和设置子节点图标边距
+    int getChildIconMargin() const;
     void setChildIconMargin(int childIconMargin);
+
+    //获取和设置子节点左侧边距
+    int getChildMargin() const;
     void setChildMargin(int childMargin);
+
+    //获取和设置子节点字体大小
+    int getChildFontSize() const;
     void setChildFontSize(int childFontSize);
+
+    //获取和设置子节点节点高度
+    int getChildHeight() const;
     void setChildHeight(int childHeight);
+
+    //获取和设置子节点正常背景颜色
+    QColor getChildBgNormalColor() const;
     void setChildBgNormalColor(const QColor &childBgNormalColor);
+
+    //获取和设置子节点选中背景颜色
+    QColor getChildBgSelectedColor() const;
     void setChildBgSelectedColor(const QColor &childBgSelectedColor);
+
+    //获取和设置子节点悬停背景颜色
+    QColor getChildBgHoverColor() const;
     void setChildBgHoverColor(const QColor &childBgHoverColor);
+
+    //获取和设置子节点正常文字颜色
+    QColor getChildTextNormalColor() const;
     void setChildTextNormalColor(const QColor &childTextNormalColor);
+
+    //获取和设置子节点选中文字颜色
+    QColor getChildTextSelectedColor() const;
     void setChildTextSelectedColor(const QColor &childTextSelectedColor);
+
+    //获取和设置子节点悬停文字颜色
+    QColor getChildTextHoverColor() const;
     void setChildTextHoverColor(const QColor &childTextHoverColor);
 
-    //设置节点展开模式
+    //获取和设置节点展开模式
+    ExpendMode getExpendMode() const;
     void setExpendMode(const ExpendMode &expendMode);
 
 Q_SIGNALS:

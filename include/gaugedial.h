@@ -71,22 +71,22 @@ protected:
     void drawValue(QPainter *painter);
 
 private:
-    double minValue;                //最小值
-    double maxValue;                //最大值
-    double value;                   //目标值
-    int precision;                  //精确度,小数点后几位
+    double minValue;            //最小值
+    double maxValue;            //最大值
+    double value;               //目标值
+    int precision;              //精确度(小数点后几位)
 
-    int scaleMajor;                 //大刻度数量
-    int scaleMinor;                 //小刻度数量
-    int startAngle;                 //开始旋转角度
-    int endAngle;                   //结束旋转角度
+    int scaleMajor;             //大刻度数量
+    int scaleMinor;             //小刻度数量
+    int startAngle;             //开始旋转角度
+    int endAngle;               //结束旋转角度
 
-    QColor darkColor;               //暗黑颜色
-    QColor lightColor;              //明亮颜色
-    QColor textColor;               //文字颜色
+    QColor darkColor;           //暗黑颜色
+    QColor lightColor;          //明亮颜色
+    QColor textColor;           //文字颜色
 
-    bool showValue;                 //是否显示当前值
-    PointerStyle pointerStyle;      //指针样式
+    bool showValue;             //是否显示当前值
+    PointerStyle pointerStyle;  //指针样式
 
 private:
     //鼠标是否按下
@@ -95,64 +95,72 @@ private:
     void setPressedValue(QPointF pressedPoint);
 
 public:
-    double getMinValue()            const;
-    double getMaxValue()            const;
-    double getValue()               const;
-    int getPrecision()              const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    int getScaleMajor()             const;
-    int getScaleMinor()             const;
-    int getStartAngle()             const;
-    int getEndAngle()               const;
-
-    QColor getDarkColor()           const;
-    QColor getLightColor()          const;
-    QColor getTextColor()           const;
-
-    bool getShowValue()             const;
-    PointerStyle getPointerStyle()  const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
     //设置范围值
     void setRange(double minValue, double maxValue);
     void setRange(int minValue, int maxValue);
 
-    //设置最大最小值
+    //获取和设置最小值
+    double getMinValue() const;
     void setMinValue(double minValue);
+
+    //获取和设置最大值
+    double getMaxValue() const;
     void setMaxValue(double maxValue);
 
-    //设置目标值
+    //获取和设置目标值
+    double getValue() const;
     void setValue(double value);
-    void setValue(int value);
 
-    //设置精确度
+    //获取和设置精确度
+    int getPrecision() const;
     void setPrecision(int precision);
 
-    //设置主刻度数量
+    //获取和设置主刻度数量
+    int getScaleMajor() const;
     void setScaleMajor(int scaleMajor);
-    //设置小刻度数量
+
+    //获取和设置小刻度数量
+    int getScaleMinor() const;
     void setScaleMinor(int scaleMinor);
-    //设置开始旋转角度
+
+    //获取和设置开始旋转角度
+    int getStartAngle() const;
     void setStartAngle(int startAngle);
-    //设置结束旋转角度
+
+    //获取和设置结束旋转角度
+    int getEndAngle() const;
     void setEndAngle(int endAngle);
 
-    //设置颜色
+    //获取和设置加深颜色
+    QColor getDarkColor() const;
     void setDarkColor(const QColor &darkColor);
+
+    //获取和设置明亮颜色
+    QColor getLightColor() const;
     void setLightColor(const QColor &lightColor);
 
-    //设置文本颜色
+    //获取和设置文本颜色
+    QColor getTextColor() const;
     void setTextColor(const QColor &textColor);
 
-    //设置是否显示当前值
+    //获取和设置是否显示当前值
+    bool getShowValue() const;
     void setShowValue(bool showValue);
-    //设置指针样式
+
+    //获取和设置指针样式
+    PointerStyle getPointerStyle() const;
     void setPointerStyle(const PointerStyle &pointerStyle);
 
+public Q_SLOTS:
+    //设置当前值
+    void setValue(int value);
+
 Q_SIGNALS:
+    //值变化信号
     void valueChanged(int value);
 };
 

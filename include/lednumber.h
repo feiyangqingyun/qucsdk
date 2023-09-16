@@ -17,8 +17,7 @@ public:
 
     bool hasThisPair(int hCoor, int vCoor) {
         int count = vec.count();
-
-        for (int i = 0; i < count ; i++) {
+        for (int i = 0; i < count ; ++i) {
             if (vec.at(i).first == hCoor &&
                 vec.at(i).second == vCoor) {
                 return true;
@@ -70,19 +69,19 @@ protected:
     void drawNumber(QPainter *painter);
 
 private:
-    int number;                     //目标值
-    int space;                      //间距
-    int padding;                    //数字的间隔
-    int radius;                     //圆角角度
+    int number;                 //目标值
+    int space;                  //间距
+    int padding;                //数字的间隔
+    int radius;                 //圆角角度
 
-    QColor bgColorStart;            //背景渐变开始颜色
-    QColor bgColorEnd;              //背景渐变结束颜色
+    QColor bgColorStart;        //背景渐变开始颜色
+    QColor bgColorEnd;          //背景渐变结束颜色
 
-    QColor numberBgColorStart;      //无数字背景渐变开始颜色
-    QColor numberBgColorEnd;        //无数字背景渐变结束颜色
+    QColor numberBgColorStart;  //无数字背景渐变开始颜色
+    QColor numberBgColorEnd;    //无数字背景渐变结束颜色
 
-    QColor numberColorStart;        //数字渐变开始颜色
-    QColor numberColorEnd;          //数字渐变结束颜色
+    QColor numberColorStart;    //数字渐变开始颜色
+    QColor numberColorEnd;      //数字渐变结束颜色
 
     NumberObj *zero, *one, *two, *three, *four, *five, *six, *seven, *eight, *nine;
 
@@ -91,45 +90,46 @@ private:
     void drawNum(NumberObj *numberObj, int i, int j, QPainter *painter);
 
 public:
-    int getNumber()                 const;
-    int getSpace()                  const;
-    int getPadding()                const;
-    int getRadius()                 const;
+    //默认尺寸和最小尺寸
+    QSize sizeHint() const;
+    QSize minimumSizeHint() const;
 
-    QColor getBgColorStart()        const;
-    QColor getBgColorEnd()          const;
-
-    QColor getNumberBgColorStart()  const;
-    QColor getNumberBgColorEnd()    const;
-
-    QColor getNumberColorStart()    const;
-    QColor getNumberColorEnd()      const;
-
-    QSize sizeHint()                const;
-    QSize minimumSizeHint()         const;
-
-public Q_SLOTS:
-    //设置值
+    //获取和设置值
+    int getNumber() const;
     void setNumber(int number);
-    //设置间距
+
+    //获取和设置间距
+    int getSpace() const;
     void setSpace(int space);
-    //设置数字间的间隔
+
+    //获取和设置数字间的间隔
+    int getPadding() const;
     void setPadding(int padding);
-    //设置圆角角度
+
+    //获取和设置圆角角度
+    int getRadius() const;
     void setRadius(int radius);
 
-    //设置背景颜色
+    //获取和设置背景颜色
+    QColor getBgColorStart() const;
     void setBgColorStart(const QColor &bgColorStart);
+
+    QColor getBgColorEnd() const;
     void setBgColorEnd(const QColor &bgColorEnd);
 
-    //设置无数字颜色
+    //获取和设置无数字颜色
+    QColor getNumberBgColorStart() const;
     void setNumberBgColorStart(const QColor &numberBgColorStart);
+
+    QColor getNumberBgColorEnd() const;
     void setNumberBgColorEnd(const QColor &numberBgColorEnd);
 
-    //设置数字颜色
+    //获取和设置数字颜色
+    QColor getNumberColorStart() const;
     void setNumberColorStart(const QColor &numberColorStart);
-    void setNumberColorEnd(const QColor &numberColorEnd);
 
+    QColor getNumberColorEnd() const;
+    void setNumberColorEnd(const QColor &numberColorEnd);
 };
 
 #endif // LEDNUMBER_H
