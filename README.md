@@ -8,9 +8,9 @@
 6. **版本支持：所有项目已经全部支持Qt4/5/6所有版本以及后续版本。**
 7. 监控作品体验：[https://pan.baidu.com/s/1d7TH_GEYl5nOecuNlWJJ7g](https://pan.baidu.com/s/1d7TH_GEYl5nOecuNlWJJ7g) 提取码：01jf
 8. 其他作品体验：[https://pan.baidu.com/s/1ZxG-oyUKe286LPMPxOrO2A](https://pan.baidu.com/s/1ZxG-oyUKe286LPMPxOrO2A) 提取码：o05q
-9. 监控系统在线文档：[https://feiyangqingyun.gitee.io/QWidgetDemo/video_system/](https://feiyangqingyun.gitee.io/QWidgetDemo/video_system/)
-10. 大屏系统在线文档：[https://feiyangqingyun.gitee.io/QWidgetDemo/bigscreen/](https://feiyangqingyun.gitee.io/QWidgetDemo/bigscreen/)
-11. 物联网系统在线文档：[https://feiyangqingyun.gitee.io/QWidgetDemo/iotsystem/](https://feiyangqingyun.gitee.io/QWidgetDemo/iotsystem/)
+9. 监控系统在线文档：[http://www.qtcdev.com/video_system/](http://www.qtcdev.com/video_system/)
+10. 大屏系统在线文档：[http://www.qtcdev.com/bigscreen/](http://www.qtcdev.com/bigscreen/)
+11. 物联网系统在线文档：[http://www.qtcdev.com/iotsystem/](http://www.qtcdev.com/iotsystem/)
 
 ## 1 项目介绍
 Qt编写的自定义控件插件的sdk集合，包括了多个操作系统的动态库文件、控件头文件、sdk使用demo、使用说明等。
